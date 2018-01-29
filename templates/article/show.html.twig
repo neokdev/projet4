@@ -3,38 +3,104 @@
 {% block title %}Read {{ title }}{% endblock %}
 
 {% block body %}
-{# Article template#}
-<h1>{{ title }}</h1>
-<div>
-    <p>Bring her forward! She looks like one. But you are dressed as one… Well, how'd you become king, then? Well, how'd you become king, then?</p>
-    <p>I have to push the pram a lot. Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot! We found them. You don't vote for kings. Well, we did do the nose.</p>
-    <p>We want a shrubbery!! Burn her! And the hat. She's a witch! How do you know she is a witch? Shut up! You don't vote for kings.</p>
-    <p>Burn her anyway! Shut up! Will you shut up?! Well, Mercia's a temperate zone! Be quiet!</p>
-    <p>The Lady of the Lake, her arm clad in the purest shimmering samite, held aloft Excalibur from the bosom of the water, signifying by divine providence that I, Arthur, was to carry Excalibur. That is why I am your king. And this isn't my nose. This is a false one.</p>
-    <p>We want a shrubbery!! Bloody Peasant! It's only a model. I have to push the pram a lot.</p>
-    <p>Found them? In Mercia?! The coconut's tropical! Bloody Peasant! Well, we did do the nose. Be quiet! Well, we did do the nose.</p>
-    <p>It's only a model. Well, she turned me into a newt. Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot! How do you know she is a witch?</p>
-    <p>I have to push the pram a lot. Oh, ow! Why? Found them? In Mercia?! The coconut's tropical! Well, she turned me into a newt.</p>
-    <p>No, no, no! Yes, yes. A bit. But she's got a wart. But you are dressed as one… Why do you think that she is a witch? Ni! Ni! Ni! Ni!</p>
-    <p>Well, Mercia's a temperate zone! Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony.</p>
-    <p>Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! Ni! Ni! Ni! Ni! Camelot! But you are dressed as one… He hasn't got shit all over him.</p>
-    <p>And this isn't my nose. This is a false one. Well, I got better. Bring her forward! A newt?</p>
-    <p>Well, she turned me into a newt. On second thoughts, let's not go there. It is a silly place. Shut up! Will you shut up?! Found them? In Mercia?! The coconut's tropical! The nose?</p>
-    <p>No, no, no! Yes, yes. A bit. But she's got a wart. I'm not a witch. Why do you think that she is a witch? It's only a model.</p>
-    <p>You don't frighten us, English pig-dogs! Go and boil your bottoms, sons of a silly person! I blow my nose at you, so-called Ah-thoor Keeng, you and all your silly English K-n-n-n-n-n-n-n-niggits! But you are dressed as one…</p>
-    <p>Shut up! Why do you think that she is a witch? Bloody Peasant! Ni! Ni! Ni! Ni! Bloody Peasant!</p>
-    <p>Oh! Come and see the violence inherent in the system! Help, help, I'm being repressed! And the hat. She's a witch! Be quiet! I have to push the pram a lot. How do you know she is a witch?</p>
-    <p>On second thoughts, let's not go there. It is a silly place. I have to push the pram a lot. What a strange person. No, no, no! Yes, yes. A bit. But she's got a wart. Now, look here, my good man. She looks like one.</p>
-    <p>Where'd you get the coconuts? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods. Oh, ow! I'm not a witch. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!</p>
-</div>
 
-<h2>Comments ({{ comments|length }})</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="show-article-container p-3 mt-4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <img class="show-article-img" src="{{ asset('images/asteroid.jpeg') }}">
+                            <div class="show-article-title-container d-inline-block pl-3 align-middle">
+                                <span class="show-article-title ">{{ title }}</span>
+                                <br>
+                                <span class="align-left article-details"><img class="article-author-img rounded-circle" src="{{ asset('images/alien-profile.png') }}"> Mike Ferengi </span>
+                                <span class="pl-2 article-details"> 3 hours ago</span>
+                                <span class="pl-2 article-details">
+                                    <span class="js-like-article-count">5</span>
+                                    <a href="{{ path('article_toggle_heart', {slug: slug}) }}" class="fa fa-heart-o like-article js-like-article"></a> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="article-text">
+                                <p>Spicy jalapeno bacon ipsum dolor amet veniam shank in dolore. Ham hock nisi landjaeger cow,
+                                    lorem proident beef ribs aute enim veniam ut cillum pork chuck picanha. Dolore reprehenderit
+                                    labore minim pork belly spare ribs cupim short loin in. Elit exercitation eiusmod dolore cow
+                                    turkey shank eu pork belly meatball non cupim.</p>
 
-<ul>
-    {% for comment in comments %}
-        <li>
-            {{ comment }}
-        </li>
-    {% endfor %}
-</ul>
+                                <p>Laboris beef ribs fatback fugiat eiusmod jowl kielbasa alcatra dolore velit ea ball tip. Pariatur
+                                    laboris sunt venison, et laborum dolore minim non meatball. Shankle eu flank aliqua shoulder,
+                                    capicola biltong frankfurter boudin cupim officia. Exercitation fugiat consectetur ham. Adipisicing
+                                    picanha shank et filet mignon pork belly ut ullamco. Irure velit turducken ground round doner incididunt
+                                    occaecat lorem meatball prosciutto quis strip steak.</p>
+
+                                <p>Meatball adipisicing ribeye bacon strip steak eu. Consectetur ham hock pork hamburger enim strip steak
+                                    mollit quis officia meatloaf tri-tip swine. Cow ut reprehenderit, buffalo incididunt in filet mignon
+                                    strip steak pork belly aliquip capicola officia. Labore deserunt esse chicken lorem shoulder tail consectetur
+                                    cow est ribeye adipisicing. Pig hamburger pork belly enim. Do porchetta minim capicola irure pancetta chuck
+                                    fugiat.</p>
+
+                                <p>Sausage tenderloin officia jerky nostrud. Laborum elit pastrami non, pig kevin buffalo minim ex quis. Pork belly
+                                    pork chop officia anim. Irure tempor leberkas kevin adipisicing cupidatat qui buffalo ham aliqua pork belly
+                                    exercitation eiusmod. Exercitation incididunt rump laborum, t-bone short ribs buffalo ut shankle pork chop
+                                    bresaola shoulder burgdoggen fugiat. Adipisicing nostrud chicken consequat beef ribs, quis filet mignon do.
+                                    Prosciutto capicola mollit shankle aliquip do dolore hamburger brisket turducken eu.</p>
+
+                                <p>Do mollit deserunt prosciutto laborum. Duis sint tongue quis nisi. Capicola qui beef ribs dolore pariatur.
+                                    Minim strip steak fugiat nisi est, meatloaf pig aute. Swine rump turducken nulla sausage. Reprehenderit pork
+                                    belly tongue alcatra, shoulder excepteur in beef bresaola duis ham bacon eiusmod. Doner drumstick short loin,
+                                    adipisicing cow cillum tenderloin.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="share-icons mb-5"><span class="pr-1">Share:</span> <i class="pr-1 fa fa-facebook-square"></i><i class="pr-1 fa fa-twitter-square"></i><i class="pr-1 fa fa-reddit-square"></i><i class="pr-1 fa fa-share-alt-square"></i></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3><i class="pr-3 fa fa-comment"></i>{{ comments|length }} Comments</h3>
+                            <hr>
+
+                            <div class="row mb-5">
+                                <div class="col-sm-12">
+                                    <img class="comment-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}">
+                                    <div class="comment-container d-inline-block pl-3 align-top">
+                                        <span class="commenter-name">Amy Oort</span>
+                                        <div class="form-group">
+                                            <textarea class="form-control comment-form" id="articleText" rows="1"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-info">Comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% for comment in comments %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img class="comment-img rounded-circle" src="{{ asset('images/alien-profile.png') }}">
+                                    <div class="comment-container d-inline-block pl-3 align-top">
+                                        <span class="commenter-name">Mike Ferengi</span>
+                                        <br>
+                                        <span class="comment">{{ comment }}</span>
+                                        <p><a href="#">Reply</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/article_show.js') }}"></script>
 {% endblock %}
