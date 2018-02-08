@@ -26,27 +26,9 @@
     {% if dates is defined %}
 
         {% for date in dates %}
-            <table>
-                <tr>
-                    <td>
-                        Id :
-                        {{ date.id }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Date :
-                        {{ date.date|date('D, d M Y H:i:s')}}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Avalaible places :
-                        {{ date.count }}
-                    </td>
-                </tr>
+            {{ dump(date.date|date('D, d M Y'))}}
+            {{ dump(date.count) }}
         {% endfor %}
-        </table>
 
     {% endif %}
 

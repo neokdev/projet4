@@ -8,17 +8,30 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\DatesRepository;
 
 class EventHelper
 {
-    private $emi;
-    public function __construct(EntityManagerInterface $emi)
+    /**
+     * @var DatesRepository
+     */
+    private $datesRepository;
+
+    /**
+     * EventHelper constructor.
+     * @param DatesRepository $datesRepository
+     */
+    public function __construct(DatesRepository $datesRepository)
     {
-        $this->emi = $emi;
+        $this->datesRepository = $datesRepository;
     }
-    public function getDate($repo, $id)
+
+    public function checkValidDate(\DateTime $date)
     {
-        $this->emi->getRepository($repo)->find($id);
+        $selectedDate =  $this->datesRepository->getDate($date);
+        if (is_null($selectedDate)) {
+
+        }
+
     }
 }
