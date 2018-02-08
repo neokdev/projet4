@@ -2,3 +2,8 @@ body
 {
     padding-top: 70px;
 }
+
+#navbarNav .navbar-nav .nav-item
+{
+    margin-right: 3%;
+}

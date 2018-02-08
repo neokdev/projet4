@@ -2,9 +2,9 @@
 <html lang="en">
 
     <head>
-        <title>{% block title %}Welcome to the SpaceBar{% endblock %}</title>
+        <title>{% block title %}Le musée du Louvre{% endblock %}</title>
         <meta charset="utf-8">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylesheets %}
             <link rel="stylesheet"
                   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -16,17 +16,23 @@
     </head>
 
     <body>
-        {% block nav %}{% endblock %}
+
+        <nav class="navbar navbar-expand navbar-dark bg-secondary fixed-top">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a role="button" class="nav-link btn btn-primary text-light" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="button" class="nav-link btn btn-primary text-light" href="{{ path('app_order') }}"><i class="fas fa-shopping-cart"></i> Order tickets</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
         <div class="container">
         {% block body %}{% endblock %}
         </div>
-        <footer class="footer">
-            <div class="container text-center">
-                <span class="text-muted">Made with <i class="fa fa-heart" style="color: red;"></i> by the guys and gals at <a href="https://knpuniversity.com">KnpUniversity</a></span>
-            </div>
-        </footer>
-
 
         {% block javascripts %}
             <script
