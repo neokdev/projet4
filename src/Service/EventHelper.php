@@ -8,30 +8,33 @@
 
 namespace App\Service;
 
-use App\Repository\DatesRepository;
+use App\Repository\ProductsRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class EventHelper
 {
     /**
-     * @var DatesRepository
+     * @var ProductsRepository
      */
-    private $datesRepository;
+    private $productsRepository;
 
     /**
      * EventHelper constructor.
-     * @param DatesRepository $datesRepository
+     * @param ProductsRepository $productsRepository
      */
-    public function __construct(DatesRepository $datesRepository)
+    public function __construct(ProductsRepository $productsRepository)
     {
-        $this->datesRepository = $datesRepository;
+        $this->productsRepository = $productsRepository;
     }
 
-    public function checkValidDate(\DateTime $date)
+    /**
+     * @param \DateTime $date
+     * @return bool
+     * @Assert\IsFalse(message="Sorry, closed on Tuesdays")
+     */
+    public function isTuesday(\DateTime $date):bool
     {
-        $selectedDate =  $this->datesRepository->getDate($date);
-        if (is_null($selectedDate)) {
-
-        }
-
+       return date_format($date, 'D') === 'Tue';
     }
+
 }
