@@ -12,15 +12,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PriceRange extends AbstractType
+class PriceCustom extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'placeholder' => 'Select a price',
+            'placeholder' => 'selectprice',
             'choices' => array(
-                'Day' => 'day',
-                'Half-day' =>'halfday',
+                'day' => 'day',
+                'halfday' =>'halfday',
             ),
         ));
     }

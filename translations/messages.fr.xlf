@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+    <file id="f1">
+        <unit id="menu.homepage">
+            <segment>
+                <source>menu.homepage</source>
+                <target>Accueil</target>
+            </segment>
+        </unit>
+        <unit id="menu.order_tickets">
+            <segment>
+                <source>menu.order_tickets</source>
+                <target>Commander des billets</target>
+            </segment>
+        </unit>
+        <unit id="order.event_date">
+            <segment>
+                <source>order.event_date</source>
+                <target>Date de l'évènement</target>
+            </segment>
+        </unit>
+        <unit id="order.previous_step">
+            <segment>
+                <source>order.previous_step</source>
+                <target>Etape précédente</target>
+            </segment>
+        </unit>
+        <unit id="order.next_step">
+            <segment>
+                <source>order.next_step</source>
+                <target>Etape suivante</target>
+            </segment>
+        </unit>
+        <unit id="order.price">
+            <segment>
+                <source>order.price</source>
+                <target>Prix</target>
+            </segment>
+        </unit>
+        <unit id="selectprice">
+            <segment>
+                <source>selectprice</source>
+                <target>Selectionnez un prix</target>
+            </segment>
+        </unit>
+        <unit id="day">
+            <segment>
+                <source>day</source>
+                <target>Journée</target>
+            </segment>
+        </unit>
+        <unit id="halfday">
+            <segment>
+                <source>halfday</source>
+                <target>Demi-journée</target>
+            </segment>
+        </unit>
+        <unit id="date.selected">
+            <segment>
+                <source>date.selected %selecteddate%</source>
+                <target>Date sélectionnée: %selecteddate%</target>
+            </segment>
+        </unit>
+        <unit id="tickets.avalaible">
+            <segment>
+                <source>tickets.avalaible %ticketsavalaible%</source>
+                <target>Tickets disponibles: %ticketsavalaible%</target>
+            </segment>
+        </unit>
+        <unit id="user.name">
+            <segment>
+                <source>user.name</source>
+                <target>Nom</target>
+            </segment>
+        </unit>
+        <unit id="user.firstname">
+            <segment>
+                <source>user.firstname</source>
+                <target>Prénom</target>
+            </segment>
+        </unit>
+        <unit id="user.country">
+            <segment>
+                <source>user.country</source>
+                <target>Pays</target>
+            </segment>
+        </unit>
+        <unit id="user.birthday">
+            <segment>
+                <source>user.birthday</source>
+                <target>Date de naissance</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

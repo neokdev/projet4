@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+    <file id="f1">
+        <unit id="menu.homepage">
+            <segment>
+                <source>menu.homepage</source>
+                <target>Home</target>
+            </segment>
+        </unit>
+        <unit id="menu.order_tickets">
+            <segment>
+                <source>menu.order_tickets</source>
+                <target>Order Tickets</target>
+            </segment>
+        </unit>
+        <unit id="order.event_date">
+            <segment>
+                <source>order.event_date</source>
+                <target>Event Date</target>
+            </segment>
+        </unit>
+        <unit id="order.previous_step">
+            <segment>
+                <source>order.previous_step</source>
+                <target>Previous step</target>
+            </segment>
+        </unit>
+        <unit id="order.next_step">
+            <segment>
+                <source>order.next_step</source>
+                <target>Next step</target>
+            </segment>
+        </unit>
+        <unit id="order.price">
+            <segment>
+                <source>order.price</source>
+                <target>Price</target>
+            </segment>
+        </unit>
+        <unit id="selectprice">
+            <segment>
+                <source>selectprice</source>
+                <target>Select a price</target>
+            </segment>
+        </unit>
+        <unit id="day">
+            <segment>
+                <source>day</source>
+                <target>Day</target>
+            </segment>
+        </unit>
+        <unit id="halfday">
+            <segment>
+                <source>halfday</source>
+                <target>Half-day</target>
+            </segment>
+        </unit>
+        <unit id="date.selected">
+            <segment>
+                <source>date.selected %selecteddate%</source>
+                <target>Date Selected: %selecteddate%</target>
+            </segment>
+        </unit>
+        <unit id="user.name">
+            <segment>
+                <source>user.name</source>
+                <target>Name</target>
+            </segment>
+        </unit>
+        <unit id="user.firstname">
+            <segment>
+                <source>user.firstname</source>
+                <target>First Name</target>
+            </segment>
+        </unit>
+        <unit id="user.country">
+            <segment>
+                <source>user.country</source>
+                <target>Country</target>
+            </segment>
+        </unit>
+        <unit id="user.birthday">
+            <segment>
+                <source>user.birthday</source>
+                <target>Birthdate</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

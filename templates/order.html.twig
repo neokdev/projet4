@@ -17,26 +17,31 @@
 
 {% block body %}
 
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}" role="alert">
+                {{ message|trans }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% if progress is defined %}
+        <div class="progress">
+            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/4*100 }}%" aria-valuenow="{{ progress.value/4*100 }}" aria-valuemax="100">{{ progress.message }}</div>
+        </div>
+    {% endif %}
+
     {% if test is defined %}
 
         {{ dump(test) }}
 
     {% endif %}
 
-    {% if dates is defined %}
+    {% if form is defined %}
 
-        {% for date in dates %}
-            {{ dump(date.date|date('D, d M Y'))}}
-            {{ dump(date.count) }}
-        {% endfor %}
-
-    {% endif %}
-
-    {% if dateForm is defined %}
-
-        {{ form_start(dateForm) }}
-            {{ form_widget(dateForm) }}
-        {{ form_end(dateForm) }}
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+        {{ form_end(form) }}
 
     {% endif %}
 
@@ -45,6 +50,12 @@
         {{ form_start(priceform) }}
         {{ form_widget(priceform) }}
         {{ form_end(priceform) }}
+
+    {% endif %}
+
+    {% if date is defined %}
+
+        Selected date : {{ dump(date.date|date('D, d M Y'))}}
 
     {% endif %}
 
