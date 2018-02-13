@@ -8,8 +8,6 @@
 
 namespace App\Service;
 
-
-
 use Symfony\Component\HttpFoundation\Request;
 
 class Wizard
@@ -20,6 +18,7 @@ class Wizard
         "25-12" => true
     ];
     CONST LIMIT_TIME = 14;
+    CONST TIMEZONE = "Europe/Paris";
 
     /**
      * @param \DateTime $date
@@ -37,10 +36,10 @@ class Wizard
      * @param \DateTime $date
      * @return bool
      */
-    public function isThuesday(\DateTime $date): bool
-    {
-        return date_format($date, "D") == "Tue";
-    }
+//    public function isThuesday(\DateTime $date): bool
+//    {
+//        return date_format($date, "D") == "Tue";
+//    }
 
     /**
      * @param \DateTime $date
@@ -56,7 +55,7 @@ class Wizard
      */
     public function dayTicketsAvailable(): bool
     {
-        date_default_timezone_set("Europe/Paris");
-        return Wizard::LIMIT_TIME >= date('H', (gettimeofday()['sec']) + gettimeofday()['dsttime']);
+        date_default_timezone_set(Wizard::TIMEZONE);
+        return Wizard::LIMIT_TIME >= date('H', (gettimeofday()['sec']));
     }
 }
