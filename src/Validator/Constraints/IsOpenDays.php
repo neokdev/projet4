@@ -3,24 +3,20 @@
  * Created by PhpStorm.
  * User: Neok
  * Date: 13/02/2018
- * Time: 09:12
+ * Time: 14:00
  */
 
 namespace App\Validator\Constraints;
 
+
 use Symfony\Component\Validator\Constraint;
 
-/**
- * Class IsNotTuesday
- * @package App\Validator\Constraints
- * @Annotation
- */
-class IsNotTuesday extends Constraint
+class IsOpenDays extends Constraint
 {
     /**
      * @var string
      */
-    public $message = 'closedontuesdays';
+    public $message = 'closedthisday';
 
     /**
      * @return mixed|string

@@ -8,54 +8,61 @@
 
 namespace App\Service;
 
-use Symfony\Component\HttpFoundation\Request;
+
+use App\Entity\Products;
 
 class Wizard
 {
-    CONST CLOSED_DATE = [
-        "01-05" => true,
-        "01-11" => true,
-        "25-12" => true
-    ];
+    CONST TIMEZONE = 'Europe/Paris';
     CONST LIMIT_TIME = 14;
-    CONST TIMEZONE = "Europe/Paris";
 
-    /**
-     * @param \DateTime $date
-     * @return bool
-     */
-    public function dateIsValid(\DateTime $date): bool
-    {
-        if (!$this->isThuesday($date) && $this->isOpenDays($date)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * @param \DateTime $date
-     * @return bool
-     */
-//    public function isThuesday(\DateTime $date): bool
-//    {
-//        return date_format($date, "D") == "Tue";
-//    }
-
-    /**
-     * @param \DateTime $date
-     * @return bool
-     */
-    public function isOpenDays(\DateTime $date): bool
-    {
-        return !isset(Wizard::CLOSED_DATE[date_format($date, "d-m")]);
-    }
-
-    /**
-     * @return bool
-     */
     public function dayTicketsAvailable(): bool
     {
         date_default_timezone_set(Wizard::TIMEZONE);
         return Wizard::LIMIT_TIME >= date('H', (gettimeofday()['sec']));
+    }
+
+    public function isToday(\DateTime $date):bool
+    {
+        return (date_format($date, "Y-m-d")) == (date("Y-m-d", time()));
+    }
+
+    public function currentDay()
+    {
+        return date('d-m-yy', time());
+    }
+
+    public function currentHour()
+    {
+        return date('H', time());
+    }
+
+    public function isTimeExceed($hour)
+    {
+        return $hour >= Wizard::LIMIT_TIME;
+    }
+    public function isDayTicketsPossible():bool
+    {
+        return !$this->isToday() && !$this->isTimeExceed();
+    }
+
+    public function halfdayTicketForced()
+    {
+        $products = new Products();
+        date_default_timezone_set(Wizard::TIMEZONE);
+        $productDatetime = $products->getDate();
+        $productHour = date_format($productDatetime, 'H');
+
+        return [
+            $productDatetime,
+            date("Y-m-d", time()),
+            date_format($productDatetime, "Y-m-d"),
+            $this->isToday($productDatetime),
+        ];
+
+//        if ($this->isToday($productDatetime) && $this->isTimeExceed($productHour)) {
+//            return true;
+//        }
+//        return false;
     }
 }

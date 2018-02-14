@@ -17,6 +17,12 @@
 
 {% block body %}
 
+    {% if progress is defined %}
+        <div class="progress">
+            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/3*100 }}%" aria-valuenow="{{ progress.value/3*100 }}" aria-valuemax="100">{{ progress.message }}</div>
+        </div>
+    {% endif %}
+
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="flash-{{ label }}" role="alert">
@@ -24,12 +30,6 @@
             </div>
         {% endfor %}
     {% endfor %}
-
-    {% if progress is defined %}
-        <div class="progress">
-            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/4*100 }}%" aria-valuenow="{{ progress.value/4*100 }}" aria-valuemax="100">{{ progress.message }}</div>
-        </div>
-    {% endif %}
 
     {% if test is defined %}
 

@@ -55,10 +55,10 @@
                 <target>Half-day</target>
             </segment>
         </unit>
-        <unit id="date.selected">
+        <unit id="flash.dateandtickets">
             <segment>
-                <source>date.selected %selecteddate%</source>
-                <target>Date Selected: %selecteddate%</target>
+                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
+                <target>Date Selected: %selecteddate%. %ticketsavalaible% tickets avalaible</target>
             </segment>
         </unit>
         <unit id="user.name">

@@ -3,24 +3,23 @@
  * Created by PhpStorm.
  * User: Neok
  * Date: 13/02/2018
- * Time: 09:19
+ * Time: 14:30
  */
 
 namespace App\Validator;
 
+
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-
-class IsNotTuesdayValidator extends ConstraintValidator
+class IsDayTicketsPossibleValidator extends ConstraintValidator
 {
-    /**
-     * @param mixed $date
-     * @param Constraint $constraint
-     */
-    public function validate($date, Constraint $constraint)
+    CONST LIMIT_TIME = 14;
+    CONST TIMEZONE = 'Europe/Paris';
+
+    public function validate($value, Constraint $constraint)
     {
-        if (date_format($date, "D") === "Tue") {
+        if (IsDayTicketsPossibleValidator::LIMIT_TIME < $value) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

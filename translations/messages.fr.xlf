@@ -34,7 +34,7 @@
         <unit id="order.price">
             <segment>
                 <source>order.price</source>
-                <target>Prix</target>
+                <target>Tarif</target>
             </segment>
         </unit>
         <unit id="selectprice">
@@ -55,16 +55,10 @@
                 <target>Demi-journée</target>
             </segment>
         </unit>
-        <unit id="date.selected">
+        <unit id="flash.dateandtickets">
             <segment>
-                <source>date.selected %selecteddate%</source>
-                <target>Date sélectionnée: %selecteddate%</target>
-            </segment>
-        </unit>
-        <unit id="tickets.avalaible">
-            <segment>
-                <source>tickets.avalaible %ticketsavalaible%</source>
-                <target>Tickets disponibles: %ticketsavalaible%</target>
+                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
+                <target>Date sélectionnée : %selecteddate%. %ticketsavalaible% tickets disponibles</target>
             </segment>
         </unit>
         <unit id="user.name">
