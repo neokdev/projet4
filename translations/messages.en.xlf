@@ -79,6 +79,12 @@
                 <target>Country</target>
             </segment>
         </unit>
+        <unit id="selectcountry">
+            <segment>
+                <source>selectcountry</source>
+                <target>Select your country</target>
+            </segment>
+        </unit>
         <unit id="user.birthday">
             <segment>
                 <source>user.birthday</source>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductsRepository")
@@ -25,6 +26,7 @@ class Products
     private $price;
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(groups={"date"})
      */
     private $date;
     /**

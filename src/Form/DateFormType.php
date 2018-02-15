@@ -22,15 +22,15 @@ class DateFormType extends AbstractType
                 'label' => 'order.event_date',
                 'widget' => 'single_text',
                 'constraints' => array(
-                    //new IsNotTuesday(),
+                    new IsNotTuesday(),
                     new IsOpenDays(),
                     new IsTicketsAvalaible())
                 //'attr' => ['class' => 'js-datepicker'],
                 //'html5' =>  false
             ))
-            ->add('order.next_step', SubmitType::class, array(
+            ->add('order.next_step', SubmitType::class, [
                 'label' => 'order.next_step',
-            ))
+            ])
             ->getForm()
         ;
     }
@@ -38,7 +38,7 @@ class DateFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Products::class,
+            'data_class' => Products::class
         ]);
     }
 }

@@ -35,20 +35,18 @@ class OrderController extends AbstractController
                           TranslatorInterface $translator,
                           Wizard $wizard):Response
     {
-        $products = new Products();
-        if (!$session->isStarted()) {
-            $session->set('_locale', 'fr');
-        }
         // Values for the order status  progress bar
         $progress = [
             'value' => 1,
             'type' => 'info',
             'message' => ''
         ];
-        //Create the Date Form
-        $dateform = $this->createForm(DateFormType::class, $products);
+        //Create the Form
+        $dateform = $this->createForm(DateFormType::class);
+        $priceform = $this->createForm(PriceFormType::class);
         // Init the form
         $dateform->handleRequest($request);
+        $priceform->handleRequest($request);
 
         if ($dateform->get('order.next_step')->isClicked() && $dateform->isValid()) {
 
@@ -58,6 +56,14 @@ class OrderController extends AbstractController
 
             $productsdate = $products->getDate('date');
 //            $selectedDate = $localeManager->formatDates($productsdate);
+
+            // Values for the order status  progress bar
+            $progress = [
+                'value' => 1,
+                'type' => 'success',
+                'message' => 'date ok'
+            ];
+            //Prepare date format for flash message
             if ($request->getLocale() == 'fr') {
                 setlocale(LC_TIME, 'fr','fr');
                 $selectedDate = utf8_encode(strftime('%A %d %B %Y', $products->getDate('date')->format('U')));
@@ -66,16 +72,6 @@ class OrderController extends AbstractController
                 setlocale(LC_TIME, 'en','en');
                 $selectedDate = $products->getDate('date')->format('D, d M Y');
             }
-            // Values for the order status  progress bar
-            $progress = [
-                'value' => 1,
-                'type' => 'success',
-                'message' => 'date ok'
-            ];
-            //Create the Date Form
-            $priceform = $this->createForm(PriceFormType::class);
-            // Init the form
-            $priceform->handleRequest($request);
             //Display the Flash message
             $flashManager->add(
                 'info alert alert-info text-center',
@@ -92,14 +88,13 @@ class OrderController extends AbstractController
                     'Get Locale' => $request->getLocale()],
                 //'selecteddate' => $selectedDate,
                 'progress' => $progress,
-                'form' => $priceform->createView(),
-                'date' => $products->getDate(),
             ]);
         }
 
         return $this->render('order.html.twig', [
             'progress' => $progress,
             'form' => $dateform->createView(),
+            'priceform' => $priceform->createView(),
         ]);
     }
 }

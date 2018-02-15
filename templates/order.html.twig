@@ -43,14 +43,7 @@
 
         {{ form_start(form) }}
             {{ form_row(form, {'label': false}) }}
-        {{ form_end(form) }}
-
-    {% endif %}
-
-    {% if priceform is defined %}
-
-        {{ form_start(priceform) }}
-        {{ form_row(priceform.usercustom, {'label': false}) }}
+            {{ form_row(priceform, {'label': false}) }}
         {{ form_end(priceform) }}
 
     {% endif %}
