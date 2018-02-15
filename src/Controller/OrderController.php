@@ -76,8 +76,7 @@ class OrderController extends AbstractController
             $priceform = $this->createForm(PriceFormType::class);
             // Init the form
             $priceform->handleRequest($request);
-            //Init the Flash message
-//            $flashManager->init();
+            //Display the Flash message
             $flashManager->add(
                 'info alert alert-info text-center',
                 'flash.dateandtickets %selecteddate% %ticketsavalaible%',
@@ -86,17 +85,16 @@ class OrderController extends AbstractController
                     '%ticketsavalaible%' => 1000 -$productsRepository->ticketsForThisDate($products->getDate()),
                 ));
             return $this->render('price.html.twig', [
-                'test' => [$products->getDate('date')->format('D, d M Y'),
-                    $productsdate,
-                    $request->getLocale()],
+                'test' => [
+                    'Date Form Getdata' => $dateform->getData(),
+                    'String Product date' => $products->getDate('date')->format('D, d M Y'),
+                    'Productdate' => $productsdate,
+                    'Get Locale' => $request->getLocale()],
                 //'selecteddate' => $selectedDate,
                 'progress' => $progress,
                 'form' => $priceform->createView(),
                 'date' => $products->getDate(),
             ]);
-        }
-        if ($dateform->get('order.next_step')->isClicked() && $dateform->isValid()) {
-
         }
 
         return $this->render('order.html.twig', [

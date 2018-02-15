@@ -6,6 +6,7 @@ use App\Entity\Products;
 use App\Validator\Constraints\IsNotTuesday;
 use App\Validator\Constraints\IsOpenDays;
 use App\Validator\Constraints\IsTicketsAvalaible;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

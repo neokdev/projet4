@@ -28,9 +28,25 @@ class Users
      */
     private $country;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="date")
      */
-    private $bithdate;
+    private $birthdate;
+
+    /**
+     * @return mixed
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * @param mixed $birthdate
+     */
+    public function setBirthdate($birthdate): void
+    {
+        $this->birthdate = $birthdate;
+    }
     /**
      * @ORM\Column(type="string")
      */
@@ -120,21 +136,6 @@ class Users
         $this->country = $country;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBithdate()
-    {
-        return $this->bithdate;
-    }
-
-    /**
-     * @param mixed $bithdate
-     */
-    public function setBithdate($bithdate): void
-    {
-        $this->bithdate = $bithdate;
-    }
     /**
      * @return mixed
      */

@@ -9,9 +9,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.fr.min.js"></script>
-    <script src="{{ asset('js/datePicker.js') }}"></script>
+    <script src="{{ asset('js/wizard.js') }}"></script>
 
 {% endblock %}
 
@@ -31,30 +29,6 @@
         {% endfor %}
     {% endfor %}
 
-    {% if test is defined %}
-
-        {{ dump(test) }}
-
-    {% endif %}
-
-    <div class="form-group">
-
-    {% if form is defined %}
-
-        {{ form_start(form) }}
-            {{ form_row(form, {'label': false}) }}
-        {{ form_end(form) }}
-
-    {% endif %}
-
-    {% if priceform is defined %}
-
-        {{ form_start(priceform) }}
-        {{ form_widget(priceform) }}
-        {{ form_end(priceform) }}
-
-    {% endif %}
-
-    <div>
+    {{ form_row(form) }}
 
 {% endblock %}
