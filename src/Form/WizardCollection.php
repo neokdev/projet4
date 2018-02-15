@@ -22,7 +22,7 @@ class WizardCollection extends AbstractType
             'entry_options' => array(
                 'label'             => false,
                 'allow_add'         => true,
-                'prototype_data'    =>true),
+                'prototype_data'    => true),
         ));
     }
 

@@ -51,7 +51,7 @@ class OrderController extends AbstractController
         if ($dateform->get('order.next_step')->isClicked() && $dateform->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $products->setDate($dateform['date']->getData());
+//            $products->setDate($dateform['date']->getData());
             $em->persist($products);
 
             $productsdate = $products->getDate('date');
@@ -92,6 +92,10 @@ class OrderController extends AbstractController
         }
 
         return $this->render('order.html.twig', [
+            'test' => [
+                'Date Form Getdata' => $dateform->getData(),
+                'Get Locale from request' => $request->getLocale(),
+                'Get Locale from session' => $session->get('_locale')],
             'progress' => $progress,
             'form' => $dateform->createView(),
             'priceform' => $priceform->createView(),

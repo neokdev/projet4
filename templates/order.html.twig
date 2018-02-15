@@ -31,12 +31,6 @@
         {% endfor %}
     {% endfor %}
 
-    {% if test is defined %}
-
-        {{ dump(test) }}
-
-    {% endif %}
-
     <div class="form-group">
 
     {% if form is defined %}
@@ -49,5 +43,11 @@
     {% endif %}
 
     <div>
+
+    {% if test is defined %}
+
+        {{ dump(test) }}
+
+    {% endif %}
 
 {% endblock %}
