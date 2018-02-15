@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
@@ -29,6 +30,7 @@ class Users
     private $country;
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(groups={"date"})
      */
     private $birthdate;
 

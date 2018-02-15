@@ -32,11 +32,10 @@ class PriceFormType extends AbstractType
             ))
             ->add('order.previous_step', SubmitType::class, array(
                 'label' => 'order.previous_step',
-                'validation_groups' => 'test',
+                'validation_groups' => false,
         ))
             ->add('order.next_step', SubmitType::class, array(
                 'label' => 'order.next_step',
-                'validation_groups' => PriceFormType::class,
             ))
             ->getForm();
         ;

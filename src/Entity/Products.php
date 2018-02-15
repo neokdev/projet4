@@ -26,7 +26,6 @@ class Products
     private $price;
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(groups={"date"})
      */
     private $date;
     /**

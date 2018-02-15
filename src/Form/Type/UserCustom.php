@@ -32,7 +32,6 @@ class UserCustom extends AbstractType
             ->add('country', CountryType::class, array(
                 'label' => 'user.country',
                 'placeholder' => 'selectcountry',
-                'preferred_choices' => 'France'
             ))
             ->add('birthdate', DateType::class, array(
                 'widget' => 'single_text',
