@@ -50,7 +50,7 @@
     {% if priceform is defined %}
 
         {{ form_start(priceform) }}
-        {{ form_widget(priceform) }}
+        {{ form_row(priceform.usercustom, {'label': false}) }}
         {{ form_end(priceform) }}
 
     {% endif %}
