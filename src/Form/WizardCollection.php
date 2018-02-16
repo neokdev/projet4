@@ -10,6 +10,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,18 +18,30 @@ class WizardCollection extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('order_number', CollectionType::class, array(
-            'entry_type' => DateFormType::class,
-            'entry_options' => array(
-                'label'             => false,
-                'allow_add'         => true,
-                'prototype_data'    => true),
-        ));
+        $builder
+            ->add('dateForm', DateFormType::class, [
+                'label' => false
+        ])
+            ->add('priceform', CollectionType::class, [
+            'entry_type' => PriceFormType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype_name'=> '__children_name__',
+                'by_reference'  => false,
+                'attr' => [
+                    'class' => 'child-collection',
+                ],
+        ])
+        ->add('save', SubmitType::class, [
+            'label' => 'submit',
+            'attr' => ['class' => 'btn-secondary'],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-        ));
+        $resolver->setDefaults([
+            'label' => false,
+        ]);
     }
 }

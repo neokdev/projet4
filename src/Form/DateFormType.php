@@ -38,7 +38,8 @@ class DateFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Products::class
+            'data_class' => Products::class,
+            'validation_groups' => ['DateForm']
         ]);
     }
 }

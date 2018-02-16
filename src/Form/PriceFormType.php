@@ -32,7 +32,6 @@ class PriceFormType extends AbstractType
             ))
             ->add('order.previous_step', SubmitType::class, array(
                 'label' => 'order.previous_step',
-                'validation_groups' => false,
         ))
             ->add('order.next_step', SubmitType::class, array(
                 'label' => 'order.next_step',
@@ -44,7 +43,8 @@ class PriceFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Products::class
+            'data_class' => Products::class,
+            'validation_groups' => ['PriceForm']
         ]);
     }
 }

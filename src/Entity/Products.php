@@ -25,7 +25,7 @@ class Products
      */
     private $price;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date;
     /**

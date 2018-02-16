@@ -8,13 +8,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Products;
 use App\Entity\Task;
-use App\Form\DateFormType;
-use App\Form\PriceFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -25,7 +21,7 @@ class TestController extends AbstractController
      */
     public function index(Request $request)
     {
-        $wizard = $this->createForm(CollectionType::class);
+        $wizard = $this->createForm('App\Form\WizardCollection');
 
         $wizard->handleRequest($request);
 
