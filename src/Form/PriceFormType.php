@@ -2,12 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Products;
-use App\Form\Type\UserCustom;
+use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,27 +21,13 @@ class PriceFormType extends AbstractType
                     'halfday' =>'halfday',
                 ]
     ))
-            ->add('usercustom', UserCustom::class, array(
-                'label' => false
-            ))
-            ->add('order.adduser', ButtonType::class, array(
-                'label' => '+',
-            ))
-            ->add('order.previous_step', SubmitType::class, array(
-                'label' => 'order.previous_step',
-        ))
-            ->add('order.next_step', SubmitType::class, array(
-                'label' => 'order.next_step',
-            ))
-            ->getForm();
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Products::class,
-            'validation_groups' => ['PriceForm']
+            'data_class' => Ticket::class,
         ]);
     }
 }

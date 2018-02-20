@@ -1,24 +1,22 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Neok
+ * Ticket: Neok
  * Date: 05/02/2018
  * Time: 09:45
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Users;
-use App\Service\Wizard;
+use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BaseType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserCustom extends AbstractType
+class TicketType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -41,7 +39,7 @@ class UserCustom extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Users::class
+            'data_class' => Ticket::class
         ]);
     }
 }

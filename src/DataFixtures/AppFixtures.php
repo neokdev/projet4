@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Neok
+ * Ticket: Neok
  * Date: 15/02/2018
  * Time: 23:15
  */
@@ -17,11 +17,12 @@ final class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $loader = new NativeLoader();
-        $objectSet = $loader->loadFile(__DIR__.'/fixtures.yml');
+        $objectSet = $loader->loadFile(__DIR__.'/fixtures.yml', [
+
+        ]);
         foreach ($objectSet->getObjects() as $object) {
             $manager->persist($object);
         }
         $manager->flush();
     }
-
 }

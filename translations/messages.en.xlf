@@ -31,16 +31,16 @@
                 <target>Next step</target>
             </segment>
         </unit>
-        <unit id="order.price">
+        <unit id="order.duration">
             <segment>
-                <source>order.price</source>
-                <target>Price</target>
+                <source>order.duration</source>
+                <target>Duration</target>
             </segment>
         </unit>
-        <unit id="selectprice">
+        <unit id="selectduration">
             <segment>
-                <source>selectprice</source>
-                <target>Select a price</target>
+                <source>selectduration</source>
+                <target>Select a duration</target>
             </segment>
         </unit>
         <unit id="day">

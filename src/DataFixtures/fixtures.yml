@@ -1,6 +1,17 @@
-App\Entity\Products:
-    products_{1..20}:
-        type: day
-        price: <numberBetween(6, 16)>
+App\Entity\Ticket:
+    ticket_{1..200}:
+        name: <fr_FR:lastname()>
+        firstname: <fr_FR:firstName()>
+        country: <fr_FR:country()>
+        birthdate: <dateTimeBetween('-80 years', '-7 years')>
+        ticket_price: <randomNumber(2)>
+        ticket_number: <numberBetween(100000, 999999)>
+
+App\Entity\TicketOrder:
+    ticket_order_{1..200}:
+        order_number (unique): <numberBetween(100000, 999999)>
+        order_date: <dateTimeBetween('-2 months', 'now')>
+        mail: <freeEmail()>
         date: <dateTimeBetween('now', '+2 years')>
-        order_number: <numberBetween(100000, 999999)>
+        duration: <boolean(50)>
+        order_price: <randomNumber(2)>

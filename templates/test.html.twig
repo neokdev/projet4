@@ -28,7 +28,13 @@
             </div>
         {% endfor %}
     {% endfor %}
+
 {{ form_start(form) }}
-    {{ form_row(form) }}
+    <ul class="tickets">
+        {% for ticket in form.orderNumber %}
+            <li>{{ form_row(ticket.orderNumber) }}</li>
+        {% endfor %}
+    </ul>
 {{ form_end(form) }}
+
 {% endblock %}
