@@ -32,7 +32,7 @@
 {{ form_start(form) }}
     <ul class="tickets">
         {% for ticket in form.orderNumber %}
-            <li>{{ form_row(ticket.orderNumber) }}</li>
+            <li>{{ form_row(ticket) }}</li>
         {% endfor %}
     </ul>
 {{ form_end(form) }}
