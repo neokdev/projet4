@@ -5,11 +5,11 @@ App\Entity\Ticket:
         country: <fr_FR:country()>
         birthdate: <dateTimeBetween('-80 years', '-7 years')>
         ticket_price: <randomNumber(2)>
-        ticket_number: <numberBetween(100000, 999999)>
+        ticket_number (unique): <uniqid()>
 
 App\Entity\TicketOrder:
     ticket_order_{1..200}:
-        order_number (unique): <numberBetween(100000, 999999)>
+        order_number (unique): <uniqid()>
         order_date: <dateTimeBetween('-2 months', 'now')>
         mail: <freeEmail()>
         date: <dateTimeBetween('now', '+2 years')>

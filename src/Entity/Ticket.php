@@ -149,7 +149,7 @@ class Ticket
     private $ticket_price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      * @ORM\ManyToOne(
      *     targetEntity="App\Entity\TicketOrder",
      *     inversedBy="order_number"

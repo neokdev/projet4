@@ -30,11 +30,10 @@
     {% endfor %}
 
 {{ form_start(form) }}
-    <ul class="tickets">
+    {{ form_row(form.date) }}
         {% for ticket in form.orderNumber %}
-            <li>{{ form_row(ticket) }}</li>
+            {{ form_row(ticket) }}
         {% endfor %}
-    </ul>
 {{ form_end(form) }}
 
 {% endblock %}

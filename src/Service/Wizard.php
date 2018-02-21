@@ -8,9 +8,6 @@
 
 namespace App\Service;
 
-
-use App\Entity\Products;
-
 class Wizard
 {
     CONST TIMEZONE = 'Europe/Paris';
