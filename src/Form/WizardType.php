@@ -18,10 +18,13 @@ class WizardType extends AbstractType
             ->add('date', TicketOrderDateType::class, [
                 'label' => false
             ])
-            ->add('orderNumber', CollectionType::class, [
+            ->add('ticketCollection', CollectionType::class, [
+                'label' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
                 'entry_type' => TicketType::class,
                 'entry_options' => [
-                    'label' => false
+                    'label' => false,
                 ]
             ])
         ;
@@ -30,7 +33,7 @@ class WizardType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TicketOrder::class
+            'data_class' => TicketOrder::class,
         ]);
     }
 }

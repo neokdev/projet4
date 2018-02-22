@@ -13,6 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class Ticket
 {
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $reducted_price;
+
+    /**
+     * @return mixed
+     */
+    public function getReductedPrice()
+    {
+        return $this->reducted_price;
+    }
+
+    /**
+     * @param mixed $reducted_price
+     */
+    public function setReductedPrice($reducted_price): void
+    {
+        $this->reducted_price = $reducted_price;
+    }
+    /**
      * @return mixed
      */
     public function getTicketPrice()

@@ -24,24 +24,26 @@ class TestController extends AbstractController
     public function index(Request $request)
     {
         $order = new TicketOrder();
+//        $ticket = new Ticket();
 
-        $ticket1 = new Ticket();
-        $ticket2 = new Ticket();
-        $ticket1->setTicketNumber('548962');
-//        dump($ticket1);die;
-        $order->addTicket($ticket1);
-
+//        $order->addTicket($ticket);
 
         $wizard = $this->createForm(WizardType::class, $order);
 
         $wizard->handleRequest($request);
 
-        if ($wizard->isSubmitted() && $form->isValid()) {
-            // ... maybe do some form processing, like saving the Task and Tag objects
+        if ($wizard->isSubmitted() && $wizard->isValid()) {
+
+            $data = 'test';
+
+            return $this->render('test.html.twig', [
+                'form' => $wizard->createView(),
+                'data' => $data
+            ]);
         }
 
         return $this->render('test.html.twig', [
-            'form' => $wizard->createView(),
+            'form' => $wizard->createView()
         ]);
     }
 }

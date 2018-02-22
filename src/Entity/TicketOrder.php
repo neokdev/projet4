@@ -31,7 +31,7 @@ class TicketOrder
     /**
      * @return Collection|null
      */
-    public function getOrderNumber(): ?Collection
+    public function getTicketCollection(): Collection
     {
         return $this->order_number;
     }
