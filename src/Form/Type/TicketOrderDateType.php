@@ -5,12 +5,10 @@ namespace App\Form\Type;
 use App\Entity\TicketOrder;
 use App\Validator\Constraints\IsNotTuesday;
 use App\Validator\Constraints\IsOpenDays;
+use App\Validator\Constraints\IsTicketsAvalaible;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketOrderDateType extends AbstractType
@@ -24,15 +22,9 @@ class TicketOrderDateType extends AbstractType
                 'constraints' => [
                     new IsNotTuesday(),
                     new IsOpenDays(),
+                    new IsTicketsAvalaible(),
                 ],
             ])
-            ->add('duration', ChoiceType::class, [
-                'label' => 'order.duration',
-                'placeholder' => 'selectduration',
-                'choices' => [
-                    'day' => true,
-                    'halfday' => false
-            ]])
         ;
     }
 

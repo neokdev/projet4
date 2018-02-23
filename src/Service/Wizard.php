@@ -1,65 +1,39 @@
 <?php
 /**
  * Created by PhpStorm.
- * Ticket: Neok
- * Date: 09/02/2018
- * Time: 09:17
+ * User: Neok
+ * Date: 22/02/2018
+ * Time: 12:28
  */
 
 namespace App\Service;
 
+
 class Wizard
 {
-    CONST TIMEZONE = 'Europe/Paris';
-    CONST LIMIT_TIME = 14;
+    private $step;
 
-    public function dayTicketsAvailable(): bool
+    public function __construct($step = 1)
     {
-        date_default_timezone_set(Wizard::TIMEZONE);
-        return Wizard::LIMIT_TIME >= date('H', (gettimeofday()['sec']));
+        $this->step = $step;
+    }
+    public function nextStep($step)
+    {
+        return $step+1;
     }
 
-    public function isToday(\DateTime $date):bool
+    public function previousStep($step)
     {
-        return (date_format($date, "Y-m-d")) == (date("Y-m-d", time()));
+        return $step-1;
     }
 
-    public function currentDay()
+    public function getStep()
     {
-        return date('d-m-yy', time());
+        return $this->step;
     }
 
-    public function currentHour()
+    public function setStep($step)
     {
-        return date('H', time());
-    }
-
-    public function isTimeExceed($hour)
-    {
-        return $hour >= Wizard::LIMIT_TIME;
-    }
-    public function isDayTicketsPossible():bool
-    {
-        return !$this->isToday() && !$this->isTimeExceed();
-    }
-
-    public function halfdayTicketForced()
-    {
-        $products = new Products();
-        date_default_timezone_set(Wizard::TIMEZONE);
-        $productDatetime = $products->getDate();
-        $productHour = date_format($productDatetime, 'H');
-
-        return [
-            $productDatetime,
-            date("Y-m-d", time()),
-            date_format($productDatetime, "Y-m-d"),
-            $this->isToday($productDatetime),
-        ];
-
-//        if ($this->isToday($productDatetime) && $this->isTimeExceed($productHour)) {
-//            return true;
-//        }
-//        return false;
+        $this->step = $step;
     }
 }

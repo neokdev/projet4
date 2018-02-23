@@ -21,44 +21,46 @@
         </div>
     {% endif %}
 
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }}" role="alert">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center">
+            {{ msg }}
+        </div>
     {% endfor %}
 
 <div class="card" id="form">
+
 {{ form_start(form) }}
 
     <div class="card-body">
 
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ form_row(form.date.date) }}</li>
-            <li class="list-group-item">{{ form_row(form.date.duration) }}</li>
-        </ul>
+        {% if form.date is defined %}
+            {{ form_row(form.date) }}
+        {% endif %}
+        {% if form.duration is defined %}
+            {{ form_start(form) }}
+            {{ form_row(form.duration) }}
+            {{ form_end(form) }}
+        {% endif %}
 
-{% if data is defined %}
-
-        <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
-            {% for ticket in form.ticketCollection %}
-                <li class="list-group-item">{{ form_row(ticket) }}</li>
-            {% endfor %}
-        </ul>
-
-    {% endif %}
+        {% if form.ticket is defined %}
+            <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                {% for ticket in form.ticketCollection %}
+                    <li class="list-group-item">{{ form_row(ticket) }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
     </div>
 
         <div class="card-footer">
-            {% if data is defined %}
-            <button type="submit" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</button>
+            {% if form.date is not defined%}
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
             {% endif %}
             <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
         </div>
-    </div>
 
 {{ form_end(form) }}
+
+</div>
 
 {% endblock %}

@@ -10,6 +10,7 @@ namespace App\Validator;
 
 
 use App\Repository\ProductsRepository;
+use App\Repository\TicketOrderRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -17,18 +18,24 @@ class IsTicketsAvalaibleValidator extends ConstraintValidator
 {
     CONST DAY_BUY_LIMIT = 1000;
     /**
-     * @var ProductsRepository
+     * @var TicketOrderRepository
      */
-    private $productsRepository;
+    private $repository;
 
-    public function __construct(ProductsRepository $productsRepository)
+
+    public function __construct(TicketOrderRepository $repository)
     {
-
-        $this->productsRepository = $productsRepository;
+        $this->repository = $repository;
     }
+
+    /**
+     * @param mixed $value
+     * @param Constraint $constraint
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function validate($value, Constraint $constraint)
     {
-        $tickets = $this->productsRepository->ticketsForThisDate($value);
+        $tickets = $this->repository->ticketsForThisDate($value);
         if (IsTicketsAvalaibleValidator::DAY_BUY_LIMIT <= $tickets) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();

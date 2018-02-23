@@ -13,6 +13,19 @@ class TicketOrderRepository extends ServiceEntityRepository
         parent::__construct($registry, TicketOrder::class);
     }
 
+    /**
+     * @param \DateTime|null $date
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function ticketsForThisDate(\DateTime $date=null)
+    {
+        return $this->createQueryBuilder('ticket_order')
+            ->select('COUNT(ticket_order.date)')
+            ->where('ticket_order.date = :date')->setParameter('date', $date)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
     /*
     public function findBySomething($value)
     {

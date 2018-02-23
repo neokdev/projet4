@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\TicketOrder;
+use App\Form\Type\DurationType;
 use App\Form\Type\TicketOrderDateType;
 use App\Form\Type\TicketType;
 use Symfony\Component\Form\AbstractType;
@@ -16,6 +17,9 @@ class WizardType extends AbstractType
     {
         $builder
             ->add('date', TicketOrderDateType::class, [
+                'label' => false
+            ])
+            ->add('duration', DurationType::class, [
                 'label' => false
             ])
             ->add('ticketCollection', CollectionType::class, [

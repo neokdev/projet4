@@ -1,17 +1,18 @@
 App\Entity\Ticket:
-    ticket_{1..200}:
+    ticket_{1..1000}:
         name: <fr_FR:lastname()>
         firstname: <fr_FR:firstName()>
         country: <fr_FR:country()>
         birthdate: <dateTimeBetween('-80 years', '-7 years')>
         ticket_price: <randomNumber(2)>
         ticket_number (unique): <uniqid()>
+        reducted_price: <boolean(50)>
 
 App\Entity\TicketOrder:
-    ticket_order_{1..200}:
+    ticket_order_{1..1000}:
         order_number (unique): <uniqid()>
         order_date: <dateTimeBetween('-2 months', 'now')>
         mail: <freeEmail()>
-        date: <dateTimeBetween('now', '+2 years')>
+        date: <dateTimeBetween('now', '+2 months')>
         duration: <boolean(50)>
         order_price: <randomNumber(2)>

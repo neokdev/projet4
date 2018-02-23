@@ -8,7 +8,7 @@ use App\Form\PriceFormType;
 use App\Repository\ProductsRepository;
 use App\Service\FlashManager;
 use App\Service\LocaleManager;
-use App\Service\Wizard;
+use App\Service\Wizardtemp;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +33,7 @@ class OrderController extends AbstractController
                           FlashManager $flashManager,
                           ProductsRepository $productsRepository,
                           TranslatorInterface $translator,
-                          Wizard $wizard):Response
+                          Wizardtemp $wizard):Response
     {
         // Values for the order status  progress bar
         $progress = [
