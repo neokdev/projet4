@@ -14,8 +14,6 @@ use App\Form\Type\DurationType;
 use App\Form\Type\TicketOrderDateType;
 use App\Form\WizardType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bridge\Doctrine\DataCollector\DoctrineDataCollector;
-use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
