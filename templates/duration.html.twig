@@ -9,7 +9,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/wizard.js') }}"></script>
+    <script src="{{ asset('js/wizard_embed.js') }}"></script>
 
 {% endblock %}
 
@@ -33,9 +33,6 @@
 
     <div class="card-body">
 
-        {% if form.date is defined %}
-            {{ form_row(form.date) }}
-        {% endif %}
         {% if form.duration is defined %}
             {{ form_start(form) }}
             {{ form_row(form.duration) }}

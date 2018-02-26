@@ -1,8 +1,66 @@
-{% extends 'order.html.twig' %}
+{% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css">
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/wizard_embed.js') }}"></script>
+
+{% endblock %}
 
 {% block body %}
 
-    {{ parent() }}
+    {% if progress is defined %}
+        <div class="progress">
+            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/3*100 }}%" aria-valuenow="{{ progress.value/3*100 }}" aria-valuemax="100">{{ progress.message }}</div>
+        </div>
+    {% endif %}
+
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center">
+            {{ msg }}
+        </div>
+    {% endfor %}
+
+<div class="card" id="form">
+
+{{ form_start(form) }}
+
+    <div class="card-body">
+
+        {% if form.date is defined %}
+            {{ form_row(form.date) }}
+        {% endif %}
+        {% if form.duration is defined %}
+            {{ form_start(form) }}
+            {{ form_row(form.duration) }}
+            {{ form_end(form) }}
+        {% endif %}
+
+        {% if form.ticket is defined %}
+            <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                {% for ticket in form.ticketCollection %}
+                    <li class="list-group-item">{{ form_row(ticket) }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+
+        <div class="card-footer">
+            {% if form.date is not defined%}
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
+        </div>
+
+{{ form_end(form) }}
+
+</div>
 
 {% endblock %}

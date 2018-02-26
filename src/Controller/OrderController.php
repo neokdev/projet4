@@ -1,104 +1,97 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * Ticket: Neok
+ * Date: 29/01/2018
+ * Time: 21:00
+ */
 
 namespace App\Controller;
 
-use App\Entity\Products;
-use App\Form\DateFormType;
-use App\Form\PriceFormType;
-use App\Repository\ProductsRepository;
-use App\Service\FlashManager;
-use App\Service\LocaleManager;
-use App\Service\Wizardtemp;
+use App\Entity\Ticket;
+use App\Entity\TicketOrder;
+use App\Form\Type\DurationType;
+use App\Form\Type\TicketOrderDateType;
+use App\Form\WizardType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\DataCollector\DoctrineDataCollector;
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Translation\TranslatorInterface;
 
-/**
- * Class OrderController
- * @package App\Controller
- */
+
 class OrderController extends AbstractController
 {
     /**
-     * @Route("/order", name="app_order_date")
+     * /**
+     * @Route("/order", name="app_order")
      * @param Request $request
-     * @param Translator $translator
      * @return Response
      */
-    public function index(Request $request,
-                          SessionInterface $session,
-                          FlashManager $flashManager,
-                          ProductsRepository $productsRepository,
-                          TranslatorInterface $translator,
-                          Wizardtemp $wizard):Response
+    public function index(Request $request)
     {
-        // Values for the order status  progress bar
-        $progress = [
-            'value' => 1,
-            'type' => 'info',
-            'message' => ''
-        ];
-        //Create the Form
-        $dateform = $this->createForm(DateFormType::class);
-        $priceform = $this->createForm(PriceFormType::class);
-        // Init the form
-        $dateform->handleRequest($request);
-        $priceform->handleRequest($request);
+        $order = new TicketOrder();
+        $ticket = new Ticket();
 
-        if ($dateform->get('order.next_step')->isClicked() && $dateform->isValid()) {
+        $date = $this->createForm(TicketOrderDateType::class, $order);
+        $duration = $this->createForm(DurationType::class, $order);
+        $ticketHolder = $this->createForm(WizardType::class, $order);
+        $date->handleRequest($request);
+        $duration->handleRequest($request);
+        $ticketHolder->handleRequest($request);
+
+        if ($date->isSubmitted() && $date->isValid()) {
+
+            $selectedDate = $date['date']->getData();
+            $order->setDate($selectedDate);
+
+            $orderDate = new \DateTime();
+
+            $order->setOrderDate($orderDate);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($order);
+
+            $this->addFlash('success', 'Date OK');
+
+            return $this->render('duration.html.twig', [
+                'order' => $order,
+                'form' => $duration->createView()
+            ]);
+        }
+
+        if ($duration->isSubmitted() && $date->isValid()) {
+            $selectedDuration = $duration['duration']->getData();
+            $order->setDuration($selectedDuration);
 
             $em = $this->getDoctrine()->getManager();
-//            $products->setDate($dateform['date']->getData());
-            $em->persist($products);
+            $em->persist($order);
 
-            $productsdate = $products->getDate('date');
-//            $selectedDate = $localeManager->formatDates($productsdate);
+            $this->addFlash('success', 'Date OK');
 
-            // Values for the order status  progress bar
-            $progress = [
-                'value' => 1,
-                'type' => 'success',
-                'message' => 'date ok'
-            ];
-            //Prepare date format for flash message
-            if ($request->getLocale() == 'fr') {
-                setlocale(LC_TIME, 'fr','fr');
-                $selectedDate = utf8_encode(strftime('%A %d %B %Y', $products->getDate('date')->format('U')));
-            }
-            if ($request->getLocale() == 'en') {
-                setlocale(LC_TIME, 'en','en');
-                $selectedDate = $products->getDate('date')->format('D, d M Y');
-            }
-            //Display the Flash message
-            $flashManager->add(
-                'info alert alert-info text-center',
-                'flash.dateandtickets %selecteddate% %ticketsavalaible%',
-                array(
-                    '%selecteddate%' => $selectedDate,
-                    '%ticketsavalaible%' => 1000 -$productsRepository->ticketsForThisDate($products->getDate()),
-                ));
-            return $this->render('price.html.twig', [
-                'test' => [
-                    'Date Form Getdata' => $dateform->getData(),
-                    'String Product date' => $products->getDate('date')->format('D, d M Y'),
-                    'Productdate' => $productsdate,
-                    'Get Locale' => $request->getLocale()],
-                //'selecteddate' => $selectedDate,
-                'progress' => $progress,
+            return $this->render('duration.html.twig', [
+                'order' => $order,
+                'form' => $ticketHolder->createView()
             ]);
         }
 
         return $this->render('order.html.twig', [
-            'test' => [
-                'Date Form Getdata' => $dateform->getData(),
-                'Get Locale from request' => $request->getLocale(),
-                'Get Locale from session' => $session->get('_locale')],
-            'progress' => $progress,
-            'form' => $dateform->createView(),
-            'priceform' => $priceform->createView(),
+            'order' => $order,
+            'form' => $date->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/test")
+     */
+    public function duration()
+    {
+    }
+    /**
+     * @Route("/order", name="app_previous")
+     */
+    public function previous()
+    {
+        return $this->redirectToRoute('app_order');
     }
 }

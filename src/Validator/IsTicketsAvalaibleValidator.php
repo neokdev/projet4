@@ -22,7 +22,6 @@ class IsTicketsAvalaibleValidator extends ConstraintValidator
      */
     private $repository;
 
-
     public function __construct(TicketOrderRepository $repository)
     {
         $this->repository = $repository;

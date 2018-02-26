@@ -9,9 +9,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.fr.min.js"></script>
-    <script src="{{ asset('js/datePicker.js') }}"></script>
+    <script src="{{ asset('js/wizard_embed.js') }}"></script>
 
 {% endblock %}
 
@@ -23,31 +21,46 @@
         </div>
     {% endif %}
 
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }}" role="alert">
-                {{ message|trans }}
-            </div>
-        {% endfor %}
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center">
+            {{ msg }}
+        </div>
     {% endfor %}
 
-    <div class="form-group">
+<div class="card" id="form">
 
-    {% if form is defined %}
+{{ form_start(form) }}
 
-        {{ form_start(form) }}
-            {{ form_row(form, {'label': false}) }}
-            {{ form_row(priceform, {'label': false}) }}
-        {{ form_end(priceform) }}
+    <div class="card-body">
 
-    {% endif %}
+        {% if form.date is defined %}
+            {{ form_row(form.date) }}
+        {% endif %}
+        {% if form.duration is defined %}
+            {{ form_start(form) }}
+            {{ form_row(form.duration) }}
+            {{ form_end(form) }}
+        {% endif %}
 
-    <div>
+        {% if form.ticket is defined %}
+            <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                {% for ticket in form.ticketCollection %}
+                    <li class="list-group-item">{{ form_row(ticket) }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-    {% if test is defined %}
+    </div>
 
-        {{ dump(test) }}
+        <div class="card-footer">
+            {% if form.date is not defined%}
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
+        </div>
 
-    {% endif %}
+{{ form_end(form) }}
+
+</div>
 
 {% endblock %}
