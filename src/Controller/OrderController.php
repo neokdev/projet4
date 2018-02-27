@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,7 +35,6 @@ class OrderController extends AbstractController
      */
     public function index(Request $request)
     {
-//        $ticket = new Ticket();
         $form = null;
         $template = null;
         switch ($this->get('session')->get('step')) {

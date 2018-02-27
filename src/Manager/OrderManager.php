@@ -9,6 +9,7 @@
 namespace App\Manager;
 
 
+use App\Entity\Ticket;
 use App\Entity\TicketOrder;
 use App\Form\Type\DurationType;
 use App\Form\Type\TicketOrderDateType;
@@ -90,6 +91,7 @@ class OrderManager
     }
     public function stepThree(Request $request)
     {
+        $ticket = new Ticket();
         $order = $this->session->get('order');
         $form = $this->factory->create(WizardType::class, $order)
             ->handleRequest($request);
@@ -97,7 +99,7 @@ class OrderManager
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
             $this->session->set('order', $order);
-            $this->session->set('step', 3);
+            $this->session->set('step', 4);
 
             return new RedirectResponse(
                 $this->router->generate('app_order')

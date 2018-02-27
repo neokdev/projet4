@@ -33,11 +33,7 @@
 
     <div class="card-body">
 
-        {% if form.duration is defined %}
-            {{ form_start(form) }}
             {{ form_row(form.duration) }}
-            {{ form_end(form) }}
-        {% endif %}
 
         {% if form.ticket is defined %}
             <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">

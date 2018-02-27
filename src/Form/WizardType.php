@@ -16,12 +16,6 @@ class WizardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', TicketOrderDateType::class, [
-                'label' => false
-            ])
-            ->add('duration', DurationType::class, [
-                'label' => false
-            ])
             ->add('ticketCollection', CollectionType::class, [
                 'label' => false,
                 'allow_add' => true,
@@ -30,8 +24,11 @@ class WizardType extends AbstractType
                 'entry_options' => [
                     'label' => false,
                 ]
-            ])
-        ;
+            ]
+//            ->add('ticket', TicketType::class, [
+//                'label' => false
+//            ]
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

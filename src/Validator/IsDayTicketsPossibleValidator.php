@@ -29,16 +29,17 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
 
     public function validate($value, Constraint $constraint)
     {
-        if ($this->isDayTicketsPossible()) {
+        if (!$this->isDayTicketsPossible()) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }
     }
 
-    public function getSelectedDate()
+    public function getSelectedDate():\DateTime
     {
         $order = $this->session->get('order');
-        dump($order);die;
+        return $order->getDate();
+//        dump($order);die();
     }
 
     public function getActualDatetime()

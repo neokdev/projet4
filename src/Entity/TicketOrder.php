@@ -175,4 +175,9 @@ class TicketOrder
         $this->order_number->add($ticket);
         $ticket->setTicketNumber($this);
     }
+
+    public function getTicket()
+    {
+        $this->order_number;
+    }
 }
