@@ -8,11 +8,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Ticket;
-use App\Entity\TicketOrder;
-use App\Form\Type\DurationType;
-use App\Form\Type\TicketOrderDateType;
-use App\Form\WizardType;
+use App\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,74 +18,50 @@ use Symfony\Component\HttpFoundation\Response;
 class OrderController extends AbstractController
 {
     /**
-     * /**
      * @Route("/order", name="app_order")
      * @param Request $request
+     * @param OrderManager $orderManager
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, OrderManager $orderManager)
     {
-        $order = new TicketOrder();
-        $ticket = new Ticket();
-
-        $date = $this->createForm(TicketOrderDateType::class, $order);
-        $duration = $this->createForm(DurationType::class, $order);
-        $ticketHolder = $this->createForm(WizardType::class, $order);
-        $date->handleRequest($request);
-        $duration->handleRequest($request);
-        $ticketHolder->handleRequest($request);
-
-        if ($date->isSubmitted() && $date->isValid()) {
-
-            $selectedDate = $date['date']->getData();
-            $order->setDate($selectedDate);
-
-            $orderDate = new \DateTime();
-
-            $order->setOrderDate($orderDate);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($order);
-
-            $this->addFlash('success', 'Date OK');
-
-            return $this->render('duration.html.twig', [
-                'order' => $order,
-                'form' => $duration->createView()
-            ]);
+//        $ticket = new Ticket();
+        $form = null;
+        $template = null;
+        switch ($this->get('session')->get('step')) {
+            case 1:
+                $form = $orderManager->stepOne($request);
+                $template = 'order.html.twig';
+                break;
+            case 2:
+                $form = $orderManager->stepTwo($request);
+                $template = 'duration.html.twig';
+                break;
+            case 3:
+                $form = $orderManager->stepThree($request);
+                $template = 'price.html.twig';
+                break;
+            default:
+                $form = $orderManager->stepOne($request);
+                $template = 'order.html.twig';
         }
+        dump($this->get('session')->get('step'), $form);
 
-        if ($duration->isSubmitted() && $date->isValid()) {
-            $selectedDuration = $duration['duration']->getData();
-            $order->setDuration($selectedDuration);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($order);
-
-            $this->addFlash('success', 'Date OK');
-
-            return $this->render('duration.html.twig', [
-                'order' => $order,
-                'form' => $ticketHolder->createView()
-            ]);
-        }
-
-        return $this->render('order.html.twig', [
-            'order' => $order,
-            'form' => $date->createView(),
-        ]);
+        return $this->render(
+            $template,
+            [
+                'form' => $form,
+            ]
+        );
     }
 
     /**
-     * @Route("/test")
-     */
-    public function duration()
-    {
-    }
-    /**
-     * @Route("/order", name="app_previous")
+     * @Route("/previous", name="app_previous")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function previous()
     {
+        $this->get('session')->set('step', 1);
         return $this->redirectToRoute('app_order');
     }
 }

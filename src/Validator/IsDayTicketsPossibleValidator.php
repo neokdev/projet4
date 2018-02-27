@@ -9,25 +9,23 @@
 namespace App\Validator;
 
 
-use App\Entity\TicketOrder;
-use App\Repository\TicketOrderRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class IsDayTicketsPossibleValidator extends ConstraintValidator
 {
-    /**
-     * @var TicketOrder
-     */
-    private $order;
-
-    public function __construct(TicketOrderRepository $order)
-    {
-        $this->order = $order;
-    }
-
     CONST LIMIT_TIME = 14;
     CONST TIMEZONE = 'Europe/Paris';
+    /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
 
     public function validate($value, Constraint $constraint)
     {
@@ -39,7 +37,8 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
 
     public function getSelectedDate()
     {
-        $this->order->getDate();
+        $order = $this->session->get('order');
+        dump($order);die;
     }
 
     public function getActualDatetime()
