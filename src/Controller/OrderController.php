@@ -18,34 +18,48 @@ use Symfony\Component\HttpFoundation\Response;
 class OrderController extends AbstractController
 {
     /**
+     * @var OrderManager
+     */
+    private $orderManager;
+
+    public function __construct(OrderManager $orderManager)
+    {
+        $this->orderManager = $orderManager;
+    }
+    /**
      * @Route("/order", name="app_order")
      * @param Request $request
      * @param OrderManager $orderManager
      * @return Response
      */
-    public function index(Request $request, OrderManager $orderManager)
+    public function index(Request $request)
     {
 //        $ticket = new Ticket();
         $form = null;
         $template = null;
         switch ($this->get('session')->get('step')) {
             case 1:
-                $form = $orderManager->stepOne($request);
+                $form = $this->orderManager->stepOne($request);
                 $template = 'order.html.twig';
                 break;
             case 2:
-                $form = $orderManager->stepTwo($request);
+                $form = $this->orderManager->stepTwo($request);
                 $template = 'duration.html.twig';
                 break;
             case 3:
-                $form = $orderManager->stepThree($request);
+                $form = $this->orderManager->stepThree($request);
                 $template = 'price.html.twig';
                 break;
             default:
-                $form = $orderManager->stepOne($request);
+                $form = $this->orderManager->stepOne($request);
                 $template = 'order.html.twig';
         }
-        dump($this->get('session')->get('step'), $form);
+        dump($this->get('session')->get('step'), $form, get_class($form));
+
+        //Prevent to return a RedirectResponse
+        if (get_class($form) == 'Symfony\Component\HttpFoundation\RedirectResponse') {
+            return $this->redirectToRoute('app_order');
+        }
 
         return $this->render(
             $template,
@@ -57,11 +71,13 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/previous", name="app_previous")
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function previous()
     {
-        $this->get('session')->set('step', 1);
+        $this->get('session')->set('step', $this->get('session')->get('step')-1);
         return $this->redirectToRoute('app_order');
+        ///!\ Step number hardcoded
+//        $this->get('session')->set('step', 1);
+//        return $this->redirectToRoute('app_order');
     }
 }
