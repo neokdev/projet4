@@ -2,6 +2,12 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        let translations = {
+            'addticket': '{% trans %}addTicket{% endtrans %}',
+            'removeticket': '{% trans %}removeTicket{% endtrans %}'
+        };
+    </script>
     <script src="{{ asset('js/wizard_embed.js') }}"></script>
 
 {% endblock %}

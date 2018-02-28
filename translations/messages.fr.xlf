@@ -97,5 +97,17 @@
                 <target>Date de naissance</target>
             </segment>
         </unit>
+        <unit id="addTicket">
+            <segment>
+                <source>addTicket</source>
+                <target>Ajouter un nouveau ticket</target>
+            </segment>
+        </unit>
+        <unit id="removeTicket">
+            <segment>
+                <source>removeTicket</source>
+                <target>Supprimer ce ticket</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

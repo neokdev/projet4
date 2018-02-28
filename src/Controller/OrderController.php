@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,10 +26,10 @@ class OrderController extends AbstractController
     {
         $this->orderManager = $orderManager;
     }
+
     /**
      * @Route("/order", name="app_order")
      * @param Request $request
-     * @param OrderManager $orderManager
      * @return Response
      */
     public function index(Request $request)
