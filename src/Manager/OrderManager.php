@@ -65,9 +65,9 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 2);
 
-            return new RedirectResponse(
+            RedirectResponse::create(
                 $this->router->generate('app_order')
-            );
+            )->send();
         }
         return $form->createView();
     }
@@ -83,9 +83,9 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 3);
 
-            return new RedirectResponse(
+            RedirectResponse::create(
                 $this->router->generate('app_order')
-            );
+            )->send();
         }
         return $form->createView();
     }
@@ -101,9 +101,9 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 4);
 
-            return new RedirectResponse(
+            RedirectResponse::create(
                 $this->router->generate('app_order')
-            );
+            )->send();
         }
         return $form->createView();
     }

@@ -40,25 +40,19 @@ class OrderController extends AbstractController
         switch ($this->get('session')->get('step')) {
             case 1:
                 $form = $this->orderManager->stepOne($request);
-                $template = 'order.html.twig';
+                $template = '_date.html.twig';
                 break;
             case 2:
                 $form = $this->orderManager->stepTwo($request);
-                $template = 'duration.html.twig';
+                $template = '_duration.html.twig';
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
-                $template = 'price.html.twig';
+                $template = '_price.html.twig';
                 break;
             default:
                 $form = $this->orderManager->stepOne($request);
-                $template = 'order.html.twig';
-        }
-        dump($this->get('session')->get('step'), $form, get_class($form));
-
-        //Prevent to return a RedirectResponse
-        if (get_class($form) == 'Symfony\Component\HttpFoundation\RedirectResponse') {
-            return $this->redirectToRoute('app_order');
+                $template = '_date.html.twig';
         }
 
         return $this->render(
@@ -76,8 +70,5 @@ class OrderController extends AbstractController
     {
         $this->get('session')->set('step', $this->get('session')->get('step')-1);
         return $this->redirectToRoute('app_order');
-        ///!\ Step number hardcoded
-//        $this->get('session')->set('step', 1);
-//        return $this->redirectToRoute('app_order');
     }
 }

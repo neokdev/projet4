@@ -64,5 +64,6 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
         } elseif ($this->isToday() && $this->isTimeExceed()) {
             return false;
         }
+        return true;
     }
 }
