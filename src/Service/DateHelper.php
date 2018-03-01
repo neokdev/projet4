@@ -9,13 +9,29 @@
 namespace App\Service;
 
 
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class DateHelper
 {
     CONST TIMEZONE = 'Europe/Paris';
+    /**
+     * @var SessionInterface
+     */
+    private $session;
 
-    public function getActualDatetime()
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
+    public function getActualDatetime():\DateTime
     {
         date_default_timezone_set(DateHelper::TIMEZONE);
         return new \DateTime();
+    }
+
+    public function getSelectedDate():\DateTime
+    {
+        return $this->session->get('order')->getDate();
     }
 }

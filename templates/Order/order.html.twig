@@ -26,19 +26,19 @@
         {% block form %}
 
             {% if form.date is defined %}
-                {{ include('_date.html.twig') }}
+                {{ include('Order/_date.html.twig') }}
             {% endif %}
 
             {% if form.duration is defined %}
-                {{ include('_duration.html.twig') }}
+                {{ include('Order/_duration.html.twig') }}
             {% endif %}
 
             {% if form.ticketCollection is defined %}
-                {{ include('_price.html.twig') }}
+                {{ include('Order/_price.html.twig') }}
             {% endif %}
 
             {% if form.confirm is defined %}
-                {{ include('_confirm.html.twig') }}
+                {{ include('Order/_confirm.html.twig') }}
             {% endif %}
 
         {% endblock %}
