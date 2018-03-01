@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+    <file id="f1">
+        <unit id="menu.homepage">
+            <segment>
+                <source>menu.homepage</source>
+                <target>Accueil</target>
+            </segment>
+        </unit>
+        <unit id="menu.order_tickets">
+            <segment>
+                <source>menu.order_tickets</source>
+                <target>Commander des billets</target>
+            </segment>
+        </unit>
+        <unit id="order.event_date">
+            <segment>
+                <source>order.event_date</source>
+                <target>Date de l'évènement</target>
+            </segment>
+        </unit>
+        <unit id="reducted_price">
+            <segment>
+                <source>reducted_price</source>
+                <target>Prix réduit</target>
+            </segment>
+        </unit>
+        <unit id="order.previous_step">
+            <segment>
+                <source>order.previous_step</source>
+                <target>Etape précédente</target>
+            </segment>
+        </unit>
+        <unit id="order.next_step">
+            <segment>
+                <source>order.next_step</source>
+                <target>Etape suivante</target>
+            </segment>
+        </unit>
+        <unit id="order.price">
+            <segment>
+                <source>order.duration</source>
+                <target>Durée</target>
+            </segment>
+        </unit>
+        <unit id="selectduration">
+            <segment>
+                <source>selectduration</source>
+                <target>Selectionnez une durée</target>
+            </segment>
+        </unit>
+        <unit id="day">
+            <segment>
+                <source>day</source>
+                <target>Journée</target>
+            </segment>
+        </unit>
+        <unit id="halfday">
+            <segment>
+                <source>halfday</source>
+                <target>Demi-journée</target>
+            </segment>
+        </unit>
+        <unit id="flash.dateandtickets">
+            <segment>
+                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
+                <target>Date sélectionnée : %selecteddate%. %ticketsavalaible% tickets disponibles</target>
+            </segment>
+        </unit>
+        <unit id="user.name">
+            <segment>
+                <source>user.name</source>
+                <target>Nom</target>
+            </segment>
+        </unit>
+        <unit id="user.firstname">
+            <segment>
+                <source>user.firstname</source>
+                <target>Prénom</target>
+            </segment>
+        </unit>
+        <unit id="user.country">
+            <segment>
+                <source>user.country</source>
+                <target>Pays</target>
+            </segment>
+        </unit>
+        <unit id="selectcountry">
+            <segment>
+                <source>selectcountry</source>
+                <target>Selectionnez votre Pays</target>
+            </segment>
+        </unit>
+        <unit id="user.birthday">
+            <segment>
+                <source>user.birthday</source>
+                <target>Date de naissance</target>
+            </segment>
+        </unit>
+        <unit id="addTicket">
+            <segment>
+                <source>addTicket</source>
+                <target>Ajouter un nouveau ticket</target>
+            </segment>
+        </unit>
+        <unit id="removeTicket">
+            <segment>
+                <source>removeTicket</source>
+                <target>Supprimer ce ticket</target>
+            </segment>
+        </unit>
+        <unit id="dayticketsnotavalaible">
+            <segment>
+                <source>dayticketsnotavalaible</source>
+                <target>Les tickets à la journée ne sont pas disponibles pour cette date</target>
+            </segment>
+        </unit>
+        <unit id="user.mail">
+            <segment>
+                <source>user.mail</source>
+                <target>Adresse e-mail</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

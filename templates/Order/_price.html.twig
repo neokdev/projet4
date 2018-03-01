@@ -1,0 +1,36 @@
+{% extends 'Order/order.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        let translations = {
+            'addticket': '{% trans %}addTicket{% endtrans %}',
+            'removeticket': '{% trans %}removeTicket{% endtrans %}'
+        };
+    </script>
+    <script src="{{ asset('js/wizard_embed.js') }}"></script>
+
+{% endblock %}
+
+{% block form %}
+
+    {{ form_start(form) }}
+
+        <div class="card-body">
+
+                <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                    {% for ticket in form.ticketCollection %}
+                        <li class="list-group-item">{{ form_row(ticket) }}</li>
+                    {% endfor %}
+                </ul>
+
+        </div>
+
+            <div class="card-footer">
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
+                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
+            </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

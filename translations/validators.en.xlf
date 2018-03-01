@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+    <file id="f2">
+        <unit id="closedontuesdays">
+            <segment>
+                <source>closedontuesdays</source>
+                <target>The museum is closed on Tuesdays</target>
+            </segment>
+        </unit>
+        <unit id="closedthisday">
+            <segment>
+                <source>closedthisday</source>
+                <target>The museum is closed this day</target>
+            </segment>
+        </unit>
+        <unit id="ticketsnotavalaible">
+            <segment>
+                <source>ticketsnotavalaible</source>
+                <target>Tickets are no longer available for sale for this date</target>
+            </segment>
+        </unit>
+        <unit id="dayticketsnotavalaible">
+            <segment>
+                <source>dayticketsnotavalaible</source>
+                <target>Day tickets not avalaible for this date</target>
+            </segment>
+        </unit>
+        <unit id="datePassed">
+            <segment>
+                <source>datePassed</source>
+                <target>You cannot order for passed dates</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

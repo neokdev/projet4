@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+    <file id="f1">
+        <unit id="menu.homepage">
+            <segment>
+                <source>menu.homepage</source>
+                <target>Home</target>
+            </segment>
+        </unit>
+        <unit id="menu.order_tickets">
+            <segment>
+                <source>menu.order_tickets</source>
+                <target>Order Tickets</target>
+            </segment>
+        </unit>
+        <unit id="order.event_date">
+            <segment>
+                <source>order.event_date</source>
+                <target>Event Date</target>
+            </segment>
+        </unit>
+        <unit id="reducted_price">
+            <segment>
+                <source>reducted_price</source>
+                <target>Reducted price</target>
+            </segment>
+        </unit>
+        <unit id="order.previous_step">
+            <segment>
+                <source>order.previous_step</source>
+                <target>Previous step</target>
+            </segment>
+        </unit>
+        <unit id="order.next_step">
+            <segment>
+                <source>order.next_step</source>
+                <target>Next step</target>
+            </segment>
+        </unit>
+        <unit id="order.duration">
+            <segment>
+                <source>order.duration</source>
+                <target>Duration</target>
+            </segment>
+        </unit>
+        <unit id="selectduration">
+            <segment>
+                <source>selectduration</source>
+                <target>Select a duration</target>
+            </segment>
+        </unit>
+        <unit id="day">
+            <segment>
+                <source>day</source>
+                <target>Day</target>
+            </segment>
+        </unit>
+        <unit id="halfday">
+            <segment>
+                <source>halfday</source>
+                <target>Half-day</target>
+            </segment>
+        </unit>
+        <unit id="flash.dateandtickets">
+            <segment>
+                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
+                <target>Date Selected: %selecteddate%. %ticketsavalaible% tickets avalaible</target>
+            </segment>
+        </unit>
+        <unit id="user.name">
+            <segment>
+                <source>user.name</source>
+                <target>Name</target>
+            </segment>
+        </unit>
+        <unit id="user.firstname">
+            <segment>
+                <source>user.firstname</source>
+                <target>First Name</target>
+            </segment>
+        </unit>
+        <unit id="user.country">
+            <segment>
+                <source>user.country</source>
+                <target>Country</target>
+            </segment>
+        </unit>
+        <unit id="selectcountry">
+            <segment>
+                <source>selectcountry</source>
+                <target>Select your country</target>
+            </segment>
+        </unit>
+        <unit id="user.birthday">
+            <segment>
+                <source>user.birthday</source>
+                <target>Birthdate</target>
+            </segment>
+        </unit>
+        <unit id="addTicket">
+            <segment>
+                <source>addTicket</source>
+                <target>Add a new ticket</target>
+            </segment>
+        </unit>
+        <unit id="removeTicket">
+            <segment>
+                <source>removeTicket</source>
+                <target>Remove this ticket</target>
+            </segment>
+        </unit>
+        <unit id="dayticketsnotavalaible">
+            <segment>
+                <source>dayticketsnotavalaible</source>
+                <target>Day tickets not avalaible for this date</target>
+            </segment>
+        </unit>
+        <unit id="user.mail">
+            <segment>
+                <source>user.mail</source>
+                <target>Mail address</target>
+            </segment>
+        </unit>
+    </file>
+</xliff>

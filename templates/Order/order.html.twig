@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css">
+
+{% endblock %}
+
+{% block body %}
+
+    {% if progress is defined %}
+        <div class="progress">
+            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/3*100 }}%" aria-valuenow="{{ progress.value/3*100 }}" aria-valuemax="100">{{ progress.message }}</div>
+        </div>
+    {% endif %}
+
+    {% for msg in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center">
+            {{ msg }}
+        </div>
+    {% endfor %}
+
+    <div class="card" id="form">
+
+        {% block form %}
+
+            {% if form.date is defined %}
+                {{ include('Order/_date.html.twig') }}
+            {% endif %}
+
+            {% if form.duration is defined %}
+                {{ include('Order/_duration.html.twig') }}
+            {% endif %}
+
+            {% if form.ticketCollection is defined %}
+                {{ include('Order/_price.html.twig') }}
+            {% endif %}
+
+            {% if form.confirm is defined %}
+                {{ include('Order/_confirm.html.twig') }}
+            {% endif %}
+
+        {% endblock %}
+
+    </div>
+
+{% endblock %}
