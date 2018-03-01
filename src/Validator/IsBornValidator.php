@@ -19,6 +19,7 @@ class IsBornValidator extends ConstraintValidator
     }
     public function validate($value, Constraint $constraint)
     {
+        dump($this->isBorn($value));
         if (!$this->isBorn($value))
         $this->context->buildViolation($constraint->message)
             ->addViolation();
@@ -26,6 +27,6 @@ class IsBornValidator extends ConstraintValidator
 
     public function isBorn(\DateTime $dateTime):bool
     {
-        return $this->helper->getSelectedDate() > $dateTime;
+        return date_format($this->helper->getSelectedDate(), 'Y-m-d') >= date_format($dateTime, 'Y-m-d');
     }
 }

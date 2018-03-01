@@ -70,7 +70,7 @@
         <unit id="user.name">
             <segment>
                 <source>user.name</source>
-                <target>Name</target>
+                <target>Last name</target>
             </segment>
         </unit>
         <unit id="user.firstname">

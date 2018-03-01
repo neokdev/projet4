@@ -7,10 +7,16 @@
                 <target>Le musée est fermé le Mardi</target>
             </segment>
         </unit>
+        <unit id="closedonsundays">
+            <segment>
+                <source>closedonsundays</source>
+                <target>Les réservations ne sont pas disponibles pour le Dimanche</target>
+            </segment>
+        </unit>
         <unit id="closedthisday">
             <segment>
                 <source>closedthisday</source>
-                <target>Le musée est fermé ce jour</target>
+                <target>Les réservations ne sont pas disponibles pour les jours fériés</target>
             </segment>
         </unit>
         <unit id="ticketsnotavalaible">
@@ -29,6 +35,12 @@
             <segment>
                 <source>datePassed</source>
                 <target>Vous ne pouvez pas réserver pour une date ultérieure</target>
+            </segment>
+        </unit>
+        <unit id="isNotBorn">
+            <segment>
+                <source>isNotBorn</source>
+                <target>Vous ne pouvez pas réserver pour des personnes non-nées à la date de la visite</target>
             </segment>
         </unit>
     </file>

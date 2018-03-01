@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\TicketOrder;
 use App\Validator\Constraints\IsDatePassed;
+use App\Validator\Constraints\IsNotSunday;
 use App\Validator\Constraints\IsNotTuesday;
 use App\Validator\Constraints\IsOpenDays;
 use App\Validator\Constraints\IsTicketsAvalaible;
@@ -22,6 +23,7 @@ class TicketOrderDateType extends AbstractType
                 'widget' => 'single_text',
                 'constraints' => [
                     new IsNotTuesday(),
+                    new IsNotSunday(),
                     new IsOpenDays(),
                     new IsTicketsAvalaible(),
                     new IsDatePassed()
