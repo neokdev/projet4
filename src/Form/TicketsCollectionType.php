@@ -3,15 +3,12 @@
 namespace App\Form;
 
 use App\Entity\TicketOrder;
-use App\Form\Type\DurationType;
-use App\Form\Type\TicketOrderDateType;
-use App\Form\Type\TicketType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class WizardType extends AbstractType
+class TicketsCollectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

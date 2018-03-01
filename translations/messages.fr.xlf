@@ -109,5 +109,17 @@
                 <target>Supprimer ce ticket</target>
             </segment>
         </unit>
+        <unit id="dayticketsnotavalaible">
+            <segment>
+                <source>dayticketsnotavalaible</source>
+                <target>Les tickets à la journée ne sont pas disponibles pour cette date</target>
+            </segment>
+        </unit>
+        <unit id="user.mail">
+            <segment>
+                <source>user.mail</source>
+                <target>Adresse e-mail</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

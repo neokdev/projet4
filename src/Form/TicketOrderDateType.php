@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Form\Type;
+namespace App\Form;
 
 use App\Entity\TicketOrder;
+use App\Validator\Constraints\IsDatePassed;
 use App\Validator\Constraints\IsNotTuesday;
 use App\Validator\Constraints\IsOpenDays;
 use App\Validator\Constraints\IsTicketsAvalaible;
@@ -23,6 +24,7 @@ class TicketOrderDateType extends AbstractType
                     new IsNotTuesday(),
                     new IsOpenDays(),
                     new IsTicketsAvalaible(),
+                    new IsDatePassed()
                 ],
             ])
         ;

@@ -6,7 +6,7 @@
  * Time: 09:45
  */
 
-namespace App\Form\Type;
+namespace App\Form;
 
 use App\Entity\Ticket;
 use Symfony\Component\Form\AbstractType;

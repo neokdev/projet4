@@ -19,5 +19,17 @@
                 <target>Tickets are no longer available for sale for this date</target>
             </segment>
         </unit>
+        <unit id="dayticketsnotavalaible">
+            <segment>
+                <source>dayticketsnotavalaible</source>
+                <target>Day tickets not avalaible for this date</target>
+            </segment>
+        </unit>
+        <unit id="datePassed">
+            <segment>
+                <source>datePassed</source>
+                <target>You cannot order for passed dates</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

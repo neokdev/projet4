@@ -39,19 +39,23 @@ class OrderController extends AbstractController
         switch ($this->get('session')->get('step')) {
             case 1:
                 $form = $this->orderManager->stepOne($request);
-                $template = '_date.html.twig';
+                $template = "Order/_date.html.twig";
                 break;
             case 2:
                 $form = $this->orderManager->stepTwo($request);
-                $template = '_duration.html.twig';
+                $template = 'Order/_duration.html.twig';
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
-                $template = '_price.html.twig';
+                $template = 'Order/_price.html.twig';
+                break;
+            case 4:
+                $form = $this->orderManager->stepFour($request);
+                $template = 'Order/_confirm.html.twig';
                 break;
             default:
                 $form = $this->orderManager->stepOne($request);
-                $template = '_date.html.twig';
+                $template = 'Order/_date.html.twig';
         }
 
         return $this->render(

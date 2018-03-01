@@ -9,6 +9,7 @@
 namespace App\Validator;
 
 
+use App\Service\DateHelper;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -21,15 +22,22 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
      * @var SessionInterface
      */
     private $session;
+    /**
+     * @var DateHelper
+     */
+    private $helper;
 
-    public function __construct(SessionInterface $session)
+    public function __construct(
+        SessionInterface $session,
+        DateHelper $helper)
     {
         $this->session = $session;
+        $this->helper = $helper;
     }
 
     public function validate($value, Constraint $constraint)
     {
-        if (!$this->isDayTicketsPossible()) {
+        if (!$this->isDayTicketsPossible() == $value) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }
@@ -39,22 +47,18 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
     {
         $order = $this->session->get('order');
         return $order->getDate();
-//        dump($order);die();
     }
 
-    public function getActualDatetime()
-    {
-        return new \DateTime();
-    }
 
     public function isToday():bool
     {
-        return ((date_format($this->getSelectedDate(), "Y-m-d")) == (date_format($this->getActualDatetime(), "Y-m-d")));
+        date_default_timezone_set(IsDayTicketsPossibleValidator::TIMEZONE);
+        return ((date_format($this->getSelectedDate(), "Y-m-d")) == (date_format($this->helper->getActualDatetime(), "Y-m-d")));
     }
 
     public function isTimeExceed():bool
     {
-        return ((date_format($this->getActualDatetime(), "H")) >= (IsDayTicketsPossibleValidator::LIMIT_TIME));
+        return ((date_format($this->helper->getActualDatetime(), "H")) >= (IsDayTicketsPossibleValidator::LIMIT_TIME));
     }
 
     public function isDayTicketsPossible():bool

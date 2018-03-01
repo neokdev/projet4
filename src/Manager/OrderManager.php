@@ -11,9 +11,10 @@ namespace App\Manager;
 
 use App\Entity\Ticket;
 use App\Entity\TicketOrder;
-use App\Form\Type\DurationType;
-use App\Form\Type\TicketOrderDateType;
-use App\Form\WizardType;
+use App\Form\ConfirmType;
+use App\Form\DurationType;
+use App\Form\TicketOrderDateType;
+use App\Form\TicketsCollectionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -91,15 +92,32 @@ class OrderManager
     }
     public function stepThree(Request $request)
     {
-        $ticket = new Ticket();
         $order = $this->session->get('order');
-        $form = $this->factory->create(WizardType::class, $order)
+        $form = $this->factory->create(TicketsCollectionType::class, $order)
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
             $this->session->set('order', $order);
             $this->session->set('step', 4);
+
+            RedirectResponse::create(
+                $this->router->generate('app_order')
+            )->send();
+        }
+        return $form->createView();
+    }
+
+    public function stepFour(Request $request)
+    {
+        $order = $this->session->get('order');
+        $form = $this->factory->create(ConfirmType::class, $order)
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order = $form->getData();
+            $this->session->set('order', $order);
+            $this->session->set('step', 5);
 
             RedirectResponse::create(
                 $this->router->generate('app_order')
