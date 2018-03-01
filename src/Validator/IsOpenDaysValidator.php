@@ -11,6 +11,7 @@ namespace App\Validator;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use App\Service\Holidays;
 
 class IsOpenDaysValidator extends ConstraintValidator
 {
@@ -18,6 +19,15 @@ class IsOpenDaysValidator extends ConstraintValidator
      * Closed dates list
      */
     CONST CLOSED_DATES = ["01-05", "01-11", "25-12"];
+    /**
+     * @var Holidays
+     */
+    private $holidays;
+
+    public function __construct(Holidays $holidays)
+    {
+        $this->holidays = $holidays;
+    }
 
     /**
      * @param mixed $date
@@ -25,11 +35,21 @@ class IsOpenDaysValidator extends ConstraintValidator
      */
     public function validate($date, Constraint $constraint)
     {
-        foreach(IsOpenDaysValidator::CLOSED_DATES as $closeddate) {
-            if ($closeddate === date_format($date, "d-m")) {
+        $year = date('Y', date_timestamp_get($date));
+        dump($this->retrieveHolidayDates($year));
+        foreach($this->retrieveHolidayDates($year) as $closeddate) {
+            if ($closeddate === date_format($date, "Y-m-d")) {
                 $this->context->buildViolation($constraint->message)
                     ->addViolation();
             }
         }
+    }
+
+    public function retrieveHolidayDates($year):array
+    {
+        foreach ($this->holidays->getHolidays($year) as $days) {
+            $array[] = date('Y-m-d', $days);
+        }
+        return $array;
     }
 }

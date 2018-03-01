@@ -9,6 +9,7 @@
 namespace App\Form;
 
 use App\Entity\Ticket;
+use App\Validator\Constraints\IsBorn;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Validator\Constraints\IsValidName;
 
 class TicketType extends AbstractType
 {
@@ -23,9 +25,15 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'user.name',
+                'constraints' => [
+                    new IsValidName()
+                ],
+                'label' => 'user.name'
             ])
             ->add('firstName', TextType::class, [
+                'constraints' => [
+                    new IsValidName()
+                ],
                 'label' => 'user.firstname',
             ])
             ->add('country', CountryType::class, [
@@ -33,6 +41,9 @@ class TicketType extends AbstractType
                 'placeholder' => 'selectcountry',
             ])
             ->add('birthdate', DateType::class, [
+                'constraints' => [
+                    new IsBorn()
+                ],
                 'widget' => 'single_text',
                 'label' => 'user.birthday',
             ])
