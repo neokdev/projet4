@@ -15,6 +15,7 @@ use App\Form\ConfirmType;
 use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
+use App\Form\TicketType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -92,10 +93,18 @@ class OrderManager
     }
     public function stepThree(Request $request)
     {
+        $ticket = new Ticket();
         $order = $this->session->get('order');
         $form = $this->factory->create(TicketsCollectionType::class, $order)
             ->handleRequest($request);
+        $ticketForm = $this->factory->create(TicketType::class, $ticket)
+            ->handleRequest($request);
 
+//        if ($request->isMethod('POST')) {
+//            $ticketForm->submit($request->request->get($ticketForm->getName()));
+//            dump($ticketForm);die();
+//        }
+//
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
             $this->session->set('order', $order);

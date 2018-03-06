@@ -74,4 +74,14 @@ class OrderController extends AbstractController
         $this->get('session')->set('step', $this->get('session')->get('step')-1);
         return $this->redirectToRoute('app_order');
     }
+
+    /**
+     * @Route("/reset", name="app_reset")
+     */
+    public function reset()
+    {
+        $this->get('session')->set('step', 1);
+        $this->get('session')->set('order', null);
+        return $this->redirectToRoute('app_order');
+    }
 }

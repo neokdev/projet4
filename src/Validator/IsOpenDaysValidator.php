@@ -16,10 +16,6 @@ use App\Service\Holidays;
 class IsOpenDaysValidator extends ConstraintValidator
 {
     /**
-     * Closed dates list
-     */
-    CONST CLOSED_DATES = ["01-05", "01-11", "25-12"];
-    /**
      * @var Holidays
      */
     private $holidays;
@@ -36,7 +32,6 @@ class IsOpenDaysValidator extends ConstraintValidator
     public function validate($date, Constraint $constraint)
     {
         $year = date('Y', date_timestamp_get($date));
-        dump($this->retrieveHolidayDates($year));
         foreach($this->retrieveHolidayDates($year) as $closeddate) {
             if ($closeddate === date_format($date, "Y-m-d")) {
                 $this->context->buildViolation($constraint->message)

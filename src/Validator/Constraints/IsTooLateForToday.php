@@ -7,14 +7,13 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class IsValidName extends Constraint
+class IsTooLateForToday extends Constraint
 {
     /*
      * Any public properties become valid options for the annotation.
      * Then, use these in your validator class.
      */
-//    TODO message
-    public $message = 'The value "{{ value }}" is not valid.';
+    public $message = 'tooLateForOrder';
 
     public function validatedBy()
     {

@@ -15,9 +15,6 @@ $(function() {
 
         addTicketForm($collectionHolder, $newLinkLi);
     });
-    ///////////////////////////////////////////////////////
-    // TESTS
-    ///////////////////////////////////////////////////////
 
     ticketCollection = $('.list-group-item');
 

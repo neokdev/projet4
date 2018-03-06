@@ -19,7 +19,6 @@ class IsBornValidator extends ConstraintValidator
     }
     public function validate($value, Constraint $constraint)
     {
-        dump($this->isBorn($value));
         if (!$this->isBorn($value))
         $this->context->buildViolation($constraint->message)
             ->addViolation();

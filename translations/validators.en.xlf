@@ -43,5 +43,11 @@
                 <target>You can not book for non-born on the date of the visit</target>
             </segment>
         </unit>
+        <unit id="tooLateForOrder">
+            <segment>
+                <source>tooLateForOrder</source>
+                <target>Reservations are no longer available for today</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

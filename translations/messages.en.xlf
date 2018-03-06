@@ -61,12 +61,6 @@
                 <target>Half-day</target>
             </segment>
         </unit>
-        <unit id="flash.dateandtickets">
-            <segment>
-                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
-                <target>Date Selected: %selecteddate%. %ticketsavalaible% tickets avalaible</target>
-            </segment>
-        </unit>
         <unit id="user.name">
             <segment>
                 <source>user.name</source>
@@ -119,6 +113,12 @@
             <segment>
                 <source>user.mail</source>
                 <target>Mail address</target>
+            </segment>
+        </unit>
+        <unit id="order.payment">
+            <segment>
+                <source>order.payment</source>
+                <target>Proceed to payment</target>
             </segment>
         </unit>
     </file>

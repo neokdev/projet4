@@ -4,8 +4,8 @@
     {{ parent() }}
     <script type="text/javascript">
         let translations = {
-            'addticket': '{% trans %}addTicket{% endtrans %}',
-            'removeticket': '{% trans %}removeTicket{% endtrans %}'
+            'addticket': '<i class="fas fa-plus"></i> {% trans %}addTicket{% endtrans %}',
+            'removeticket': '<i class="fas fa-trash-alt"></i> {% trans %}removeTicket{% endtrans %}'
         };
     </script>
     <script src="{{ asset('js/wizard_embed.js') }}"></script>
@@ -15,6 +15,14 @@
 {% block form %}
 
     {{ form_start(form) }}
+
+    <div>
+        <ul>
+            {% for error in form.vars.errors.form.getErrors(true) %}
+                <li>{{ error.message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
         <div class="card-body">
 
@@ -27,10 +35,11 @@
         </div>
 
             <div class="card-footer">
-                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
-                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
-            </div>
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
+                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %} <i class="fas fa-angle-double-right"></i></button>
 
     {{ form_end(form) }}
+
+            </div>
 
 {% endblock %}
