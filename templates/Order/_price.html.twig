@@ -16,21 +16,13 @@
 
     {{ form_start(form) }}
 
-    <div>
-        <ul>
-            {% for error in form.vars.errors.form.getErrors(true) %}
-                <li>{{ error.message }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-
         <div class="card-body">
 
-                <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
-                    {% for ticket in form.ticketCollection %}
-                        <li class="list-group-item">{{ form_row(ticket) }}</li>
-                    {% endfor %}
-                </ul>
+            <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                {% for ticket in form.ticketCollection %}
+                    <li class="list-group-item">{{ form_row(ticket) }}</li>
+                {% endfor %}
+            </ul>
 
         </div>
 

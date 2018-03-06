@@ -99,16 +99,13 @@ class OrderManager
             ->handleRequest($request);
         $ticketForm = $this->factory->create(TicketType::class, $ticket)
             ->handleRequest($request);
-
-//        if ($request->isMethod('POST')) {
-//            $ticketForm->submit($request->request->get($ticketForm->getName()));
-//            dump($ticketForm);die();
-//        }
 //
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
             $this->session->set('order', $order);
             $this->session->set('step', 4);
+
+            $this->session->set('tickets', $order->getTicketCollection());
 
             RedirectResponse::create(
                 $this->router->generate('app_order')

@@ -24,7 +24,7 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('lastname', TextType::class, [
                 'constraints' => [
                     new IsValidName()
                 ],

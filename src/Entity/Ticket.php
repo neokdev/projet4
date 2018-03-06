@@ -18,6 +18,81 @@ class Ticket
     private $reducted_price;
 
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $lastname;
+
+    /**
+     * @return mixed
+     */
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $ticket_price;
+
+    /**
+     * @ORM\Column(type="string")
+     * @ORM\ManyToOne(
+     *     targetEntity="App\Entity\TicketOrder",
+     *     inversedBy="ticketCollection"
+     * )
+     * @ORM\JoinColumn(name="ordernumber",
+     * referencedColumnName="ticketnumber")
+     */
+    private $ticketCollection;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $ticket_number;
+
+    /**
+     * Ticket constructor.
+     */
+    public function __construct()
+    {
+        $this->ticketCollection = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection|null
+     */
+    public function getTicketCollection(): array
+    {
+        return $this->ticketCollection;
+    }
+
+    /**
+     * @param mixed $ticketCollection
+     */
+    public function setTicketCollection($ticketCollection): void
+    {
+        $this->ticketCollection = $ticketCollection;
+    }
+
+    /**
      * @return mixed
      */
     public function getReductedPrice()
@@ -32,6 +107,7 @@ class Ticket
     {
         $this->reducted_price = $reducted_price;
     }
+
     /**
      * @return mixed
      */
@@ -55,33 +131,13 @@ class Ticket
     {
         return $this->id;
     }
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * @ORM\ManyToOne(targetEntity="Tickets.php")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $name;
-
-    /**
-     * Ticket constructor.
-     */
-    public function __construct()
-    {
-        $this->ticket_number = new ArrayCollection();
-    }
 
     /**
      * @return mixed
      */
-    public function getName(): ?string
+    public function getLastname(): ?string
     {
-        return $this->name;
+        return $this->lastname;
     }
 
     /**
@@ -109,11 +165,11 @@ class Ticket
     }
 
     /**
-     * @param mixed $name
+     * @param $lastname
      */
-    public function setName($name): void
+    public function setLastname($lastname): void
     {
-        $this->name = $name;
+        $this->lastname = $lastname;
     }
 
     /**
@@ -149,40 +205,9 @@ class Ticket
     }
 
     /**
-     * @ORM\Column(type="string")
+     * @return mixed
      */
-    private $firstname;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $country;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $birthdate;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $ticket_price;
-
-    /**
-     * @ORM\Column(type="string")
-     * @ORM\ManyToOne(
-     *     targetEntity="App\Entity\TicketOrder",
-     *     inversedBy="order_number"
-     * )
-     * @ORM\JoinColumn(name="ordernumber",
-     * referencedColumnName="ticketnumber")
-     */
-    private $ticket_number;
-
-    /**
-     * @return ArrayCollection|null
-     */
-    public function getTicketNumber(): ?array
+    public function getTicketNumber()
     {
         return $this->ticket_number;
     }

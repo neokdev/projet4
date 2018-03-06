@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class OrderController extends AbstractController
@@ -32,7 +33,7 @@ class OrderController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, SessionInterface $session)
     {
         $form = null;
         $template = null;
@@ -40,27 +41,34 @@ class OrderController extends AbstractController
             case 1:
                 $form = $this->orderManager->stepOne($request);
                 $template = "Order/_date.html.twig";
+                $cardtitle = "card_title_date";
                 break;
             case 2:
                 $form = $this->orderManager->stepTwo($request);
                 $template = 'Order/_duration.html.twig';
+                $cardtitle = "card_title_duration";
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
                 $template = 'Order/_price.html.twig';
+                $cardtitle = "card_title_price";
                 break;
             case 4:
                 $form = $this->orderManager->stepFour($request);
                 $template = 'Order/_confirm.html.twig';
+                $cardtitle = "card_title_confirm";
                 break;
             default:
                 $form = $this->orderManager->stepOne($request);
                 $template = 'Order/_date.html.twig';
+                $cardtitle = "card_title_date";
         }
 
         return $this->render(
             $template,
             [
+                'tickets' => $session->get('tickets'),
+                'cardtitle' => $cardtitle,
                 'form' => $form,
             ]
         );

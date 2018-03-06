@@ -22,11 +22,58 @@ class TicketOrder
     private $id;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $order_date;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(type="array")
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
+     *     mappedBy="TicketOrder"
+     * )
+     */
+    private $ticketCollection;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
+     */
+    private $mail;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $order_price;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $order_number;
+
+    /**
      * TicketOrder constructor.
      */
     public function __construct()
     {
-        $this->order_number = new ArrayCollection();
+        $this->ticketCollection = new ArrayCollection();
+    }
+
+    /**
+     * @param mixed $ticketCollection
+     */
+    public function setTicketCollection($ticketCollection): void
+    {
+        $this->ticketCollection = $ticketCollection;
     }
 
     /**
@@ -34,7 +81,7 @@ class TicketOrder
      */
     public function getTicketCollection(): Collection
     {
-        return $this->order_number;
+        return $this->ticketCollection;
     }
 
     /**
@@ -118,41 +165,12 @@ class TicketOrder
     }
 
     /**
-     * @ORM\Column(type="array")
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
-     *     mappedBy="TicketOrder"
-     * )
-     */
-    private $order_number;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $order_date;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
-     */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
-
-    /**
      * @return mixed
      */
     public function getDate()
     {
         return $this->date;
     }
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $duration;
 
     /**
      * @return mixed
@@ -163,22 +181,11 @@ class TicketOrder
     }
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $order_price;
-
-    /**
      * @param Ticket $ticket
-     * @return TicketOrder
      */
     public function addTicket(Ticket $ticket)
     {
-        $this->order_number->add($ticket);
+        $this->ticketCollection->add($ticket);
         $ticket->setTicketNumber($this);
-    }
-
-    public function getTicket()
-    {
-        $this->order_number;
     }
 }

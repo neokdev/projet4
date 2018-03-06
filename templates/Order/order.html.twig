@@ -21,7 +21,17 @@
         </div>
     {% endfor %}
 
+    {% for error in form.vars.errors.form.getErrors(true) %}
+        <div class="alert alert-warning text-center" role="alert">
+            {{ error.message }}
+        </div>
+    {% endfor %}
+
     <div class="card" id="form">
+
+        <div class="card-header">
+            {{ cardtitle|trans }}
+        </div>
 
         {% block form %}
 

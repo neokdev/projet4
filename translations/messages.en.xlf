@@ -121,5 +121,29 @@
                 <target>Proceed to payment</target>
             </segment>
         </unit>
+        <unit id="card_title_date">
+            <segment>
+                <source>card_title_date</source>
+                <target>Selection of the date of visit</target>
+            </segment>
+        </unit>
+        <unit id="card_title_duration">
+            <segment>
+                <source>card_title_duration</source>
+                <target>Selection of visit duration</target>
+            </segment>
+        </unit>
+        <unit id="card_title_price">
+            <segment>
+                <source>card_title_price</source>
+                <target>Add tickets</target>
+            </segment>
+        </unit>
+        <unit id="card_title_confirm">
+            <segment>
+                <source>card_title_confirm</source>
+                <target>Reservation confirmation</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

@@ -15,11 +15,8 @@ $(function() {
 
         addTicketForm($collectionHolder, $newLinkLi);
     });
-    ///////////////////////////////////////////////////////
-    // TESTS
-    ///////////////////////////////////////////////////////
 
-    ticketCollection = $('.list-group-item');
+    let ticketCollection = $('.list-group-item');
 
     addTicketFormDeleteLink(ticketCollection);
 
@@ -27,7 +24,6 @@ $(function() {
         e.preventDefault();
         $(this).parent().remove();
     });
-
 });
 
 function addTicketForm($collectionHolder, $newLinkLi) {
@@ -39,7 +35,8 @@ function addTicketForm($collectionHolder, $newLinkLi) {
 
     $collectionHolder.data('index', index + 1);
 
-    let $newFormLi = $('<li></li>').append(newForm);
+    let $newFormLi = $('<li class="list-group-item"></li>');
+    $newFormLi.append(newForm);
     $newLinkLi.before($newFormLi);
 
     addTicketFormDeleteLink($newFormLi);
