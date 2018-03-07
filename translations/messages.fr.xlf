@@ -19,9 +19,9 @@
                 <target>Date de l'évènement</target>
             </segment>
         </unit>
-        <unit id="reducted_price">
+        <unit id="reduced_price">
             <segment>
-                <source>reducted_price</source>
+                <source>reduced_price</source>
                 <target>Prix réduit</target>
             </segment>
         </unit>

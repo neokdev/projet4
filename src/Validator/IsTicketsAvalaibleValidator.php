@@ -35,7 +35,7 @@ class IsTicketsAvalaibleValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         $tickets = $this->repository->ticketsForThisDate($value);
-        if (IsTicketsAvalaibleValidator::DAY_BUY_LIMIT <= $tickets) {
+        if (self::DAY_BUY_LIMIT <= $tickets) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

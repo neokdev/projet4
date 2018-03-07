@@ -2,38 +2,38 @@
 
 {% block form %}
 
-    {{ dump(tickets) }}
-
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Last</th>
                 <th scope="col">First</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Reduced price</th>
+                <th scope="col">Price</th>
             </tr>
         </thead>
         <tbody>
+            {% for ticket in tickets %}
             <tr>
-                <th scope="row">1</th>
-                {% for ticket in tickets %}
-                    <td>Mark</td>
-                {% endfor %}
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{ ticket.ticketnumber }}</th>
+                <td>{{ ticket.lastname|capitalize }}</td>
+                <td>{{ ticket.firstname|capitalize }}</td>
+                <td>{% if ticket.reducedprice[0] is defined %}REDUC{% endif %}</td>
+                <td>{{ ticket.ticketprice }}</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            {% endfor %}
+            {#<tr>#}
+                {#<th scope="row">2</th>#}
+                {#<td>Jacob</td>#}
+                {#<td>Thornton</td>#}
+                {#<td>@fat</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th scope="row">3</th>#}
+                {#<td>Larry</td>#}
+                {#<td>the Bird</td>#}
+                {#<td>@twitter</td>#}
+            {#</tr>#}
         </tbody>
     </table>
 

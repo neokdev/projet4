@@ -47,12 +47,12 @@ class TicketType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'user.birthday',
             ])
-            ->add('reductedPrice', ChoiceType::class, [
+            ->add('reducedPrice', ChoiceType::class, [
                 'label' => false,
                 'expanded' => 'true',
                 'multiple' => 'true',
                 'choices' => [
-                    'reducted_price' => true
+                    'reduced_price' => true
                 ]
             ]);
     }

@@ -11,8 +11,6 @@ namespace App\Service;
 
 class Holidays
 {
-    CONST TIMEZONE = 'Europe/Paris';
-
     public function getHolidays($year = null):array
     {
         date_default_timezone_set(DateHelper::TIMEZONE);

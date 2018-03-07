@@ -17,7 +17,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 class IsDayTicketsPossibleValidator extends ConstraintValidator
 {
     CONST LIMIT_TIME = "14:00";
-    CONST TIMEZONE = 'Europe/Paris';
     /**
      * @var DateHelper
      */
@@ -43,7 +42,7 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
 
     public function isDateToday():bool
     {
-        date_default_timezone_set(IsDayTicketsPossibleValidator::TIMEZONE);
+        date_default_timezone_set(DateHelper::TIMEZONE);
         return ((date_format($this->dateHelper->getSelectedDate(), "Y-m-d")) == (date_format($this->dateHelper->getActualDatetime(), "Y-m-d")));
     }
 
@@ -51,7 +50,7 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
     {
         if (!$this->isDateToday()) {
             return true;
-        } elseif ($this->isDateToday() && $this->timeHelper->isTimeExceed(IsDayTicketsPossibleValidator::LIMIT_TIME)) {
+        } elseif ($this->isDateToday() && $this->timeHelper->isTimeExceed(self::LIMIT_TIME)) {
             return false;
         }
         return true;

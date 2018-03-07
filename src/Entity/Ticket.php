@@ -15,7 +15,7 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $reducted_price;
+    private $reduced_price;
 
     /**
      * @ORM\Id
@@ -95,17 +95,17 @@ class Ticket
     /**
      * @return mixed
      */
-    public function getReductedPrice()
+    public function getReducedPrice()
     {
-        return $this->reducted_price;
+        return $this->reduced_price;
     }
 
     /**
-     * @param mixed $reducted_price
+     * @param mixed $reduced_price
      */
-    public function setReductedPrice($reducted_price): void
+    public function setReducedPrice($reduced_price): void
     {
-        $this->reducted_price = $reducted_price;
+        $this->reduced_price = $reduced_price;
     }
 
     /**

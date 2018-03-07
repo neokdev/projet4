@@ -9,6 +9,8 @@
 
 {% block body %}
 
+    {{ dump() }}
+
     {% if progress is defined %}
         <div class="progress">
             <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/3*100 }}%" aria-valuenow="{{ progress.value/3*100 }}" aria-valuemax="100">{{ progress.message }}</div>

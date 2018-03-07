@@ -29,7 +29,7 @@ class IsTooLateForTodayValidator extends ConstraintValidator
 
     public function validate($value, Constraint $constraint)
     {
-        if ($this->isSelectedToday($value) && $this->timeHelper->isTimeExceed(IsTooLateForTodayValidator::CLOSURE_HOUR)) {
+        if ($this->isSelectedToday($value) && $this->timeHelper->isTimeExceed(self::CLOSURE_HOUR)) {
             $this->context->buildViolation($constraint->message)
                 ->addViolation();
         }

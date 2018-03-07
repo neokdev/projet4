@@ -19,10 +19,10 @@
                 <target>Event Date</target>
             </segment>
         </unit>
-        <unit id="reducted_price">
+        <unit id="reduced_price">
             <segment>
-                <source>reducted_price</source>
-                <target>Reducted price</target>
+                <source>reduced_price</source>
+                <target>Reduced price</target>
             </segment>
         </unit>
         <unit id="order.previous_step">

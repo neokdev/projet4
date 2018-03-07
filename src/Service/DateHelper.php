@@ -26,7 +26,7 @@ class DateHelper
 
     public function getActualDatetime():\DateTime
     {
-        date_default_timezone_set(DateHelper::TIMEZONE);
+        date_default_timezone_set(self::TIMEZONE);
         return new \DateTime();
     }
 
