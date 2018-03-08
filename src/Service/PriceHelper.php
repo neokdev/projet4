@@ -31,7 +31,22 @@ class PriceHelper
     {
         date_default_timezone_set(DateHelper::TIMEZONE);
         $age = $birthdate->diff($this->helper->getSelectedDate())->y;
-        dump(array_search($age, self::PRICE_PER_AGE));die();
-        return array_search($age, self::PRICE_PER_AGE);
+        switch ($age) {
+            case ($age>=60):
+                $price = 12;
+                break;
+            case ($age>=12):
+                $price = 16;
+                break;
+            case ($age>=4):
+                $price = 8;
+                break;
+            default:
+                $price = 0;
+        }
+        if ($price>10 && $reducPrice) {
+            $price = 10;
+        }
+        return $price;
     }
 }

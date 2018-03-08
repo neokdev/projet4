@@ -2,10 +2,14 @@
 
 {% block form %}
 
+    <h4>Command #{{ order.ordernumber }}</h4>
+
+    <h5>For {{ order.date|date("m/d/Y", "Europe/Paris") }}</h5>
+
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">Ticket #</th>
                 <th scope="col">Last</th>
                 <th scope="col">First</th>
                 <th scope="col">Reduced price</th>
@@ -18,28 +22,20 @@
                 <th scope="row">{{ ticket.ticketnumber }}</th>
                 <td>{{ ticket.lastname|capitalize }}</td>
                 <td>{{ ticket.firstname|capitalize }}</td>
-                <td>{% if ticket.reducedprice[0] is defined %}REDUC{% endif %}</td>
-                <td>{{ ticket.ticketprice }}</td>
+                <td>{% if ticket.reducedprice[0] is defined %}<i class="far fa-check-square"></i>{% endif %}</td>
+                <td>{{ ticket.ticketprice|number_format(2, ',', ' ') }} €</td>
             </tr>
             {% endfor %}
-            {#<tr>#}
-                {#<th scope="row">2</th>#}
-                {#<td>Jacob</td>#}
-                {#<td>Thornton</td>#}
-                {#<td>@fat</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th scope="row">3</th>#}
-                {#<td>Larry</td>#}
-                {#<td>the Bird</td>#}
-                {#<td>@twitter</td>#}
-            {#</tr>#}
         </tbody>
     </table>
 
     {{ form_start(form) }}
 
     <div class="card-body">
+
+        <div>
+            <h5>Total price : {% if order.duration %}Day tickets{% else %}Half-day tickets{% endif %} : {{ order.orderprice|number_format(2, ',', ' ') }} €</h5>
+        </div>
 
         {{ form_row(form.mail) }}
 

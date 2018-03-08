@@ -31,6 +31,7 @@ class OrderController extends AbstractController
     /**
      * @Route("/order", name="app_order")
      * @param Request $request
+     * @param SessionInterface $session
      * @return Response
      */
     public function index(Request $request, SessionInterface $session)
@@ -58,6 +59,11 @@ class OrderController extends AbstractController
                 $template = 'Order/_confirm.html.twig';
                 $cardtitle = "card_title_confirm";
                 break;
+            case 5:
+                $form = $this->orderManager->stepCheckout($request);
+                $template = 'Order/_checkout.html.twig';
+                $cardtitle = "card_title_checkout";
+                break;
             default:
                 $form = $this->orderManager->stepOne($request);
                 $template = 'Order/_date.html.twig';
@@ -67,6 +73,7 @@ class OrderController extends AbstractController
         return $this->render(
             $template,
             [
+                'order' => $session->get('order'),
                 'tickets' => $session->get('tickets'),
                 'cardtitle' => $cardtitle,
                 'form' => $form,

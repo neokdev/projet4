@@ -181,6 +181,14 @@ class TicketOrder
     }
 
     /**
+     * @return mixed
+     */
+    public function getOrderNumber()
+    {
+        return $this->order_number;
+    }
+
+    /**
      * @param Ticket $ticket
      */
     public function addTicket(Ticket $ticket)
