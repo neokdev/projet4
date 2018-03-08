@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Manager\OrderManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

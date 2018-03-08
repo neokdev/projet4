@@ -23,11 +23,13 @@
         </div>
     {% endfor %}
 
-    {% for error in form.vars.errors.form.getErrors(true) %}
-        <div class="alert alert-warning text-center" role="alert">
-            {{ error.message }}
-        </div>
-    {% endfor %}
+    {% if form is defined %}
+        {% for error in form.vars.errors.form.getErrors(true) %}
+            <div class="alert alert-warning text-center" role="alert">
+                {{ error.message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="card" id="form">
 
