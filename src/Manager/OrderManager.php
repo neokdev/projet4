@@ -16,6 +16,7 @@ use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
 use App\Form\TicketType;
+use App\Service\PriceHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -41,18 +42,24 @@ class OrderManager
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var PriceHelper
+     */
+    private $helper;
 
     public function __construct(
         EntityManagerInterface $entity,
         FormFactoryInterface $factory,
         SessionInterface $session,
-        RouterInterface $router
+        RouterInterface $router,
+        PriceHelper $helper
     )
     {
         $this->entity = $entity;
         $this->factory = $factory;
         $this->session = $session;
         $this->router = $router;
+        $this->helper = $helper;
     }
 
     public function stepOne(Request $request)
@@ -93,11 +100,8 @@ class OrderManager
     }
     public function stepThree(Request $request)
     {
-        $ticket = new Ticket();
         $order = $this->session->get('order');
         $form = $this->factory->create(TicketsCollectionType::class, $order)
-            ->handleRequest($request);
-        $ticketForm = $this->factory->create(TicketType::class, $ticket)
             ->handleRequest($request);
 //
         if ($form->isSubmitted() && $form->isValid()) {
@@ -105,7 +109,13 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 4);
 
+            /** @var Ticket $tickets */
+            $tickets = $order->getTicketCollection();
             $this->session->set('tickets', $order->getTicketCollection());
+            /** @var Ticket $ticket */
+            foreach ($tickets as $ticket) {
+                $ticket->setTicketPrice($this->helper->calculatePrice($ticket->getBirthdate(), $ticket->getReducedPrice()));
+            }
 
             RedirectResponse::create(
                 $this->router->generate('app_order')
