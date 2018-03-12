@@ -22,11 +22,50 @@ class TicketOrder
     private $id;
 
     /**
+     * @ORM\Column(type="date")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $orderDate;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $duration;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
+     *     mappedBy="ticketOrder",
+     *     cascade={"persist"}
+     * )
+     */
+    private $ticketCollection;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
+     */
+    private $mail;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $orderPrice;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $orderNumber;
+
+    /**
      * TicketOrder constructor.
      */
     public function __construct()
     {
-        $this->order_number = new ArrayCollection();
+        $this->ticketCollection = new ArrayCollection();
     }
 
     /**
@@ -34,15 +73,15 @@ class TicketOrder
      */
     public function getTicketCollection(): Collection
     {
-        return $this->order_number;
+        return $this->ticketCollection;
     }
 
     /**
-     * @param mixed $order_number
+     * @param $orderNumber
      */
-    public function setOrderNumber($order_number): void
+    public function setOrderNumber($orderNumber): void
     {
-        $this->order_number = $order_number;
+        $this->orderNumber = $orderNumber;
     }
 
     /**
@@ -50,15 +89,15 @@ class TicketOrder
      */
     public function getOrderDate():? int
     {
-        return $this->order_date;
+        return $this->orderDate;
     }
 
     /**
-     * @param mixed $order_date
+     * @param $orderDate
      */
-    public function setOrderDate($order_date): void
+    public function setOrderDate(\DateTime $orderDate): void
     {
-        $this->order_date = $order_date;
+        $this->orderDate = $orderDate;
     }
 
     /**
@@ -80,7 +119,7 @@ class TicketOrder
     /**
      * @param mixed $date
      */
-    public function setDate($date): void
+    public function setDate(\DateTime $date): void
     {
         $this->date = $date;
     }
@@ -94,19 +133,19 @@ class TicketOrder
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOrderPrice()
     {
-        return $this->order_price;
+        return $this->orderPrice;
     }
 
     /**
-     * @param mixed $order_price
+     * @param $orderPrice
      */
-    public function setOrderPrice($order_price): void
+    public function setOrderPrice($orderPrice): void
     {
-        $this->order_price = $order_price;
+        $this->orderPrice = $orderPrice;
     }
 
     /**
@@ -118,41 +157,12 @@ class TicketOrder
     }
 
     /**
-     * @ORM\Column(type="array")
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
-     *     mappedBy="TicketOrder"
-     * )
-     */
-    private $order_number;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $order_date;
-
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
-     */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
-
-    /**
      * @return mixed
      */
     public function getDate()
     {
         return $this->date;
     }
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $duration;
 
     /**
      * @return mixed
@@ -163,22 +173,19 @@ class TicketOrder
     }
 
     /**
-     * @ORM\Column(type="string")
+     * @return mixed
      */
-    private $order_price;
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
+    }
 
     /**
      * @param Ticket $ticket
-     * @return TicketOrder
      */
     public function addTicket(Ticket $ticket)
     {
-        $this->order_number->add($ticket);
-        $ticket->setTicketNumber($this);
-    }
-
-    public function getTicket()
-    {
-        $this->order_number;
+        $this->ticketCollection->add($ticket);
+        $ticket->setTicketOrder($this);
     }
 }

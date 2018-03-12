@@ -10,22 +10,26 @@ namespace App\Validator;
 
 
 use App\Service\DateHelper;
+use App\Service\TimeHelper;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class IsDayTicketsPossibleValidator extends ConstraintValidator
 {
-    CONST LIMIT_TIME = 14;
-    CONST TIMEZONE = 'Europe/Paris';
-
+    CONST LIMIT_TIME = "14:00";
     /**
      * @var DateHelper
      */
-    private $helper;
+    private $dateHelper;
+    /**
+     * @var TimeHelper
+     */
+    private $timeHelper;
 
-    public function __construct(DateHelper $helper)
+    public function __construct(DateHelper $dateHelper, TimeHelper $timeHelper)
     {
-        $this->helper = $helper;
+        $this->dateHelper = $dateHelper;
+        $this->timeHelper = $timeHelper;
     }
 
     public function validate($value, Constraint $constraint)
@@ -36,22 +40,17 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
         }
     }
 
-    public function isToday():bool
+    public function isDateToday():bool
     {
-        date_default_timezone_set(IsDayTicketsPossibleValidator::TIMEZONE);
-        return ((date_format($this->helper->getSelectedDate(), "Y-m-d")) == (date_format($this->helper->getActualDatetime(), "Y-m-d")));
-    }
-
-    public function isTimeExceed():bool
-    {
-        return ((date_format($this->helper->getActualDatetime(), "H")) >= (IsDayTicketsPossibleValidator::LIMIT_TIME));
+        date_default_timezone_set(DateHelper::TIMEZONE);
+        return ((date_format($this->dateHelper->getSelectedDate(), "Y-m-d")) == (date_format($this->dateHelper->getActualDatetime(), "Y-m-d")));
     }
 
     public function isDayTicketsPossible():bool
     {
-        if (!$this->isToday()) {
+        if (!$this->isDateToday()) {
             return true;
-        } elseif ($this->isToday() && $this->isTimeExceed()) {
+        } elseif ($this->isDateToday() && $this->timeHelper->isTimeExceed(self::LIMIT_TIME)) {
             return false;
         }
         return true;

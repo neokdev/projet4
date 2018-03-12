@@ -4,8 +4,8 @@
     {{ parent() }}
     <script type="text/javascript">
         let translations = {
-            'addticket': '{% trans %}addTicket{% endtrans %}',
-            'removeticket': '{% trans %}removeTicket{% endtrans %}'
+            'addticket': '<i class="fas fa-plus"></i> {% trans %}addTicket{% endtrans %}',
+            'removeticket': '<i class="fas fa-trash-alt"></i> {% trans %}removeTicket{% endtrans %}'
         };
     </script>
     <script src="{{ asset('js/wizard_embed.js') }}"></script>
@@ -18,19 +18,20 @@
 
         <div class="card-body">
 
-                <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
-                    {% for ticket in form.ticketCollection %}
-                        <li class="list-group-item">{{ form_row(ticket) }}</li>
-                    {% endfor %}
-                </ul>
+            <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
+                {% for ticket in form.ticketCollection %}
+                    <li class="list-group-item">{{ form_row(ticket) }}</li>
+                {% endfor %}
+            </ul>
 
         </div>
 
             <div class="card-footer">
-                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary">{% trans %}order.previous_step{% endtrans %}</a>
-                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %}</button>
-            </div>
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
+                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %} <i class="fas fa-angle-double-right"></i></button>
 
     {{ form_end(form) }}
+
+            </div>
 
 {% endblock %}

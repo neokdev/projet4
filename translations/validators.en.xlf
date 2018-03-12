@@ -7,10 +7,16 @@
                 <target>The museum is closed on Tuesdays</target>
             </segment>
         </unit>
+        <unit id="closedonsundays">
+            <segment>
+                <source>closedonsundays</source>
+                <target>Reservations are not available for Sunday</target>
+            </segment>
+        </unit>
         <unit id="closedthisday">
             <segment>
                 <source>closedthisday</source>
-                <target>The museum is closed this day</target>
+                <target>Reservations are not available for public holidays</target>
             </segment>
         </unit>
         <unit id="ticketsnotavalaible">
@@ -29,6 +35,18 @@
             <segment>
                 <source>datePassed</source>
                 <target>You cannot order for passed dates</target>
+            </segment>
+        </unit>
+        <unit id="isNotBorn">
+            <segment>
+                <source>isNotBorn</source>
+                <target>You can not book for non-born on the date of the visit</target>
+            </segment>
+        </unit>
+        <unit id="tooLateForOrder">
+            <segment>
+                <source>tooLateForOrder</source>
+                <target>Reservations are no longer available for today</target>
             </segment>
         </unit>
     </file>

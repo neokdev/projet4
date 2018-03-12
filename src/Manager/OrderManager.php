@@ -15,6 +15,9 @@ use App\Form\ConfirmType;
 use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
+use App\Form\TicketType;
+use App\Service\IdHelper;
+use App\Service\PriceHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -40,18 +43,30 @@ class OrderManager
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var PriceHelper
+     */
+    private $helper;
+    /**
+     * @var IdHelper
+     */
+    private $idHelper;
 
     public function __construct(
         EntityManagerInterface $entity,
         FormFactoryInterface $factory,
         SessionInterface $session,
-        RouterInterface $router
+        RouterInterface $router,
+        PriceHelper $helper,
+        IdHelper $idHelper
     )
     {
         $this->entity = $entity;
         $this->factory = $factory;
         $this->session = $session;
         $this->router = $router;
+        $this->helper = $helper;
+        $this->idHelper = $idHelper;
     }
 
     public function stepOne(Request $request)
@@ -98,8 +113,27 @@ class OrderManager
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
-            $this->session->set('order', $order);
+
             $this->session->set('step', 4);
+
+            /** @var Ticket $tickets */
+            $tickets = $order->getTicketCollection();
+            $this->session->set('tickets', $order->getTicketCollection());
+            $totalPrice = 0;
+            /** @var Ticket $ticket */
+            foreach ($tickets as $ticket) {
+                $ticket->setTicketNumber($this->idHelper->createId());
+                $price = $this->helper->calculatePrice($ticket->getBirthdate(), $ticket->getReducedPrice());
+                $ticket->setTicketPrice($price);
+                $totalPrice += $price;
+            }
+            if ($order->getDuration() !== true) {
+                $totalPrice = $totalPrice/2;
+            }
+            $order->setOrderPrice($totalPrice);
+            $order->setOrderNumber($this->idHelper->createId());
+
+            $this->session->set('order', $order);
 
             RedirectResponse::create(
                 $this->router->generate('app_order')
@@ -120,9 +154,17 @@ class OrderManager
             $this->session->set('step', 5);
 
             RedirectResponse::create(
-                $this->router->generate('app_order')
+                $this->router->generate('app_checkout')
             )->send();
         }
         return $form->createView();
+    }
+
+    public function clearSessionVars()
+    {
+        $this->session->set('step', null);
+        $this->session->set('order', null);
+        $this->session->set('ticket', null);
+        $this->session->set('tickets', null);
     }
 }

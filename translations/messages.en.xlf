@@ -19,10 +19,10 @@
                 <target>Event Date</target>
             </segment>
         </unit>
-        <unit id="reducted_price">
+        <unit id="reduced_price">
             <segment>
-                <source>reducted_price</source>
-                <target>Reducted price</target>
+                <source>reduced_price</source>
+                <target>Reduced price</target>
             </segment>
         </unit>
         <unit id="order.previous_step">
@@ -61,22 +61,40 @@
                 <target>Half-day</target>
             </segment>
         </unit>
-        <unit id="flash.dateandtickets">
-            <segment>
-                <source>flash.dateandtickets %selecteddate% %ticketsavalaible%</source>
-                <target>Date Selected: %selecteddate%. %ticketsavalaible% tickets avalaible</target>
-            </segment>
-        </unit>
         <unit id="user.name">
             <segment>
                 <source>user.name</source>
-                <target>Name</target>
+                <target>Last name</target>
             </segment>
         </unit>
         <unit id="user.firstname">
             <segment>
                 <source>user.firstname</source>
                 <target>First Name</target>
+            </segment>
+        </unit>
+        <unit id="ticketnumber">
+            <segment>
+                <source>ticketnumber</source>
+                <target>Ticket #</target>
+            </segment>
+        </unit>
+        <unit id="price">
+            <segment>
+                <source>price</source>
+                <target>Price</target>
+            </segment>
+        </unit>
+        <unit id="commandnumber">
+            <segment>
+                <source>commandnumber</source>
+                <target>Command #</target>
+            </segment>
+        </unit>
+        <unit id="card">
+            <segment>
+                <source>card</source>
+                <target>Credit or debit card</target>
             </segment>
         </unit>
         <unit id="user.country">
@@ -119,6 +137,90 @@
             <segment>
                 <source>user.mail</source>
                 <target>Mail address</target>
+            </segment>
+        </unit>
+        <unit id="order.payment">
+            <segment>
+                <source>order.payment</source>
+                <target>Pay</target>
+            </segment>
+        </unit>
+        <unit id="totalprice">
+            <segment>
+                <source>totalprice</source>
+                <target>Total price</target>
+            </segment>
+        </unit>
+        <unit id="halfdaydiscount">
+            <segment>
+                <source>halfdaydiscount</source>
+                <target>50% half-day discount</target>
+            </segment>
+        </unit>
+        <unit id="card_title_date">
+            <segment>
+                <source>card_title_date</source>
+                <target>Selection of the date of visit</target>
+            </segment>
+        </unit>
+        <unit id="card_title_duration">
+            <segment>
+                <source>card_title_duration</source>
+                <target>Selection of visit duration</target>
+            </segment>
+        </unit>
+        <unit id="card_title_price">
+            <segment>
+                <source>card_title_price</source>
+                <target>Add tickets</target>
+            </segment>
+        </unit>
+        <unit id="card_title_mail">
+            <segment>
+                <source>card_title_mail</source>
+                <target>Selection of the e-mail address</target>
+            </segment>
+        </unit>
+        <unit id="card_title_confirm">
+            <segment>
+                <source>card_title_confirm</source>
+                <target>Reservation confirmation</target>
+            </segment>
+        </unit>
+        <unit id="card_title_success">
+            <segment>
+                <source>card_title_success</source>
+                <target>Payment made successfully</target>
+            </segment>
+        </unit>
+        <unit id="card_title_fail">
+            <segment>
+                <source>card_title_fail</source>
+                <target>Payment error</target>
+            </segment>
+        </unit>
+        <unit id="error">
+            <segment>
+                <source>error</source>
+                <target>Error !</target>
+            </segment>
+        </unit>
+        <unit id="of">
+            <segment>
+                <source>of</source>
+                <target>of</target>
+            </segment>
+        </unit>
+        <unit id="successmessage">
+            <segment>
+                <source>successmessage</source>
+                <target>Your ticket has been booked!</target>
+            </segment>
+        </unit>
+        <unit id="success">
+            <segment>
+                <source>success</source>
+                <target>Success !</target>
             </segment>
         </unit>
     </file>
