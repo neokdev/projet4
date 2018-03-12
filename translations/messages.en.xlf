@@ -199,5 +199,29 @@
                 <target>Payment error</target>
             </segment>
         </unit>
+        <unit id="error">
+            <segment>
+                <source>error</source>
+                <target>Error !</target>
+            </segment>
+        </unit>
+        <unit id="of">
+            <segment>
+                <source>of</source>
+                <target>of</target>
+            </segment>
+        </unit>
+        <unit id="successmessage">
+            <segment>
+                <source>successmessage</source>
+                <target>Your ticket has been booked!</target>
+            </segment>
+        </unit>
+        <unit id="success">
+            <segment>
+                <source>success</source>
+                <target>Success !</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

@@ -159,4 +159,12 @@ class OrderManager
         }
         return $form->createView();
     }
+
+    public function clearSessionVars()
+    {
+        $this->session->set('step', null);
+        $$this->session->set('order', null);
+        $this->session->set('ticket', null);
+        $this->session->set('tickets', null);
+    }
 }

@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Manager\OrderManager;
 use App\Service\DateHelper;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -198,9 +199,27 @@ class OrderController extends AbstractController
             ]);
         }
 
+        return $this->redirectToRoute('app_success');
+
+    }
+
+    /**
+     * @Route("/success", name="app_success")
+     * @param Request $request
+     */
+    public function success(Request $request, SessionInterface $session)
+    {
+        $order = $session->get('order');
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($order);
+        $em->flush();
+
+        $this->orderManager->clearSessionVars();
+
         return $this->render('Order/_success.html.twig', [
             'cardtitle' => "card_title_success",
+            'order' => $order
         ]);
-
     }
 }
