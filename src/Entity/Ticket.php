@@ -92,9 +92,9 @@ class Ticket
     }
 
     /**
-     * @param mixed $reduced_price
+     * @param int $reducedPrice
      */
-    public function setReducedPrice($reducedPrice): void
+    public function setReducedPrice(int $reducedPrice): void
     {
         $this->reducedPrice = $reducedPrice;
     }
@@ -108,9 +108,9 @@ class Ticket
     }
 
     /**
-     * @param mixed $ticket_price
+     * @param int $ticketPrice
      */
-    public function setTicketPrice($ticketPrice): void
+    public function setTicketPrice(int $ticketPrice): void
     {
         $this->ticketPrice = $ticketPrice;
     }
@@ -164,7 +164,7 @@ class Ticket
     }
 
     /**
-     * @param mixed $firstname
+     * @param $firstname
      */
     public function setFirstname($firstname): void
     {

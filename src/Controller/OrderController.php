@@ -201,7 +201,6 @@ class OrderController extends AbstractController
         }
 
         return $this->redirectToRoute('app_success');
-
     }
 
     /**
@@ -212,7 +211,6 @@ class OrderController extends AbstractController
     {
         $order = $session->get('order');
 
-        dump($order->getTicketCollection());
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         $em->flush();

@@ -48,7 +48,7 @@ class TicketType extends AbstractType
                 'label' => 'user.birthday',
             ])
             ->add('reducedPrice', CheckboxType::class, [
-                'label' => false,
+                'label' => 'reduced_price',
                 'required' => false,
             ]);
     }

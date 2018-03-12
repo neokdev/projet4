@@ -26,9 +26,6 @@ class MainController extends AbstractController
      */
     public function homepage()
     {
-        $em = $this->getDoctrine()->getManager();
-        $test = $em->getRepository(TicketOrder::class)->find(5013);
-        dump($test);
         return $this->render('homepage.html.twig');
     }
 }

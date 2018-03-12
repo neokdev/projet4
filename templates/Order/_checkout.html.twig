@@ -36,7 +36,7 @@
                     <th scope="row">{{ ticket.ticketnumber }}</th>
                     <td>{{ ticket.lastname|capitalize }}</td>
                     <td>{{ ticket.firstname|capitalize }}</td>
-                    <td>{% if ticket.reducedprice[0] is defined %}<i class="far fa-check-square"></i>{% endif %}</td>
+                    <td>{% if ticket.reducedprice is same as(true) %}<i class="far fa-check-square"></i>{% endif %}</td>
                     <td>{{ ticket.ticketprice|number_format(2, ',', ' ') }} €</td>
                 </tr>
             {% endfor %}
