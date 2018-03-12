@@ -110,7 +110,7 @@ class OrderManager
         $order = $this->session->get('order');
         $form = $this->factory->create(TicketsCollectionType::class, $order)
             ->handleRequest($request);
-//
+
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
 
@@ -127,7 +127,7 @@ class OrderManager
                 $ticket->setTicketPrice($price);
                 $totalPrice += $price;
             }
-            if (!isset($order->getDuration)) {
+            if ($order->getDuration() !== true) {
                 $totalPrice = $totalPrice/2;
             }
             $order->setOrderPrice($totalPrice);
@@ -154,14 +154,17 @@ class OrderManager
             $this->session->set('step', 5);
 
             RedirectResponse::create(
-                $this->router->generate('app_order')
+                $this->router->generate('app_checkout')
             )->send();
         }
         return $form->createView();
     }
 
-    public function stepCheckout(Request $request)
+    public function clearSessionVars()
     {
-
+        $this->session->set('step', null);
+        $this->session->set('order', null);
+        $this->session->set('ticket', null);
+        $this->session->set('tickets', null);
     }
 }

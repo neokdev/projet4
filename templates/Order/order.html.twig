@@ -1,15 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    {{ parent() }}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css">
-
-{% endblock %}
-
 {% block body %}
-
-    {{ dump() }}
 
     {% if progress is defined %}
         <div class="progress">
@@ -23,16 +14,23 @@
         </div>
     {% endfor %}
 
-    {% for error in form.vars.errors.form.getErrors(true) %}
-        <div class="alert alert-warning text-center" role="alert">
-            {{ error.message }}
-        </div>
-    {% endfor %}
+    {% if form.vars is defined %}
+        {% for error in form.vars.errors.form.getErrors(true) %}
+            <div class="alert alert-warning text-center" role="alert">
+                {{ error.message }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="card" id="form">
 
         <div class="card-header">
-            {{ cardtitle|trans }}
+            {% if cardtitle is defined %}
+                <strong>{{ cardtitle|trans }}</strong>
+            {% endif %}
+            {% if cardtitle == 'card_title_confirm'%}
+                --- {% trans %}commandnumber{% endtrans %}: {{ order.ordernumber }}
+            {% endif %}
         </div>
 
         {% block form %}
@@ -50,7 +48,7 @@
             {% endif %}
 
             {% if form.confirm is defined %}
-                {{ include('Order/_confirm.html.twig') }}
+                {{ include('Order/_mail.html.twig') }}
             {% endif %}
 
         {% endblock %}

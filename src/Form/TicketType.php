@@ -11,7 +11,7 @@ namespace App\Form;
 use App\Entity\Ticket;
 use App\Validator\Constraints\IsBorn;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -47,13 +47,9 @@ class TicketType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'user.birthday',
             ])
-            ->add('reducedPrice', ChoiceType::class, [
-                'label' => false,
-                'expanded' => 'true',
-                'multiple' => 'true',
-                'choices' => [
-                    'reduced_price' => true
-                ]
+            ->add('reducedPrice', CheckboxType::class, [
+                'label' => 'reduced_price',
+                'required' => false,
             ]);
     }
     public function configureOptions(OptionsResolver $resolver)

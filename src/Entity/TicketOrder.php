@@ -29,7 +29,7 @@ class TicketOrder
     /**
      * @ORM\Column(type="date")
      */
-    private $order_date;
+    private $orderDate;
 
     /**
      * @ORM\Column(type="boolean")
@@ -37,9 +37,9 @@ class TicketOrder
     private $duration;
 
     /**
-     * @ORM\Column(type="array")
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
-     *     mappedBy="TicketOrder"
+     *     mappedBy="ticketOrder",
+     *     cascade={"persist"}
      * )
      */
     private $ticketCollection;
@@ -53,12 +53,12 @@ class TicketOrder
     /**
      * @ORM\Column(type="string")
      */
-    private $order_price;
+    private $orderPrice;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $order_number;
+    private $orderNumber;
 
     /**
      * TicketOrder constructor.
@@ -66,14 +66,6 @@ class TicketOrder
     public function __construct()
     {
         $this->ticketCollection = new ArrayCollection();
-    }
-
-    /**
-     * @param mixed $ticketCollection
-     */
-    public function setTicketCollection($ticketCollection): void
-    {
-        $this->ticketCollection = $ticketCollection;
     }
 
     /**
@@ -85,11 +77,11 @@ class TicketOrder
     }
 
     /**
-     * @param mixed $order_number
+     * @param $orderNumber
      */
-    public function setOrderNumber($order_number): void
+    public function setOrderNumber($orderNumber): void
     {
-        $this->order_number = $order_number;
+        $this->orderNumber = $orderNumber;
     }
 
     /**
@@ -97,15 +89,15 @@ class TicketOrder
      */
     public function getOrderDate():? int
     {
-        return $this->order_date;
+        return $this->orderDate;
     }
 
     /**
-     * @param mixed $order_date
+     * @param $orderDate
      */
-    public function setOrderDate($order_date): void
+    public function setOrderDate(\DateTime $orderDate): void
     {
-        $this->order_date = $order_date;
+        $this->orderDate = $orderDate;
     }
 
     /**
@@ -127,7 +119,7 @@ class TicketOrder
     /**
      * @param mixed $date
      */
-    public function setDate($date): void
+    public function setDate(\DateTime $date): void
     {
         $this->date = $date;
     }
@@ -141,19 +133,19 @@ class TicketOrder
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOrderPrice()
     {
-        return $this->order_price;
+        return $this->orderPrice;
     }
 
     /**
-     * @param mixed $order_price
+     * @param $orderPrice
      */
-    public function setOrderPrice($order_price): void
+    public function setOrderPrice($orderPrice): void
     {
-        $this->order_price = $order_price;
+        $this->orderPrice = $orderPrice;
     }
 
     /**
@@ -185,7 +177,7 @@ class TicketOrder
      */
     public function getOrderNumber()
     {
-        return $this->order_number;
+        return $this->orderNumber;
     }
 
     /**
@@ -194,6 +186,6 @@ class TicketOrder
     public function addTicket(Ticket $ticket)
     {
         $this->ticketCollection->add($ticket);
-        $ticket->setTicketNumber($this);
+        $ticket->setTicketOrder($this);
     }
 }

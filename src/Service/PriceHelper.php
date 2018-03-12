@@ -11,12 +11,6 @@ namespace App\Service;
 
 class PriceHelper
 {
-    CONST PRICE_PER_AGE = [
-        '<4' => 0,
-        '>=4' => 8,
-        '>=12' => 16,
-        '>=60' => 12
-    ];
     /**
      * @var DateHelper
      */

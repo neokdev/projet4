@@ -3,6 +3,10 @@ let $collectionHolder;
 let $addTicketLink = $('<a role="button" href="#" class="add_ticket_link btn btn-primary">Add</a>');
 let $newLinkLi = $('<li class="list-group list-group-flush"></li>').append($addTicketLink);
 
+// Add translations for the buttons
+let addTicketTrans = translations.addticket;
+let removeTicketTrans = translations.removeticket;
+
 $(function() {
     $collectionHolder = $('ul.tickets');
 
@@ -24,6 +28,9 @@ $(function() {
         e.preventDefault();
         $(this).parent().remove();
     });
+
+    $('.add_ticket_link').html(addTicketTrans);
+    $('.remove_ticket_link').html(removeTicketTrans);
 });
 
 function addTicketForm($collectionHolder, $newLinkLi) {
@@ -39,12 +46,16 @@ function addTicketForm($collectionHolder, $newLinkLi) {
     $newFormLi.append(newForm);
     $newLinkLi.before($newFormLi);
 
+    $('.add_ticket_link').html(addTicketTrans);
+
     addTicketFormDeleteLink($newFormLi);
 }
 
 function addTicketFormDeleteLink($ticketFormLi) {
     let $removeFormA = $('<a role="button" href="#" class="remove_ticket_link btn btn-danger">Delete</a>');
     $ticketFormLi.append($removeFormA);
+
+    $('.remove_ticket_link').html(removeTicketTrans);
 
     $removeFormA.on('click', function(e) {
         e.preventDefault();
