@@ -1,0 +1,18 @@
+{% extends 'Order/order.html.twig' %}
+
+
+{% block form %}
+
+    <div class="card-body">
+
+        <h1>SUCCESS</h1>
+
+    </div>
+
+    <div class="card-footer">
+
+        <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
+        </form>
+    </div>
+
+{% endblock %}

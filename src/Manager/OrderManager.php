@@ -127,7 +127,7 @@ class OrderManager
                 $ticket->setTicketPrice($price);
                 $totalPrice += $price;
             }
-            if (!isset($order->getDuration)) {
+            if ($order->getDuration() !== true) {
                 $totalPrice = $totalPrice/2;
             }
             $order->setOrderPrice($totalPrice);
@@ -154,14 +154,9 @@ class OrderManager
             $this->session->set('step', 5);
 
             RedirectResponse::create(
-                $this->router->generate('app_order')
+                $this->router->generate('app_checkout')
             )->send();
         }
         return $form->createView();
-    }
-
-    public function stepCheckout(Request $request)
-    {
-
     }
 }

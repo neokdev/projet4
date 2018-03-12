@@ -73,6 +73,30 @@
                 <target>Prénom</target>
             </segment>
         </unit>
+        <unit id="ticketnumber">
+            <segment>
+                <source>ticketnumber</source>
+                <target>N° de ticket</target>
+            </segment>
+        </unit>
+        <unit id="price">
+            <segment>
+                <source>price</source>
+                <target>Prix</target>
+            </segment>
+        </unit>
+        <unit id="commandnumber">
+            <segment>
+                <source>commandnumber</source>
+                <target>N° de Commande</target>
+            </segment>
+        </unit>
+        <unit id="card">
+            <segment>
+                <source>card</source>
+                <target>Carte de crédit ou de débit</target>
+            </segment>
+        </unit>
         <unit id="user.country">
             <segment>
                 <source>user.country</source>
@@ -118,7 +142,19 @@
         <unit id="order.payment">
             <segment>
                 <source>order.payment</source>
-                <target>Procéder au paiement</target>
+                <target>Payer</target>
+            </segment>
+        </unit>
+        <unit id="totalprice">
+            <segment>
+                <source>totalprice</source>
+                <target>Prix total</target>
+            </segment>
+        </unit>
+        <unit id="halfdaydiscount">
+            <segment>
+                <source>halfdaydiscount</source>
+                <target>Réduction 50% demi-journée</target>
             </segment>
         </unit>
         <unit id="card_title_date">
@@ -139,10 +175,28 @@
                 <target>Ajout des tickets</target>
             </segment>
         </unit>
+        <unit id="card_title_mail">
+            <segment>
+                <source>card_title_mail</source>
+                <target>Selection de l'adresse e-mail</target>
+            </segment>
+        </unit>
         <unit id="card_title_confirm">
             <segment>
                 <source>card_title_confirm</source>
                 <target>Confirmation de réservation</target>
+            </segment>
+        </unit>
+        <unit id="card_title_success">
+            <segment>
+                <source>card_title_success</source>
+                <target>Paiement effectué avec succés</target>
+            </segment>
+        </unit>
+        <unit id="card_title_fail">
+            <segment>
+                <source>card_title_fail</source>
+                <target>Erreur de paiement</target>
             </segment>
         </unit>
     </file>

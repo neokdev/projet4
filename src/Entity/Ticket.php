@@ -48,7 +48,7 @@ class Ticket
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $ticket_price;
 

@@ -1,18 +1,78 @@
 {% extends 'Order/order.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{{ asset('js/Stripe.js') }}"></script>
+
+{% endblock %}
+
 {% block form %}
+
+    <div class="alert alert-secondary text-center" role="alert">
+        {% if order.duration %}
+            <strong>{% trans %}day{% endtrans %}</strong>
+        {% else %}
+            <strong>{% trans %}halfday{% endtrans %}</strong>
+        {% endif %}
+    {{ date }}
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">{% trans %}ticketnumber{% endtrans %}</th>
+                <th scope="col">{% trans %}user.name{% endtrans %}</th>
+                <th scope="col">{% trans %}user.firstname{% endtrans %}</th>
+                <th scope="col">{% trans %}reduced_price{% endtrans %}</th>
+                <th scope="col">{% trans %}price{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                    <th scope="row">{{ ticket.ticketnumber }}</th>
+                    <td>{{ ticket.lastname|capitalize }}</td>
+                    <td>{{ ticket.firstname|capitalize }}</td>
+                    <td>{% if ticket.reducedprice[0] is defined %}<i class="far fa-check-square"></i>{% endif %}</td>
+                    <td>{{ ticket.ticketprice|number_format(2, ',', ' ') }} €</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
     <div class="card-body">
 
-        <div>
-            <h5>Total price : {% if order.duration %}Day tickets{% else %}Half-day tickets{% endif %} : {{ order.orderprice|number_format(2, ',', ' ') }} €</h5>
+        <div class="d-flex align-items-end flex-column">
+            <h6>{% if order.duration %}{% else %}{% trans %}halfdaydiscount{% endtrans %}{% endif %}</h6>
+            <h5>{% trans %}totalprice{% endtrans %}: {{ order.orderprice|number_format(2, ',', ' ') }} €</h5>
         </div>
+
+        <form action="{{ path('app_charge') }}" method="post" id="payment-form">
+            <div class="form-group card text-white bg-info mx-auto" style="max-width: 32rem;">
+                <div class="card-header text-center">
+                    {% trans %}card{% endtrans %}
+                </div>
+                <div id="card-element">
+                    <!-- A Stripe Element will be inserted here. -->
+                </div>
+
+                <!-- Used to display form errors. -->
+                <div id="card-errors" role="alert">
+                </div>
+            </div>
+        </form>
 
     </div>
 
     <div class="card-footer">
+
         <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
-        <button type="submit" class="btn btn-success">{% trans %}order.payment{% endtrans %} <i class="fas fa-angle-double-right"></i></button>
+        <button form="payment-form" type="submit" class="btn btn-success"><i class="fas fa-shopping-cart"></i> {% trans %}order.payment{% endtrans %} {{ order.orderprice|number_format(2, ',', ' ') }} €</button>
     </div>
+
 
 {% endblock %}
