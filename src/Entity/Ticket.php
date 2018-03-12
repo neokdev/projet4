@@ -15,7 +15,7 @@ class Ticket
     /**
      * @ORM\Column(type="boolean")
      */
-    private $reduced_price;
+    private $reducedPrice;
 
     /**
      * @ORM\Id
@@ -50,62 +50,53 @@ class Ticket
     /**
      * @ORM\Column(type="integer")
      */
-    private $ticket_price;
+    private $ticketPrice;
 
     /**
-     * @ORM\Column(type="string")
      * @ORM\ManyToOne(
      *     targetEntity="App\Entity\TicketOrder",
      *     inversedBy="ticketCollection"
      * )
-     * @ORM\JoinColumn(name="ordernumber",
-     * referencedColumnName="ticketnumber")
+     * @ORM\JoinColumn(name="ticket_order_id",
+     * referencedColumnName="id")
      */
-    private $ticketCollection;
+    private $ticketOrder;
 
     /**
      * @ORM\Column(type="string")
      */
-    private $ticket_number;
+    private $ticketNumber;
 
     /**
-     * Ticket constructor.
+     * @return TicketOrder
      */
-    public function __construct()
+    public function getTicketOrder(): TicketOrder
     {
-        $this->ticketCollection = new ArrayCollection();
+        return $this->ticketOrder;
     }
 
     /**
-     * @return ArrayCollection|null
+     * @param TicketOrder $ticketOrder
      */
-    public function getTicketCollection(): array
+    public function setTicketOrder(TicketOrder $ticketOrder): void
     {
-        return $this->ticketCollection;
+        $this->ticketOrder = $ticketOrder;
     }
 
     /**
-     * @param mixed $ticketCollection
-     */
-    public function setTicketCollection($ticketCollection): void
-    {
-        $this->ticketCollection = $ticketCollection;
-    }
-
-    /**
-     * @return mixed
+     * @return bool
      */
     public function getReducedPrice()
     {
-        return $this->reduced_price;
+        return $this->reducedPrice;
     }
 
     /**
      * @param mixed $reduced_price
      */
-    public function setReducedPrice($reduced_price): void
+    public function setReducedPrice($reducedPrice): void
     {
-        $this->reduced_price = $reduced_price;
+        $this->reducedPrice = $reducedPrice;
     }
 
     /**
@@ -113,15 +104,15 @@ class Ticket
      */
     public function getTicketPrice()
     {
-        return $this->ticket_price;
+        return $this->ticketPrice;
     }
 
     /**
      * @param mixed $ticket_price
      */
-    public function setTicketPrice($ticket_price): void
+    public function setTicketPrice($ticketPrice): void
     {
-        $this->ticket_price = $ticket_price;
+        $this->ticketPrice = $ticketPrice;
     }
 
     /**
@@ -197,11 +188,11 @@ class Ticket
     }
 
     /**
-     * @param mixed $ticket_number
+     * @param $ticketNumber
      */
-    public function setTicketNumber($ticket_number): void
+    public function setTicketNumber($ticketNumber): void
     {
-        $this->ticket_number = $ticket_number;
+        $this->ticketNumber = $ticketNumber;
     }
 
     /**
@@ -209,6 +200,6 @@ class Ticket
      */
     public function getTicketNumber()
     {
-        return $this->ticket_number;
+        return $this->ticketNumber;
     }
 }

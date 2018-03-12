@@ -37,9 +37,9 @@ class TicketOrder
     private $duration;
 
     /**
-     * @ORM\Column(type="array")
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
-     *     mappedBy="TicketOrder"
+     *     mappedBy="ticketOrder",
+     *     cascade={"persist"}
      * )
      */
     private $ticketCollection;
@@ -66,14 +66,6 @@ class TicketOrder
     public function __construct()
     {
         $this->ticketCollection = new ArrayCollection();
-    }
-
-    /**
-     * @param mixed $ticketCollection
-     */
-    public function setTicketCollection($ticketCollection): void
-    {
-        $this->ticketCollection = $ticketCollection;
     }
 
     /**
@@ -194,6 +186,6 @@ class TicketOrder
     public function addTicket(Ticket $ticket)
     {
         $this->ticketCollection->add($ticket);
-        $ticket->setTicketNumber($this);
+        $ticket->setTicketOrder($this);
     }
 }

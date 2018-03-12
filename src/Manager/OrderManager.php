@@ -110,7 +110,7 @@ class OrderManager
         $order = $this->session->get('order');
         $form = $this->factory->create(TicketsCollectionType::class, $order)
             ->handleRequest($request);
-//
+
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
 
@@ -163,7 +163,7 @@ class OrderManager
     public function clearSessionVars()
     {
         $this->session->set('step', null);
-        $$this->session->set('order', null);
+        $this->session->set('order', null);
         $this->session->set('ticket', null);
         $this->session->set('tickets', null);
     }

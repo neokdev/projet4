@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use App\Service\DateHelper;
 use Doctrine\ORM\EntityManagerInterface;
@@ -211,11 +212,12 @@ class OrderController extends AbstractController
     {
         $order = $session->get('order');
 
+        dump($order->getTicketCollection());
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         $em->flush();
 
-        $this->orderManager->clearSessionVars();
+//        $this->orderManager->clearSessionVars();
 
         return $this->render('Order/_success.html.twig', [
             'cardtitle' => "card_title_success",

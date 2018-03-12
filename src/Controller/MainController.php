@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\TicketOrder;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,9 @@ class MainController extends AbstractController
      */
     public function homepage()
     {
+        $em = $this->getDoctrine()->getManager();
+        $test = $em->getRepository(TicketOrder::class)->find(5013);
+        dump($test);
         return $this->render('homepage.html.twig');
     }
 }
