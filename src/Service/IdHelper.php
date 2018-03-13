@@ -11,6 +11,9 @@ namespace App\Service;
 
 class IdHelper
 {
+    /**
+     * @return string
+     */
     public function createId():string
     {
         return md5(uniqid());

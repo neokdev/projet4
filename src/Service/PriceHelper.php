@@ -16,11 +16,20 @@ class PriceHelper
      */
     private $helper;
 
+    /**
+     * PriceHelper constructor.
+     * @param DateHelper $helper
+     */
     public function __construct(DateHelper $helper)
     {
         $this->helper = $helper;
     }
 
+    /**
+     * @param \DateTime $birthdate
+     * @param null $reducPrice
+     * @return int|null
+     */
     public function calculatePrice(\DateTime $birthdate, $reducPrice = null):? int
     {
         date_default_timezone_set(DateHelper::TIMEZONE);

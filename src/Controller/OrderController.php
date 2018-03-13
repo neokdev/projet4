@@ -11,7 +11,6 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use App\Service\DateHelper;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,6 +36,7 @@ class OrderController extends AbstractController
      * @Route("/order", name="app_order")
      * @param Request $request
      * @param SessionInterface $session
+     * @param RouterInterface $router
      * @return Response
      */
     public function index(
@@ -71,10 +71,6 @@ class OrderController extends AbstractController
                 RedirectResponse::create(
                 $router->generate('app_checkout')
             )->send();
-//                $form = $this->orderManager->stepFour($request);
-//                $template = 'Order/_checkout.html.twig';
-//                $cardtitle = "card_title_checkout";
-//                break;
             default:
                 $form = $this->orderManager->stepOne($request);
                 $template = 'Order/_date.html.twig';
@@ -114,11 +110,12 @@ class OrderController extends AbstractController
     /**
      * @Route("/checkout", name="app_checkout")
      * @param SessionInterface $session
+     * @param DateHelper $helper
      * @return Response
      */
     public function checkout(SessionInterface $session, DateHelper $helper)
     {
-        setlocale(LC_TIME, \Locale::getDefault());
+        setlocale(LC_TIME, \Local::getDefault());
         $date = strftime("%A %e %B %Y", $helper->getSelectedDate()->getTimestamp());
         return $this->render('Order/_checkout.html.twig', [
             'date' => $date,
@@ -134,6 +131,9 @@ class OrderController extends AbstractController
      *     name="app_charge",
      *     methods={"POST"}
      * )
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return RedirectResponse|Response
      */
     public function charge(Request $request, SessionInterface $session)
     {
@@ -205,17 +205,23 @@ class OrderController extends AbstractController
 
     /**
      * @Route("/success", name="app_success")
-     * @param Request $request
+     * @param SessionInterface $session
+     * @return Response
      */
-    public function success(Request $request, SessionInterface $session)
+    public function success(SessionInterface $session)
     {
         $order = $session->get('order');
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
+        /** @var Ticket $ticket */
+        foreach ($order->getTicketCollection() as $ticket) {
+            $ticket->setTicketOrder($order);
+            $em->persist($ticket);
+        }
         $em->flush();
 
-//        $this->orderManager->clearSessionVars();
+        $this->orderManager->clearSessionVars();
 
         return $this->render('Order/_success.html.twig', [
             'cardtitle' => "card_title_success",

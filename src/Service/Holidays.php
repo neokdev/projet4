@@ -11,6 +11,10 @@ namespace App\Service;
 
 class Holidays
 {
+    /**
+     * @param null $year
+     * @return array
+     */
     public function getHolidays($year = null):array
     {
         date_default_timezone_set(DateHelper::TIMEZONE);

@@ -21,6 +21,10 @@ use App\Validator\Constraints\IsValidName;
 
 class TicketType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -52,6 +56,10 @@ class TicketType extends AbstractType
                 'required' => false,
             ]);
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

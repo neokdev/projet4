@@ -52,6 +52,15 @@ class OrderManager
      */
     private $idHelper;
 
+    /**
+     * OrderManager constructor.
+     * @param EntityManagerInterface $entity
+     * @param FormFactoryInterface $factory
+     * @param SessionInterface $session
+     * @param RouterInterface $router
+     * @param PriceHelper $helper
+     * @param IdHelper $idHelper
+     */
     public function __construct(
         EntityManagerInterface $entity,
         FormFactoryInterface $factory,
@@ -69,6 +78,10 @@ class OrderManager
         $this->idHelper = $idHelper;
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormView
+     */
     public function stepOne(Request $request)
     {
         $order = $this->session->has('order') ? $this->session->get('order') : new TicketOrder();
@@ -88,6 +101,10 @@ class OrderManager
         return $form->createView();
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormView
+     */
     public function stepTwo(Request $request)
     {
         $order = $this->session->get('order');
@@ -105,6 +122,11 @@ class OrderManager
         }
         return $form->createView();
     }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormView
+     */
     public function stepThree(Request $request)
     {
         $order = $this->session->get('order');
@@ -142,6 +164,10 @@ class OrderManager
         return $form->createView();
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\Form\FormView
+     */
     public function stepFour(Request $request)
     {
         $order = $this->session->get('order');
@@ -160,7 +186,10 @@ class OrderManager
         return $form->createView();
     }
 
-    public function clearSessionVars()
+    /**
+     *
+     */
+    public function clearSessionVars(): void
     {
         $this->session->set('step', null);
         $this->session->set('order', null);

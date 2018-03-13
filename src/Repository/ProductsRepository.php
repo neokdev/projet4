@@ -2,12 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductsRepository extends ServiceEntityRepository
 {
+    /**
+     * ProductsRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Products::class);
@@ -47,22 +50,4 @@ class ProductsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
-    /**
-     * @param \DateTime $date
-     * @return array|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
-
-    public function getDateCount(\DateTime $date=null): ?int
-    {
-        $res = $this->createQueryBuilder('products')
-            ->select('products.date')
-            ->where('products.date = :date')->setParameter('date', $date)
-            ->getQuery()
-            ->getResult();
-
-        $count = $res['count'];
-
-        return $count;
-    }
-    */
 }
