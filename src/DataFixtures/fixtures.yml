@@ -4,15 +4,15 @@ App\Entity\Ticket:
         firstname: <fr_FR:firstName()>
         country: <fr_FR:country()>
         birthdate: <dateTimeBetween('-80 years', '-7 years')>
-        ticket_price: <randomNumber(2)>
-        ticket_number (unique): <md5(uniqid())>
+        ticketPrice: <randomNumber(2)>
+        ticketNumber (unique): <md5(uniqid())>
         reducedPrice: <boolean(50)>
 
 App\Entity\TicketOrder:
     ticket_order_{1..1000}:
-        order_number (unique): <md5(uniqid())>
-        order_date: <dateTimeBetween('-2 months', 'now')>
+        orderNumber (unique): <md5(uniqid())>
+        orderDate: <dateTimeBetween('-2 months', 'now')>
         mail: <freeEmail()>
         date: <dateTimeBetween('now', '+2 months')>
         duration: <boolean(50)>
-        order_price: <randomNumber(2)>
+        orderPrice: <randomNumber(2)>

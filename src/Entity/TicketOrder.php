@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -71,111 +72,111 @@ class TicketOrder
     /**
      * @return Collection|null
      */
-    public function getTicketCollection(): Collection
+    public function getTicketCollection(): ?Collection
     {
         return $this->ticketCollection;
     }
 
     /**
-     * @param $orderNumber
+     * @param string $orderNumber
      */
-    public function setOrderNumber($orderNumber): void
+    public function setOrderNumber($orderNumber)
     {
         $this->orderNumber = $orderNumber;
     }
 
     /**
-     * @return mixed
+     * @return DateTime|null
      */
-    public function getOrderDate():? int
+    public function getOrderDate():? DateTime
     {
         return $this->orderDate;
     }
 
     /**
-     * @param $orderDate
+     * @param DateTime $orderDate
      */
-    public function setOrderDate(\DateTime $orderDate): void
+    public function setOrderDate(DateTime $orderDate)
     {
         $this->orderDate = $orderDate;
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getMail()
+    public function getMail(): ?string
     {
         return $this->mail;
     }
 
     /**
-     * @param mixed $mail
+     * @param string $mail
      */
-    public function setMail($mail): void
+    public function setMail($mail)
     {
         $this->mail = $mail;
     }
 
     /**
-     * @param mixed $date
+     * @param DateTime $date
      */
-    public function setDate(\DateTime $date): void
+    public function setDate(DateTime $date)
     {
         $this->date = $date;
     }
 
     /**
-     * @param mixed $duration
+     * @param bool $duration
      */
-    public function setDuration($duration): void
+    public function setDuration(bool $duration)
     {
         $this->duration = $duration;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getOrderPrice()
+    public function getOrderPrice(): ?int
     {
         return $this->orderPrice;
     }
 
     /**
-     * @param $orderPrice
+     * @param int $orderPrice
      */
-    public function setOrderPrice($orderPrice): void
+    public function setOrderPrice($orderPrice)
     {
         $this->orderPrice = $orderPrice;
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return DateTime|null
      */
-    public function getDate()
+    public function getDate(): ?DateTime
     {
         return $this->date;
     }
 
     /**
-     * @return mixed
+     * @return bool|null
      */
-    public function getDuration()
+    public function getDuration(): ?bool
     {
         return $this->duration;
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getOrderNumber()
+    public function getOrderNumber(): ?string
     {
         return $this->orderNumber;
     }

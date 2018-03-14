@@ -36,16 +36,15 @@ class MailerHelper
 
     /**
      * @param TicketOrder $order
-     * @param Ticket $tickets
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function orderMail(TicketOrder $order, Ticket $tickets)
+    public function orderMail(TicketOrder $order, $tickets)
     {
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('admin@projet4.nekbot.com')
-            ->setTo('admin@projet4.nekbot.com')
+            ->setTo($order->getMail())
             ->setBody(
                 $this->twig->render(
                     'emails/order.html.twig', [

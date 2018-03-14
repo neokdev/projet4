@@ -26,7 +26,7 @@
 
         <div class="card-header">
             {% if cardTitle is defined %}
-                <strong>{{ cardtitle|trans }}</strong>
+                <strong>{{ cardTitle|trans }}</strong>
             {% endif %}
             {% if cardTitle == 'cardTitleConfirm'%}
                 --- {% trans %}commandNumber{% endtrans %}: {{ order.orderNumber }}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,9 +68,9 @@ class Ticket
     private $ticketNumber;
 
     /**
-     * @return TicketOrder
+     * @return TicketOrder|null
      */
-    public function getTicketOrder(): TicketOrder
+    public function getTicketOrder(): ?TicketOrder
     {
         return $this->ticketOrder;
     }
@@ -77,31 +78,31 @@ class Ticket
     /**
      * @param TicketOrder $ticketOrder
      */
-    public function setTicketOrder(TicketOrder $ticketOrder): void
+    public function setTicketOrder(TicketOrder $ticketOrder)
     {
         $this->ticketOrder = $ticketOrder;
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getReducedPrice()
+    public function getReducedPrice(): ?bool
     {
         return $this->reducedPrice;
     }
 
     /**
-     * @param int $reducedPrice
+     * @param bool $reducedPrice
      */
-    public function setReducedPrice(int $reducedPrice): void
+    public function setReducedPrice(bool $reducedPrice)
     {
         $this->reducedPrice = $reducedPrice;
     }
 
     /**
-     * @return mixed
+     * @return int|null
      */
-    public function getTicketPrice()
+    public function getTicketPrice(): ?int
     {
         return $this->ticketPrice;
     }
@@ -109,21 +110,21 @@ class Ticket
     /**
      * @param int $ticketPrice
      */
-    public function setTicketPrice(int $ticketPrice): void
+    public function setTicketPrice($ticketPrice)
     {
         $this->ticketPrice = $ticketPrice;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId():int
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
     public function getLastname(): ?string
     {
@@ -131,7 +132,7 @@ class Ticket
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
     public function getFirstname(): ?string
     {
@@ -139,7 +140,7 @@ class Ticket
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
     public function getCountry(): ?string
     {
@@ -147,15 +148,15 @@ class Ticket
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getBirthdate(): ?\DateTime
+    public function getBirthdate(): ?DateTime
     {
         return $this->birthdate;
     }
 
     /**
-     * @param $lastname
+     * @param string $lastname
      */
     public function setLastname($lastname): void
     {
@@ -163,7 +164,7 @@ class Ticket
     }
 
     /**
-     * @param $firstname
+     * @param string $firstname
      */
     public function setFirstname($firstname): void
     {
@@ -171,7 +172,7 @@ class Ticket
     }
 
     /**
-     * @param mixed $country
+     * @param string $country
      */
     public function setCountry($country): void
     {
@@ -179,7 +180,7 @@ class Ticket
     }
 
     /**
-     * @param mixed $birthdate
+     * @param DateTime $birthdate
      */
     public function setBirthdate($birthdate): void
     {
@@ -187,7 +188,7 @@ class Ticket
     }
 
     /**
-     * @param $ticketNumber
+     * @param string $ticketNumber
      */
     public function setTicketNumber($ticketNumber): void
     {
@@ -195,9 +196,9 @@ class Ticket
     }
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getTicketNumber()
+    public function getTicketNumber(): ?string
     {
         return $this->ticketNumber;
     }
