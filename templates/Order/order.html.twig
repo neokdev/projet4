@@ -28,8 +28,8 @@
             {% if cardTitle is defined %}
                 <strong>{{ cardtitle|trans }}</strong>
             {% endif %}
-            {% if cardTitle == 'card_title_confirm'%}
-                --- {% trans %}commandnumber{% endtrans %}: {{ order.ordernumber }}
+            {% if cardTitle == 'cardTitleConfirm'%}
+                --- {% trans %}commandNumber{% endtrans %}: {{ order.orderNumber }}
             {% endif %}
         </div>
 

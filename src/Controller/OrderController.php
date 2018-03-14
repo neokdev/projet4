@@ -55,22 +55,22 @@ class OrderController extends AbstractController
             case 1:
                 $form = $this->orderManager->stepOne($request);
                 $template = "Order/_date.html.twig";
-                $cardTitle = "card_title_date";
+                $cardTitle = "cardTitleDate";
                 break;
             case 2:
                 $form = $this->orderManager->stepTwo($request);
                 $template = 'Order/_duration.html.twig';
-                $cardTitle = "card_title_duration";
+                $cardTitle = "cardTitleDuration";
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
                 $template = 'Order/_price.html.twig';
-                $cardTitle = "card_title_price";
+                $cardTitle = "cardTitlePrice";
                 break;
             case 4:
                 $form = $this->orderManager->stepFour($request);
                 $template = 'Order/_mail.html.twig';
-                $cardTitle = "card_title_mail";
+                $cardTitle = "cardTitleMail";
                 break;
             case 5:
                 RedirectResponse::create(
@@ -80,7 +80,7 @@ class OrderController extends AbstractController
             default:
                 $form = $this->orderManager->stepOne($request);
                 $template = 'Order/_date.html.twig';
-                $cardTitle = "card_title_date";
+                $cardTitle = "cardTitleDate";
         }
 
         return $this->render(
@@ -125,7 +125,7 @@ class OrderController extends AbstractController
         $date = strftime("%A %e %B %Y", $helper->getSelectedDate()->getTimestamp());
         return $this->render('Order/_checkout.html.twig', [
             'date' => $date,
-            'cardTitle' => "card_title_confirm",
+            'cardTitle' => "cardTitleConfirm",
             'order' => $session->get('order'),
             'tickets' => $session->get('tickets'),
             ]);
@@ -169,40 +169,40 @@ class OrderController extends AbstractController
         } catch (\Stripe\Error\RateLimit $e) {
             // Too many requests made to the API too quickly
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         } catch (\Stripe\Error\InvalidRequest $e) {
             // Invalid parameters were supplied to Stripe's API
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         } catch (\Stripe\Error\Authentication $e) {
             // Authentication with Stripe's API failed
             // (maybe you changed API keys recently)
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         } catch (\Stripe\Error\ApiConnection $e) {
             // Network communication with Stripe failed
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         } catch (\Stripe\Error\Base $e) {
             // Display a very generic error to the user, and maybe send
             // yourself an email
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         } catch (\Exception $e) {
             // Something else happened, completely unrelated to Stripe
             return $this->render('Order/_fail.html.twig', [
-                'cardtitle' => "card_title_fail",
-                'errormessage' => $e->getMessage()
+                'cardTitle' => "cardTitleFail",
+                'errorMessage' => $e->getMessage()
             ]);
         }
 
@@ -234,11 +234,17 @@ class OrderController extends AbstractController
 
         $helper->orderMail($order, $tickets);
 
-        $this->orderManager->clearSessionVars();
-
-        return $this->render('Order/_success.html.twig', [
-            'cardTitle' => "card_title_success",
+        return $this->render('Emails/order.html.twig', [
+            'cardTitle' => "cardTitleSuccess",
             'order' => $order,
+            'tickets' => $tickets,
         ]);
+
+//        $this->orderManager->clearSessionVars();
+
+//        return $this->render('Order/_success.html.twig', [
+//            'cardTitle' => "cardTitleSuccess",
+//            'order' => $order,
+//        ]);
     }
 }

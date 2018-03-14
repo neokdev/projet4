@@ -8,15 +8,14 @@
 
         <div class="alert alert-danger text-center" role="alert">
             <h4 class="alert-heading">{% trans %}error{% endtrans %}</h4>
-            <strong>{{ errormessage }}</strong>
+            <strong>{{ errorMessage }}</strong>
         </div>
 
     </div>
 
     <div class="card-footer">
 
-        <a role="button" href="{{ path('app_checkout') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
-        </form>
+        <a role="button" href="{{ path('app_checkout') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previousStep{% endtrans %}</a>
     </div>
 
 {% endblock %}

@@ -4,8 +4,8 @@ let $addTicketLink = $('<a role="button" href="#" class="add_ticket_link btn btn
 let $newLinkLi = $('<li class="list-group list-group-flush"></li>').append($addTicketLink);
 
 // Add translations for the buttons
-let addTicketTrans = translations.addticket;
-let removeTicketTrans = translations.removeticket;
+let addTicketTrans = translations.addTicket;
+let removeTicketTrans = translations.removeTicket;
 
 $(function() {
     $collectionHolder = $('ul.tickets');

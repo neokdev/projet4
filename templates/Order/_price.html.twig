@@ -3,9 +3,10 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        let translations = {
-            'addticket': '<i class="fas fa-plus"></i> {% trans %}addTicket{% endtrans %}',
-            'removeticket': '<i class="fas fa-trash-alt"></i> {% trans %}removeTicket{% endtrans %}'
+        let translations;
+        translations = {
+            'addTicket': '<i class="fas fa-plus"></i> {% trans %}addTicket{% endtrans %}',
+            'removeTicket': '<i class="fas fa-trash-alt"></i> {% trans %}removeTicket{% endtrans %}'
         };
     </script>
     <script src="{{ asset('js/wizard_embed.js') }}"></script>
@@ -27,8 +28,8 @@
         </div>
 
             <div class="card-footer">
-                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previous_step{% endtrans %}</a>
-                <button type="submit" class="btn btn-primary">{% trans %}order.next_step{% endtrans %} <i class="fas fa-angle-double-right"></i></button>
+                <a role="button" href="{{ path('app_previous') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previousStep{% endtrans %}</a>
+                <button type="submit" class="btn btn-primary">{% trans %}order.nextStep{% endtrans %} <i class="fas fa-angle-double-right"></i></button>
 
     {{ form_end(form) }}
 

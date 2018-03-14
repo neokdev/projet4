@@ -7,33 +7,33 @@
                 <target>Accueil</target>
             </segment>
         </unit>
-        <unit id="menu.order_tickets">
+        <unit id="menu.orderTickets">
             <segment>
-                <source>menu.order_tickets</source>
+                <source>menu.orderTickets</source>
                 <target>Commander des billets</target>
             </segment>
         </unit>
-        <unit id="order.event_date">
+        <unit id="order.eventDate">
             <segment>
-                <source>order.event_date</source>
+                <source>order.eventDate</source>
                 <target>Date de l'évènement</target>
             </segment>
         </unit>
-        <unit id="reduced_price">
+        <unit id="reducedPrice">
             <segment>
-                <source>reduced_price</source>
+                <source>reducedPrice</source>
                 <target>Prix réduit</target>
             </segment>
         </unit>
-        <unit id="order.previous_step">
+        <unit id="order.previousStep">
             <segment>
-                <source>order.previous_step</source>
+                <source>order.previousStep</source>
                 <target>Etape précédente</target>
             </segment>
         </unit>
-        <unit id="order.next_step">
+        <unit id="order.nextStep">
             <segment>
-                <source>order.next_step</source>
+                <source>order.nextStep</source>
                 <target>Etape suivante</target>
             </segment>
         </unit>
@@ -43,9 +43,9 @@
                 <target>Durée</target>
             </segment>
         </unit>
-        <unit id="selectduration">
+        <unit id="selectDuration">
             <segment>
-                <source>selectduration</source>
+                <source>selectDuration</source>
                 <target>Selectionnez une durée</target>
             </segment>
         </unit>
@@ -55,9 +55,9 @@
                 <target>Journée</target>
             </segment>
         </unit>
-        <unit id="halfday">
+        <unit id="halfDay">
             <segment>
-                <source>halfday</source>
+                <source>halfDay</source>
                 <target>Demi-journée</target>
             </segment>
         </unit>
@@ -73,9 +73,9 @@
                 <target>Prénom</target>
             </segment>
         </unit>
-        <unit id="ticketnumber">
+        <unit id="ticketNumber">
             <segment>
-                <source>ticketnumber</source>
+                <source>ticketNumber</source>
                 <target>N° de ticket</target>
             </segment>
         </unit>
@@ -85,9 +85,9 @@
                 <target>Prix</target>
             </segment>
         </unit>
-        <unit id="commandnumber">
+        <unit id="commandNumber">
             <segment>
-                <source>commandnumber</source>
+                <source>commandNumber</source>
                 <target>N° de Commande</target>
             </segment>
         </unit>
@@ -103,9 +103,9 @@
                 <target>Pays</target>
             </segment>
         </unit>
-        <unit id="selectcountry">
+        <unit id="selectCountry">
             <segment>
-                <source>selectcountry</source>
+                <source>selectCountry</source>
                 <target>Selectionnez votre Pays</target>
             </segment>
         </unit>
@@ -127,9 +127,9 @@
                 <target>Supprimer ce ticket</target>
             </segment>
         </unit>
-        <unit id="dayticketsnotavalaible">
+        <unit id="dayTicketsNotAvalaible">
             <segment>
-                <source>dayticketsnotavalaible</source>
+                <source>dayTicketsNotAvalaible</source>
                 <target>Les tickets à la journée ne sont pas disponibles pour cette date</target>
             </segment>
         </unit>
@@ -145,57 +145,57 @@
                 <target>Payer</target>
             </segment>
         </unit>
-        <unit id="totalprice">
+        <unit id="totalPrice">
             <segment>
-                <source>totalprice</source>
+                <source>totalPrice</source>
                 <target>Prix total</target>
             </segment>
         </unit>
-        <unit id="halfdaydiscount">
+        <unit id="halfDayDiscount">
             <segment>
-                <source>halfdaydiscount</source>
+                <source>halfDayDiscount</source>
                 <target>Réduction 50% demi-journée</target>
             </segment>
         </unit>
-        <unit id="card_title_date">
+        <unit id="cardTitleDate">
             <segment>
-                <source>card_title_date</source>
+                <source>cardTitleDate</source>
                 <target>Séléction de la date de visite</target>
             </segment>
         </unit>
-        <unit id="card_title_duration">
+        <unit id="cardTitleDuration">
             <segment>
-                <source>card_title_duration</source>
+                <source>cardTitleDuration</source>
                 <target>Séléction de la durée de visite</target>
             </segment>
         </unit>
-        <unit id="card_title_price">
+        <unit id="cardTitlePrice">
             <segment>
-                <source>card_title_price</source>
+                <source>cardTitlePrice</source>
                 <target>Ajout des tickets</target>
             </segment>
         </unit>
-        <unit id="card_title_mail">
+        <unit id="cardTitleMail">
             <segment>
-                <source>card_title_mail</source>
+                <source>cardTitleMail</source>
                 <target>Selection de l'adresse e-mail</target>
             </segment>
         </unit>
-        <unit id="card_title_confirm">
+        <unit id="cardTitleConfirm">
             <segment>
-                <source>card_title_confirm</source>
+                <source>cardTitleConfirm</source>
                 <target>Confirmation de réservation</target>
             </segment>
         </unit>
-        <unit id="card_title_success">
+        <unit id="cardTitleSuccess">
             <segment>
-                <source>card_title_success</source>
+                <source>cardTitleSuccess</source>
                 <target>Paiement effectué avec succés</target>
             </segment>
         </unit>
-        <unit id="card_title_fail">
+        <unit id="cardTitleFail">
             <segment>
-                <source>card_title_fail</source>
+                <source>cardTitleFail</source>
                 <target>Erreur de paiement</target>
             </segment>
         </unit>
@@ -211,9 +211,9 @@
                 <target>du</target>
             </segment>
         </unit>
-        <unit id="successmessage">
+        <unit id="successMessage">
             <segment>
-                <source>successmessage</source>
+                <source>successMessage</source>
                 <target>Votre billet bien été réservé !</target>
             </segment>
         </unit>

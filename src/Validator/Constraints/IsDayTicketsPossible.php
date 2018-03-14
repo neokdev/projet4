@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraint;
 
 class IsDayTicketsPossible extends Constraint
 {
-    public $message = 'dayticketsnotavalaible';
+    public $message = 'dayTicketsNotAvalaible';
 
     /**
     * @return mixed|string

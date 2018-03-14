@@ -25,9 +25,9 @@
                 <target>Tickets are no longer available for sale for this date</target>
             </segment>
         </unit>
-        <unit id="dayticketsnotavalaible">
+        <unit id="dayTicketsNotAvalaible">
             <segment>
-                <source>dayticketsnotavalaible</source>
+                <source>dayTicketsNotAvalaible</source>
                 <target>Day tickets not avalaible for this date</target>
             </segment>
         </unit>

@@ -12,9 +12,6 @@ use App\Validator\Constraints\IsTooLateForToday;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormError;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TicketOrderDateType extends AbstractType
@@ -27,7 +24,7 @@ class TicketOrderDateType extends AbstractType
     {
         $builder
             ->add('date', DateType::class, [
-                'label' => 'order.event_date',
+                'label' => 'order.eventDate',
                 'widget' => 'single_text',
                 'constraints' => [
                     new IsNotTuesday(),

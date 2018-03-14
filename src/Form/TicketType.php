@@ -42,7 +42,7 @@ class TicketType extends AbstractType
             ])
             ->add('country', CountryType::class, [
                 'label' => 'user.country',
-                'placeholder' => 'selectcountry',
+                'placeholder' => 'selectCountry',
             ])
             ->add('birthdate', DateType::class, [
                 'constraints' => [
@@ -52,7 +52,7 @@ class TicketType extends AbstractType
                 'label' => 'user.birthday',
             ])
             ->add('reducedPrice', CheckboxType::class, [
-                'label' => 'reduced_price',
+                'label' => 'reducedPrice',
                 'required' => false,
             ]);
     }
