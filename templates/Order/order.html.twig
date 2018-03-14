@@ -17,7 +17,7 @@
     {% if form.vars is defined %}
         {% for error in form.vars.errors.form.getErrors(true) %}
             <div class="alert alert-warning text-center" role="alert">
-                {{ error.message }}
+                {{ error.message|trans }}
             </div>
         {% endfor %}
     {% endif %}
@@ -25,10 +25,10 @@
     <div class="card" id="form">
 
         <div class="card-header">
-            {% if cardtitle is defined %}
+            {% if cardTitle is defined %}
                 <strong>{{ cardtitle|trans }}</strong>
             {% endif %}
-            {% if cardtitle == 'card_title_confirm'%}
+            {% if cardTitle == 'card_title_confirm'%}
                 --- {% trans %}commandnumber{% endtrans %}: {{ order.ordernumber }}
             {% endif %}
         </div>

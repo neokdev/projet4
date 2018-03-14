@@ -54,7 +54,3 @@ const stripeTokenHandler = (token) => {
     // Submit the form
     form.submit();
 }
-
-$(function () {
-
-});

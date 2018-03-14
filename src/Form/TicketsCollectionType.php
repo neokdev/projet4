@@ -36,9 +36,8 @@ class TicketsCollectionType extends AbstractType
                 $form = $event->getForm();
                 /** @var TicketOrder $data */
                 $data = $event->getData();
-                // TODO message d'erreur pour la soumition de 0 ticket
                 if ($data->getTicketCollection()->count() === 0) {
-                    $form->addError(new FormError('No ticket added'));
+                    $form->addError(new FormError('noTicketAdded'));
                 }
             }
         )

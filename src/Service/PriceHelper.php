@@ -9,6 +9,8 @@
 namespace App\Service;
 
 
+use DateTime;
+
 class PriceHelper
 {
     /**
@@ -26,11 +28,11 @@ class PriceHelper
     }
 
     /**
-     * @param \DateTime $birthdate
+     * @param DateTime $birthdate
      * @param null $reducPrice
      * @return int|null
      */
-    public function calculatePrice(\DateTime $birthdate, $reducPrice = null):? int
+    public function calculatePrice(DateTime $birthdate, $reducPrice = null):? int
     {
         date_default_timezone_set(DateHelper::TIMEZONE);
         $age = $birthdate->diff($this->helper->getSelectedDate())->y;

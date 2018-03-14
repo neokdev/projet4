@@ -15,7 +15,6 @@ use App\Form\ConfirmType;
 use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
-use App\Form\TicketType;
 use App\Service\IdHelper;
 use App\Service\PriceHelper;
 use Doctrine\ORM\EntityManagerInterface;

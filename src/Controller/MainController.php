@@ -8,16 +8,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Task;
-use App\Entity\TicketOrder;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\Request;
-use Twig\Environment;
 
 class MainController extends AbstractController
 {

@@ -223,5 +223,11 @@
                 <target>Réussite !</target>
             </segment>
         </unit>
+        <unit id="noTicketAdded">
+            <segment>
+                <source>noTicketAdded</source>
+                <target>Veuillez ajouter un ticket</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

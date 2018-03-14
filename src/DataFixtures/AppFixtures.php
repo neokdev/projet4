@@ -14,6 +14,9 @@ use Nelmio\Alice\Loader\NativeLoader;
 
 final class AppFixtures extends Fixture
 {
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $loader = new NativeLoader();

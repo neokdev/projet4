@@ -11,13 +11,18 @@ namespace App\Controller;
 use App\Entity\Ticket;
 use App\Manager\OrderManager;
 use App\Service\DateHelper;
+use App\Service\MailerHelper;
+use Locale;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Stripe\Charge;
+use Stripe\Stripe;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
+
 
 
 class OrderController extends AbstractController
@@ -50,31 +55,32 @@ class OrderController extends AbstractController
             case 1:
                 $form = $this->orderManager->stepOne($request);
                 $template = "Order/_date.html.twig";
-                $cardtitle = "card_title_date";
+                $cardTitle = "card_title_date";
                 break;
             case 2:
                 $form = $this->orderManager->stepTwo($request);
                 $template = 'Order/_duration.html.twig';
-                $cardtitle = "card_title_duration";
+                $cardTitle = "card_title_duration";
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
                 $template = 'Order/_price.html.twig';
-                $cardtitle = "card_title_price";
+                $cardTitle = "card_title_price";
                 break;
             case 4:
                 $form = $this->orderManager->stepFour($request);
                 $template = 'Order/_mail.html.twig';
-                $cardtitle = "card_title_mail";
+                $cardTitle = "card_title_mail";
                 break;
             case 5:
                 RedirectResponse::create(
                 $router->generate('app_checkout')
             )->send();
+                break;
             default:
                 $form = $this->orderManager->stepOne($request);
                 $template = 'Order/_date.html.twig';
-                $cardtitle = "card_title_date";
+                $cardTitle = "card_title_date";
         }
 
         return $this->render(
@@ -82,7 +88,7 @@ class OrderController extends AbstractController
             [
                 'order' => $session->get('order'),
                 'tickets' => $session->get('tickets'),
-                'cardtitle' => $cardtitle,
+                'cardTitle' => $cardTitle,
                 'form' => $form,
             ]
         );
@@ -115,11 +121,11 @@ class OrderController extends AbstractController
      */
     public function checkout(SessionInterface $session, DateHelper $helper)
     {
-        setlocale(LC_TIME, \Local::getDefault());
+        setlocale(LC_TIME, Locale::getDefault());
         $date = strftime("%A %e %B %Y", $helper->getSelectedDate()->getTimestamp());
         return $this->render('Order/_checkout.html.twig', [
             'date' => $date,
-            'cardtitle' => "card_title_confirm",
+            'cardTitle' => "card_title_confirm",
             'order' => $session->get('order'),
             'tickets' => $session->get('tickets'),
             ]);
@@ -140,9 +146,9 @@ class OrderController extends AbstractController
         $customerEmail = $session->get('order')->getMail();
 
         try {
-            \Stripe\Stripe::setApiKey("sk_test_XjQG5GSatz3GILddd9hzULuh");
+            Stripe::setApiKey("sk_test_XjQG5GSatz3GILddd9hzULuh");
 
-            \Stripe\Charge::create(array(
+            Charge::create(array(
                 "amount" => $session->get('order')->getOrderPrice() *100,
                 "currency" => "eur",
                 "source" => $request->request->get('stripeToken'), // obtained with Stripe.js
@@ -192,7 +198,7 @@ class OrderController extends AbstractController
                 'cardtitle' => "card_title_fail",
                 'errormessage' => $e->getMessage()
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Something else happened, completely unrelated to Stripe
             return $this->render('Order/_fail.html.twig', [
                 'cardtitle' => "card_title_fail",
@@ -206,26 +212,33 @@ class OrderController extends AbstractController
     /**
      * @Route("/success", name="app_success")
      * @param SessionInterface $session
+     * @param MailerHelper $helper
      * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
-    public function success(SessionInterface $session)
+    public function success(SessionInterface $session, MailerHelper $helper)
     {
         $order = $session->get('order');
+        $tickets = $order->getTicketCollection();
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($order);
         /** @var Ticket $ticket */
-        foreach ($order->getTicketCollection() as $ticket) {
+        foreach ($tickets as $ticket) {
             $ticket->setTicketOrder($order);
             $em->persist($ticket);
         }
         $em->flush();
 
+        $helper->orderMail($order, $tickets);
+
         $this->orderManager->clearSessionVars();
 
         return $this->render('Order/_success.html.twig', [
-            'cardtitle' => "card_title_success",
-            'order' => $order
+            'cardTitle' => "card_title_success",
+            'order' => $order,
         ]);
     }
 }

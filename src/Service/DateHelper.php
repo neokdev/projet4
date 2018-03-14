@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use DateTime;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class DateHelper
@@ -30,18 +31,18 @@ class DateHelper
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getActualDatetime():\DateTime
+    public function getActualDatetime(): DateTime
     {
         date_default_timezone_set(self::TIMEZONE);
-        return new \DateTime();
+        return new DateTime();
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getSelectedDate():\DateTime
+    public function getSelectedDate(): DateTime
     {
         return $this->session->get('order')->getDate();
     }

@@ -1,11 +1,13 @@
-body
+.navbar
 {
-    padding-top: 70px;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
 }
 
-#navbarNav .navbar-nav .nav-item
+.card-footer a
 {
-    margin-right: 3%;
+    margin: 0.5%;
 }
 
 .remove-ticket
@@ -16,6 +18,20 @@ body
 .alert
 {
     margin: 2%;
+}
+
+@media screen {
+    body
+    {
+        padding-top: 200px;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    body
+    {
+        padding-top: 100px;
+    }
 }
 
 @media (min-width: 34em) {
