@@ -229,5 +229,155 @@
                 <target>Please add a ticket</target>
             </segment>
         </unit>
+        <unit id="ticketDesc">
+            <segment>
+                <source>ticketDesc</source>
+                <target>Valid at the Louvre Museum today</target>
+            </segment>
+        </unit>
+        <unit id="durationDayDesc">
+            <segment>
+                <source>durationDayDesc</source>
+                <target>Ticket valid all day</target>
+            </segment>
+        </unit>
+        <unit id="durationHalfdayDesc">
+            <segment>
+                <source>durationHalfdayDesc</source>
+                <target>Ticket valid for half a day</target>
+            </segment>
+        </unit>
+        <unit id="virtualTicketHeader">
+            <segment>
+                <source>virtualTicketHeader</source>
+                <target>Here are your virtual tickets for the Louvre Museum: </target>
+            </segment>
+        </unit>
+        <unit id="contactForm">
+            <segment>
+                <source>contactForm</source>
+                <target>Contact form</target>
+            </segment>
+        </unit>
+        <unit id="changeLang">
+            <segment>
+                <source>changeLang</source>
+                <target>Choice of language</target>
+            </segment>
+        </unit>
+        <unit id="french">
+            <segment>
+                <source>french</source>
+                <target>French</target>
+            </segment>
+        </unit>
+        <unit id="english">
+            <segment>
+                <source>english</source>
+                <target>English</target>
+            </segment>
+        </unit>
+        <unit id="whoReducedPrice">
+            <segment>
+                <source>whoReducedPrice</source>
+                <target>Who can benefit from the reduced rate?</target>
+            </segment>
+        </unit>
+        <unit id="reducedPriceBenefits">
+            <segment>
+                <source>reducedPriceBenefits</source>
+                <target>Student, museum employee, department of the Ministry of Culture, military. It will be necessary to present your student card, military or equivalent at the entrance to prove that we benefit from the reduced rate</target>
+            </segment>
+        </unit>
+        <unit id="siteTitle">
+            <segment>
+                <source>siteTitle</source>
+                <target>Welcome to the reservation website of the Louvre Museum</target>
+            </segment>
+        </unit>
+        <unit id="select">
+            <segment>
+                <source>select</source>
+                <target>Select...</target>
+            </segment>
+        </unit>
+        <unit id="messageType">
+            <segment>
+                <source>messageType</source>
+                <target>Message type</target>
+            </segment>
+        </unit>
+        <unit id="subject">
+            <segment>
+                <source>subject</source>
+                <target>Subject</target>
+            </segment>
+        </unit>
+        <unit id="subjectPlaceholder">
+            <segment>
+                <source>subjectPlaceholder</source>
+                <target>Example: Great Thanks, Musée du Louvre!</target>
+            </segment>
+        </unit>
+        <unit id="messageText">
+            <segment>
+                <source>messageText</source>
+                <target>Message text</target>
+            </segment>
+        </unit>
+        <unit id="commandProblem">
+            <segment>
+                <source>commandProblem</source>
+                <target>Order problem</target>
+            </segment>
+        </unit>
+        <unit id="noMailReceived">
+            <segment>
+                <source>noMailReceived</source>
+                <target>No email received</target>
+            </segment>
+        </unit>
+        <unit id="information">
+            <segment>
+                <source>information</source>
+                <target>Information</target>
+            </segment>
+        </unit>
+        <unit id="other">
+            <segment>
+                <source>other</source>
+                <target>Other</target>
+            </segment>
+        </unit>
+        <unit id="cancel">
+            <segment>
+                <source>cancel</source>
+                <target>Cancel</target>
+            </segment>
+        </unit>
+        <unit id="submit">
+            <segment>
+                <source>submit</source>
+                <target>Submit</target>
+            </segment>
+        </unit>
+        <unit id="cardTitleContact">
+            <segment>
+                <source>cardTitleContact</source>
+                <target>Contact form</target>
+            </segment>
+        </unit>
+        <unit id="backToHome">
+            <segment>
+                <source>backToHome</source>
+                <target>Back to Homepage</target>
+            </segment>
+        </unit>
+        <unit id="aMailHasBeenSent">
+            <segment>
+                <source>aMailHasBeenSent</source>
+                <target>An email has been sent to you</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

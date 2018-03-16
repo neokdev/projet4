@@ -3,6 +3,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
+        $('[data-toggle="popover"]').popover();
         let translations;
         translations = {
             'addTicket': '<i class="fas fa-plus"></i> {% trans %}addTicket{% endtrans %}',
@@ -25,6 +26,9 @@
                 {% endfor %}
             </ul>
 
+            <div><br/>
+                <button type="button" class="btn btn-info" data-toggle="popover" title="{{ 'reducedPrice'|trans }}" data-content="{{ 'reducedPriceBenefits'|trans }}"><i class="fas fa-info"></i> {{ 'whoReducedPrice'|trans }}</button>
+            </div>
         </div>
 
             <div class="card-footer">

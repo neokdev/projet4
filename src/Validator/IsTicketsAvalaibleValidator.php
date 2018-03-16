@@ -9,7 +9,6 @@
 namespace App\Validator;
 
 
-use App\Repository\ProductsRepository;
 use App\Repository\TicketOrderRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ app.request.locale }}">
 
     <head>
         <title>{% block title %}Le musée du Louvre{% endblock %}</title>
@@ -7,21 +7,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylesheets %}
             <link rel="stylesheet"
-                  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-                  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-                  crossorigin="anonymous">
+                  href="https://bootswatch.com/4/united/bootstrap.min.css"
+                  {#integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"#}
+                  {#crossorigin="anonymous"#}
+            >
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
             <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         {% endblock %}
     </head>
 
     <body>
 
-        <nav class="navbar nav-pills nav-fill fixed-top">
-            <a role="button" class="navbar-brand nav-link nav-item" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> {{ 'menu.homepage'|trans }}</a>
-            <a role="button" class="navbar-brand nav-link nav-item" href="{{ path('app_order') }}"><i class="fas fa-shopping-cart"></i> {{ 'menu.orderTickets'|trans }}</a>
-            <a role="button" class="navbar-brand nav-link nav-item" href="{{ path('app_reset') }}"><i class="fas fa-undo-alt"></i> {{ 'reset' }}</a>
-            <a role="button" class="navbar-brand nav-link nav-item" href="{{ path('app_reset') }}"><i class="fas fa-undo-alt"></i> {{ 'Formulaire de contact' }}</a>
+        <nav class="nav nav-pills nav-fill fixed-top">
+            <li class="nav-item">
+                <a role="button" class="nav-link btn-lg" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> {{ 'menu.homepage'|trans }}</a>
+            </li>
+            <li class="nav-item">
+                <a role="button" class="nav-link btn-lg" href="{{ path('app_order') }}"><i class="fas fa-shopping-cart"></i> {{ 'menu.orderTickets'|trans }}</a>
+            </li>
+            <li class="nav-item">
+                <a role="button" class="nav-link btn-lg" href="{{ path('app_contact') }}"><i class="fab fa-wpforms"></i> {{ 'contactForm'|trans }}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a role="button" class="nav-link btn-lg dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-language"></i> {{ 'changeLang'|trans }}</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">{{ 'french'|trans }}</a>
+                    <a class="dropdown-item" href="#">{{ 'english'|trans }}</a>
+                </div>
+            </li>
         </nav>
 
     <div class="container">
@@ -48,11 +62,16 @@
 
             </script>
             <script>
-                $('.nav-item').on('mouseenter', function () {
-                    $(this).attr('class', 'navbar-brand nav-item nav-link active');
-                });
-                $('.nav-item').on('mouseout', function () {
-                    $(this).attr('class', 'navbar-brand nav-item nav-link');
+                $('.dropdown-toggle').dropdown();
+                $(function() {
+                    $('.nav-item a').hover(
+                        function(){
+                            $(this).addClass('active');
+                        },
+                        function(){
+                            $(this).removeClass('active');
+                        }
+                    );
                 });
             </script>
         {% endblock %}

@@ -22,7 +22,7 @@
         <unit id="reducedPrice">
             <segment>
                 <source>reducedPrice</source>
-                <target>Prix réduit</target>
+                <target>Tarif réduit</target>
             </segment>
         </unit>
         <unit id="order.previousStep">
@@ -76,7 +76,7 @@
         <unit id="ticketNumber">
             <segment>
                 <source>ticketNumber</source>
-                <target>N° de ticket</target>
+                <target>N° de billet</target>
             </segment>
         </unit>
         <unit id="price">
@@ -118,19 +118,19 @@
         <unit id="addTicket">
             <segment>
                 <source>addTicket</source>
-                <target>Ajouter un nouveau ticket</target>
+                <target>Ajouter un nouveau billet</target>
             </segment>
         </unit>
         <unit id="removeTicket">
             <segment>
                 <source>removeTicket</source>
-                <target>Supprimer ce ticket</target>
+                <target>Supprimer ce billet</target>
             </segment>
         </unit>
         <unit id="dayTicketsNotAvalaible">
             <segment>
                 <source>dayTicketsNotAvalaible</source>
-                <target>Les tickets à la journée ne sont pas disponibles pour cette date</target>
+                <target>Les billets à la journée ne sont pas disponibles pour cette date</target>
             </segment>
         </unit>
         <unit id="user.mail">
@@ -172,7 +172,7 @@
         <unit id="cardTitlePrice">
             <segment>
                 <source>cardTitlePrice</source>
-                <target>Ajout des tickets</target>
+                <target>Ajout des billets</target>
             </segment>
         </unit>
         <unit id="cardTitleMail">
@@ -226,7 +226,157 @@
         <unit id="noTicketAdded">
             <segment>
                 <source>noTicketAdded</source>
-                <target>Veuillez ajouter un ticket</target>
+                <target>Veuillez ajouter un billet</target>
+            </segment>
+        </unit>
+        <unit id="ticketDesc">
+            <segment>
+                <source>ticketDesc</source>
+                <target>Valable au Musée du Louvre ce jour</target>
+            </segment>
+        </unit>
+        <unit id="durationDayDesc">
+            <segment>
+                <source>durationDayDesc</source>
+                <target>Billet valable toute la journée</target>
+            </segment>
+        </unit>
+        <unit id="durationHalfdayDesc">
+            <segment>
+                <source>durationHalfdayDesc</source>
+                <target>Billet valable la demi-journée</target>
+            </segment>
+        </unit>
+        <unit id="virtualTicketHeader">
+            <segment>
+                <source>virtualTicketHeader</source>
+                <target>Voici ci-dessous vos billets vituels pour le Musée du Louvre: </target>
+            </segment>
+        </unit>
+        <unit id="contactForm">
+            <segment>
+                <source>contactForm</source>
+                <target>Formulaire de contact</target>
+            </segment>
+        </unit>
+        <unit id="changeLang">
+            <segment>
+                <source>changeLang</source>
+                <target>Choix de la langue</target>
+            </segment>
+        </unit>
+        <unit id="french">
+            <segment>
+                <source>french</source>
+                <target>Français</target>
+            </segment>
+        </unit>
+        <unit id="english">
+            <segment>
+                <source>english</source>
+                <target>Anglais</target>
+            </segment>
+        </unit>
+        <unit id="whoReducedPrice">
+            <segment>
+                <source>whoReducedPrice</source>
+                <target>Qui peut bénéficier du tarif réduit ?</target>
+            </segment>
+        </unit>
+        <unit id="reducedPriceBenefits">
+            <segment>
+                <source>reducedPriceBenefits</source>
+                <target>Etudiants, employés du musée, d’un service du Ministère de la Culture, militaire. Il sera nécessaire de présenter sa carte d'étudiant, militaire ou équivalent lors de l’entrée pour prouver qu’on bénéficie bien du tarif réduit</target>
+            </segment>
+        </unit>
+        <unit id="siteTitle">
+            <segment>
+                <source>siteTitle</source>
+                <target>Bienvenue sur le site de réservation du musée du Louvre</target>
+            </segment>
+        </unit>
+        <unit id="select">
+            <segment>
+                <source>select</source>
+                <target>Sélectionner...</target>
+            </segment>
+        </unit>
+        <unit id="messageType">
+            <segment>
+                <source>messageType</source>
+                <target>Type de message</target>
+            </segment>
+        </unit>
+        <unit id="subject">
+            <segment>
+                <source>subject</source>
+                <target>Sujet</target>
+            </segment>
+        </unit>
+        <unit id="subjectPlaceholder">
+            <segment>
+                <source>subjectPlaceholder</source>
+                <target>Exemple: Merci beaucoup, Musée du Louvre!</target>
+            </segment>
+        </unit>
+        <unit id="messageText">
+            <segment>
+                <source>messageText</source>
+                <target>Texte du message</target>
+            </segment>
+        </unit>
+        <unit id="commandProblem">
+            <segment>
+                <source>commandProblem</source>
+                <target>Problème de commande</target>
+            </segment>
+        </unit>
+        <unit id="noMailReceived">
+            <segment>
+                <source>noMailReceived</source>
+                <target>Aucun e-mail reçu</target>
+            </segment>
+        </unit>
+        <unit id="information">
+            <segment>
+                <source>information</source>
+                <target>Information</target>
+            </segment>
+        </unit>
+        <unit id="other">
+            <segment>
+                <source>other</source>
+                <target>Autre</target>
+            </segment>
+        </unit>
+        <unit id="cancel">
+            <segment>
+                <source>cancel</source>
+                <target>Annuler</target>
+            </segment>
+        </unit>
+        <unit id="submit">
+            <segment>
+                <source>submit</source>
+                <target>Valider</target>
+            </segment>
+        </unit>
+        <unit id="cardTitleContact">
+            <segment>
+                <source>cardTitleContact</source>
+                <target>Formulaire de contact</target>
+            </segment>
+        </unit>
+        <unit id="backToHome">
+            <segment>
+                <source>backToHome</source>
+                <target>Retour à l'accueil</target>
+            </segment>
+        </unit>
+        <unit id="aMailHasBeenSent">
+            <segment>
+                <source>aMailHasBeenSent</source>
+                <target>Un email vous a été envoyé</target>
             </segment>
         </unit>
     </file>

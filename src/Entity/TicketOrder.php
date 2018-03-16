@@ -80,7 +80,7 @@ class TicketOrder
     /**
      * @param string $orderNumber
      */
-    public function setOrderNumber($orderNumber)
+    public function setOrderNumber($orderNumber): void
     {
         $this->orderNumber = $orderNumber;
     }
@@ -96,7 +96,7 @@ class TicketOrder
     /**
      * @param DateTime $orderDate
      */
-    public function setOrderDate(DateTime $orderDate)
+    public function setOrderDate(DateTime $orderDate): void
     {
         $this->orderDate = $orderDate;
     }
@@ -112,7 +112,7 @@ class TicketOrder
     /**
      * @param string $mail
      */
-    public function setMail($mail)
+    public function setMail($mail): void
     {
         $this->mail = $mail;
     }
@@ -120,7 +120,7 @@ class TicketOrder
     /**
      * @param DateTime $date
      */
-    public function setDate(DateTime $date)
+    public function setDate(DateTime $date): void
     {
         $this->date = $date;
     }
@@ -128,7 +128,7 @@ class TicketOrder
     /**
      * @param bool $duration
      */
-    public function setDuration(bool $duration)
+    public function setDuration(bool $duration): void
     {
         $this->duration = $duration;
     }
@@ -144,7 +144,7 @@ class TicketOrder
     /**
      * @param int $orderPrice
      */
-    public function setOrderPrice($orderPrice)
+    public function setOrderPrice($orderPrice): void
     {
         $this->orderPrice = $orderPrice;
     }

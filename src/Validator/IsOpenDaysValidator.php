@@ -32,8 +32,8 @@ class IsOpenDaysValidator extends ConstraintValidator
     public function validate($date, Constraint $constraint)
     {
         $year = date('Y', date_timestamp_get($date));
-        foreach($this->retrieveHolidayDates($year) as $closeddate) {
-            if ($closeddate === date_format($date, "Y-m-d")) {
+        foreach($this->retrieveHolidayDates($year) as $closedDate) {
+            if ($closedDate === date_format($date, "Y-m-d")) {
                 $this->context->buildViolation($constraint->message)
                     ->addViolation();
             }

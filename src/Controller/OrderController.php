@@ -234,17 +234,17 @@ class OrderController extends AbstractController
 
         $helper->orderMail($order, $tickets);
 
-        return $this->render('Emails/order.html.twig', [
-            'cardTitle' => "cardTitleSuccess",
-            'order' => $order,
-            'tickets' => $tickets,
-        ]);
+//        return $this->render('Emails/order.html.twig', [
+//            'cardTitle' => "cardTitleSuccess",
+//            'order' => $order,
+//            'tickets' => $tickets,
+//        ]);
 
 //        $this->orderManager->clearSessionVars();
 
-//        return $this->render('Order/_success.html.twig', [
-//            'cardTitle' => "cardTitleSuccess",
-//            'order' => $order,
-//        ]);
+        return $this->render('Order/_success.html.twig', [
+            'cardTitle' => "cardTitleSuccess",
+            'order' => $order,
+        ]);
     }
 }

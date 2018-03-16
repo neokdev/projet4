@@ -78,7 +78,7 @@ class Ticket
     /**
      * @param TicketOrder $ticketOrder
      */
-    public function setTicketOrder(TicketOrder $ticketOrder)
+    public function setTicketOrder(TicketOrder $ticketOrder): void
     {
         $this->ticketOrder = $ticketOrder;
     }
@@ -94,7 +94,7 @@ class Ticket
     /**
      * @param bool $reducedPrice
      */
-    public function setReducedPrice(bool $reducedPrice)
+    public function setReducedPrice(bool $reducedPrice): void
     {
         $this->reducedPrice = $reducedPrice;
     }
@@ -110,7 +110,7 @@ class Ticket
     /**
      * @param int $ticketPrice
      */
-    public function setTicketPrice($ticketPrice)
+    public function setTicketPrice($ticketPrice): void
     {
         $this->ticketPrice = $ticketPrice;
     }

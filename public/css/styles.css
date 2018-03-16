@@ -1,8 +1,28 @@
-.navbar
+body
+{
+    background: url("../img/3-1.jpg") fixed;
+}
+
+#siteTitle
+{
+    margin-top: 250px;
+}
+
+.nav li
 {
     margin-top: 0.5%;
     margin-left: 0.5%;
     margin-right: 0.5%;
+}
+
+.card
+{
+    background-color:rgba(255, 255, 255, 0.7);
+}
+
+.card li
+{
+    background-color:rgba(0, 0, 0, 0);
 }
 
 .card-footer a
@@ -18,6 +38,12 @@
 .alert
 {
     margin: 2%;
+}
+
+.jumbotron
+{
+    padding-top: 20px;
+    padding-bottom: 0px;
 }
 
 @media screen {

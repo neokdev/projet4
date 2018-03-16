@@ -8,13 +8,14 @@
         <div class="alert alert-success text-center" role="alert">
             <h4 class="alert-heading">{% trans %}success{% endtrans %}</h4>
             <strong>{% trans %}successMessage{% endtrans %}</strong>
+            <p>{{ 'aMailHasBeenSent'|trans }}</p>
         </div>
 
     </div>
 
     <div class="card-footer">
 
-        <a role="button" href="{{ path('app_homepage') }}" class="btn btn-primary"><i class="fas fa-angle-double-left"></i> {% trans %}order.previousStep{% endtrans %}</a>
+        <a role="button" href="{{ path('app_homepage') }}" class="btn btn-primary"><i class="fas fa-home"></i> {{ 'backToHome'|trans }}</a>
     </div>
 
 {% endblock %}
