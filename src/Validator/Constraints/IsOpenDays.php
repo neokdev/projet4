@@ -8,9 +8,11 @@
 
 namespace App\Validator\Constraints;
 
-
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * Class IsOpenDays
+ */
 class IsOpenDays extends Constraint
 {
     /**

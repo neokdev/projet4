@@ -6,15 +6,17 @@
  * Time: 14:26
  */
 
-namespace App\Service;
-
+namespace App\Services;
 
 use DateTime;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * Class DateHelper
+ */
 class DateHelper
 {
-    CONST TIMEZONE = 'Europe/Paris';
+    const TIMEZONE = 'Europe/Paris';
 
     /**
      * @var SessionInterface
@@ -36,6 +38,7 @@ class DateHelper
     public function getActualDatetime(): DateTime
     {
         date_default_timezone_set(self::TIMEZONE);
+
         return new DateTime();
     }
 

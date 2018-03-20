@@ -6,9 +6,11 @@
  * Time: 09:49
  */
 
-namespace App\Service;
+namespace App\Services;
 
-
+/**
+ * Class IdHelper
+ */
 class IdHelper
 {
     /**

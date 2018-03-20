@@ -1,11 +1,16 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Neok
+ * Date: 01/03/2018
+ * Time: 11:15
+ */
 namespace App\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 
 /**
- * @Annotation
+ * Class IsValidName
  */
 class IsValidName extends Constraint
 {
@@ -16,6 +21,9 @@ class IsValidName extends Constraint
 //    TODO message
     public $message = 'The value "{{ value }}" is not valid.';
 
+    /**
+     * @return mixed|string
+     */
     public function validatedBy()
     {
         return str_replace('\Constraints', '', get_class($this).'Validator');

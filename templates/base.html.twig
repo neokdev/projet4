@@ -19,7 +19,7 @@
 
     <body>
 
-        <nav class="nav nav-pills nav-fill fixed-top">
+        <ul class="nav nav-pills nav-fill fixed-top">
             <li class="nav-item">
                 <a role="button" class="nav-link btn-lg" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> {{ 'menu.homepage'|trans }}</a>
             </li>
@@ -32,11 +32,11 @@
             <li class="nav-item dropdown">
                 <a role="button" class="nav-link btn-lg dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-language"></i> {{ 'changeLang'|trans }}</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">{{ 'french'|trans }}</a>
-                    <a class="dropdown-item" href="#">{{ 'english'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('app_fr') }}">{{ 'french'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('app_en') }}">{{ 'english'|trans }}</a>
                 </div>
             </li>
-        </nav>
+        </ul>
 
     <div class="container">
 

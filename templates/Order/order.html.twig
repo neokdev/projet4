@@ -2,18 +2,6 @@
 
 {% block body %}
 
-    {% if progress is defined %}
-        <div class="progress">
-            <div class="progress-bar bg-{{ progress.type }}" role="progressbar" style="width: {{ progress.value/3*100 }}%" aria-valuenow="{{ progress.value/3*100 }}" aria-valuemax="100">{{ progress.message }}</div>
-        </div>
-    {% endif %}
-
-    {% for msg in app.session.flashBag.get('success') %}
-        <div class="alert alert-success text-center">
-            {{ msg }}
-        </div>
-    {% endfor %}
-
     {% if form.vars is defined %}
         {% for error in form.vars.errors.form.getErrors(true) %}
             <div class="alert alert-warning text-center" role="alert">
@@ -34,22 +22,6 @@
         </div>
 
         {% block form %}
-
-            {% if form.date is defined %}
-                {{ include('Order/_date.html.twig') }}
-            {% endif %}
-
-            {% if form.duration is defined %}
-                {{ include('Order/_duration.html.twig') }}
-            {% endif %}
-
-            {% if form.ticketCollection is defined %}
-                {{ include('Order/_price.html.twig') }}
-            {% endif %}
-
-            {% if form.confirm is defined %}
-                {{ include('Order/_mail.html.twig') }}
-            {% endif %}
 
         {% endblock %}
 

@@ -8,9 +8,11 @@
 
 namespace App\Validator\Constraints;
 
-
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * Class IsDayTicketsPossible
+ */
 class IsDayTicketsPossible extends Constraint
 {
     public $message = 'dayTicketsNotAvalaible';

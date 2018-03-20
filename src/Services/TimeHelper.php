@@ -6,9 +6,11 @@
  * Time: 13:06
  */
 
-namespace App\Service;
+namespace App\Services;
 
-
+/**
+ * Class TimeHelper
+ */
 class TimeHelper
 {
     /**
@@ -27,6 +29,7 @@ class TimeHelper
 
     /**
      * @param string $limit
+     *
      * @return bool
      */
     public function isTimeExceed(string $limit):bool

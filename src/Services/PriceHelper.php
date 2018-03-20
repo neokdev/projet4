@@ -6,11 +6,13 @@
  * Time: 13:55
  */
 
-namespace App\Service;
-
+namespace App\Services;
 
 use DateTime;
 
+/**
+ * Class PriceHelper
+ */
 class PriceHelper
 {
     /**
@@ -29,7 +31,8 @@ class PriceHelper
 
     /**
      * @param DateTime $birthdate
-     * @param null $reducPrice
+     * @param null     $reducPrice
+     *
      * @return int|null
      */
     public function calculatePrice(DateTime $birthdate, $reducPrice = null):? int
@@ -37,21 +40,22 @@ class PriceHelper
         date_default_timezone_set(DateHelper::TIMEZONE);
         $age = $birthdate->diff($this->helper->getSelectedDate())->y;
         switch ($age) {
-            case ($age>=60):
+            case ($age >= 60):
                 $price = 12;
                 break;
-            case ($age>=12):
+            case ($age >= 12):
                 $price = 16;
                 break;
-            case ($age>=4):
+            case ($age >= 4):
                 $price = 8;
                 break;
             default:
                 $price = 0;
         }
-        if ($price>10 && $reducPrice) {
+        if ($price > 10 && $reducPrice) {
             $price = 10;
         }
+
         return $price;
     }
 }

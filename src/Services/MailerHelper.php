@@ -6,18 +6,22 @@
  * Time: 13:53
  */
 
-namespace App\Service;
-
+namespace App\Services;
 
 use App\Entity\Contact;
+use App\Entity\Ticket;
 use App\Entity\TicketOrder;
 use Swift_Mailer;
 use Swift_Message;
+use Symfony\Component\Translation\TranslatorInterface;
 use Twig_Environment;
 
+/**
+ * Class MailerHelper
+ */
 class MailerHelper
 {
-    CONST ADMIN_EMAIL = 'admin@projet4.nekbot.com';
+    const ADMIN_EMAIL = 'admin@projet4.nekbot.com';
 
     /**
      * @var Swift_Mailer
@@ -27,21 +31,31 @@ class MailerHelper
      * @var Twig_Environment
      */
     private $twig;
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
 
     /**
      * MailerHelper constructor.
-     * @param Swift_Mailer $mailer
-     * @param Twig_Environment $twig
+     * @param Swift_Mailer        $mailer
+     * @param Twig_Environment    $twig
+     * @param TranslatorInterface $translator
      */
-    public function __construct(Swift_Mailer $mailer, Twig_Environment $twig)
-    {
+    public function __construct(
+        Swift_Mailer $mailer,
+        Twig_Environment $twig,
+        TranslatorInterface $translator
+    ) {
         $this->mailer = $mailer;
         $this->twig = $twig;
+        $this->translator = $translator;
     }
 
     /**
      * @param TicketOrder $order
-     * @param $tickets
+     * @param Ticket      $tickets
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -50,23 +64,15 @@ class MailerHelper
     {
         $message = new Swift_Message('Billets du Musée du Louvre');
 
-        $bootstrapCss = "https://bootswatch.com/4/united/bootstrap.min.css";
-        $stylesCss = "css/styles.css";
-
-        $templateFiles = [
-            'bootstrapCss' => $message->embed(\Swift_EmbeddedFile::fromPath($bootstrapCss)),
-            'stylesCss' => $message->embed(\Swift_EmbeddedFile::fromPath($stylesCss)),
-        ];
-
         $message
             ->setFrom(self::ADMIN_EMAIL)
             ->setTo($order->getMail())
             ->setBody(
                 $this->twig->render(
-                    'emails/order.html.twig', [
+                    'emails/order.html.twig',
+                    [
                         'order' => $order,
                         'tickets' => $tickets,
-                        'files' => $templateFiles,
                     ]
                 ),
                 'text/html'
@@ -77,18 +83,22 @@ class MailerHelper
 
     /**
      * @param Contact $contact
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
     public function contactMail(Contact $contact)
     {
-        $message = (new Swift_Message($contact->getMessageType()))
+        $message = new Swift_Message("[".$this->translator->trans($contact->getMessageType())."] ".$contact->getSubject());
+
+        $message
             ->setFrom($contact->getEmail())
             ->setTo(self::ADMIN_EMAIL)
             ->setBody(
                 $this->twig->render(
-                    'Emails/contact.html.twig', [
+                    'Emails/contact.html.twig',
+                    [
                         'contact' => $contact,
                     ]
                 ),

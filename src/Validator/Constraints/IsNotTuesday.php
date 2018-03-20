@@ -12,8 +12,6 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * Class IsNotTuesday
- * @package App\Validator\Constraints
- * @Annotation
  */
 class IsNotTuesday extends Constraint
 {

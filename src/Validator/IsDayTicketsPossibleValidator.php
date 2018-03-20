@@ -8,15 +8,17 @@
 
 namespace App\Validator;
 
-
-use App\Service\DateHelper;
-use App\Service\TimeHelper;
+use App\Services\DateHelper;
+use App\Services\TimeHelper;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
+/**
+ * Class IsDayTicketsPossibleValidator
+ */
 class IsDayTicketsPossibleValidator extends ConstraintValidator
 {
-    CONST LIMIT_TIME = "14:00";
+    const LIMIT_TIME = "14:00";
     /**
      * @var DateHelper
      */
@@ -26,12 +28,21 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
      */
     private $timeHelper;
 
+    /**
+     * IsDayTicketsPossibleValidator constructor.
+     * @param DateHelper $dateHelper
+     * @param TimeHelper $timeHelper
+     */
     public function __construct(DateHelper $dateHelper, TimeHelper $timeHelper)
     {
         $this->dateHelper = $dateHelper;
         $this->timeHelper = $timeHelper;
     }
 
+    /**
+     * @param mixed      $value
+     * @param Constraint $constraint
+     */
     public function validate($value, Constraint $constraint)
     {
         if (!$this->isDayTicketsPossible() && $value) {
@@ -40,19 +51,28 @@ class IsDayTicketsPossibleValidator extends ConstraintValidator
         }
     }
 
+    /**
+     * @return bool
+     */
     public function isDateToday():bool
     {
         date_default_timezone_set(DateHelper::TIMEZONE);
-        return ((date_format($this->dateHelper->getSelectedDate(), "Y-m-d")) == (date_format($this->dateHelper->getActualDatetime(), "Y-m-d")));
+
+        return ((date_format($this->dateHelper->getSelectedDate(), "Y-m-d")) === (date_format($this->dateHelper->getActualDatetime(), "Y-m-d")));
     }
 
+    /**
+     * @return bool
+     */
     public function isDayTicketsPossible():bool
     {
         if (!$this->isDateToday()) {
             return true;
-        } elseif ($this->isDateToday() && $this->timeHelper->isTimeExceed(self::LIMIT_TIME)) {
+        }
+        if ($this->isDateToday() && $this->timeHelper->isTimeExceed(self::LIMIT_TIME)) {
             return false;
         }
+
         return true;
     }
 }

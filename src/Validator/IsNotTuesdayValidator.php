@@ -11,11 +11,13 @@ namespace App\Validator;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-
+/**
+ * Class IsNotTuesdayValidator
+ */
 class IsNotTuesdayValidator extends ConstraintValidator
 {
     /**
-     * @param mixed $date
+     * @param mixed      $date
      * @param Constraint $constraint
      */
     public function validate($date, Constraint $constraint)

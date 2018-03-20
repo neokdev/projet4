@@ -19,24 +19,27 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Validator\Constraints\IsValidName;
 
+/**
+ * Class TicketType
+ */
 class TicketType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('lastname', TextType::class, [
                 'constraints' => [
-                    new IsValidName()
+                    new IsValidName(),
                 ],
-                'label' => 'user.name'
+                'label' => 'user.name',
             ])
             ->add('firstName', TextType::class, [
                 'constraints' => [
-                    new IsValidName()
+                    new IsValidName(),
                 ],
                 'label' => 'user.firstname',
             ])
@@ -46,7 +49,7 @@ class TicketType extends AbstractType
             ])
             ->add('birthdate', DateType::class, [
                 'constraints' => [
-                    new IsBorn()
+                    new IsBorn(),
                 ],
                 'widget' => 'single_text',
                 'label' => 'user.birthday',
@@ -63,8 +66,7 @@ class TicketType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Ticket::class
+            'data_class' => Ticket::class,
         ]);
     }
 }
-

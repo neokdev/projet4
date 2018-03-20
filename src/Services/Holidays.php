@@ -6,20 +6,22 @@
  * Time: 11:15
  */
 
-namespace App\Service;
+namespace App\Services;
 
-
+/**
+ * Class Holidays
+ */
 class Holidays
 {
     /**
      * @param null $year
+     *
      * @return array
      */
     public function getHolidays($year = null):array
     {
         date_default_timezone_set(DateHelper::TIMEZONE);
-        if ($year === null)
-        {
+        if (null === $year) {
             $year = intval(date('Y'));
         }
 
@@ -31,11 +33,11 @@ class Holidays
         $holidays = array(
             // Dates fixes
 //            mktime(0, 0, 0, 1,  1,  $year),  // 1er janvier
-            mktime(0, 0, 0, 5,  1,  $year),  // Fête du travail
+            mktime(0, 0, 0, 5, 1, $year),  // Fête du travail
 //            mktime(0, 0, 0, 5,  8,  $year),  // Victoire des alliés
 //            mktime(0, 0, 0, 7,  14, $year),  // Fête nationale
 //            mktime(0, 0, 0, 8,  15, $year),  // Assomption
-            mktime(0, 0, 0, 11, 1,  $year),  // Toussaint
+            mktime(0, 0, 0, 11, 1, $year),  // Toussaint
 //            mktime(0, 0, 0, 11, 11, $year),  // Armistice
             mktime(0, 0, 0, 12, 25, $year),  // Noel
 

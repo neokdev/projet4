@@ -1,11 +1,19 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Neok
+ * Date: 15/03/2018
+ * Time: 12:26
+ */
 namespace App\Repository;
 
 use App\Entity\TicketOrder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+/**
+ * Class TicketOrderRepository
+ */
 class TicketOrderRepository extends ServiceEntityRepository
 {
     /**
@@ -19,10 +27,12 @@ class TicketOrderRepository extends ServiceEntityRepository
 
     /**
      * @param \DateTime|null $date
-     * @return mixed
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return mixed
      */
-    public function ticketsForThisDate(\DateTime $date=null)
+    public function ticketsForThisDate(\DateTime $date = null)
     {
         return $this->createQueryBuilder('ticket_order')
             ->select('COUNT(ticket_order.date)')

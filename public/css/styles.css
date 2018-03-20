@@ -8,11 +8,9 @@ body
     margin-top: 250px;
 }
 
-.nav li
+.nav li a
 {
-    margin-top: 0.5%;
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+    margin: 1%;
 }
 
 .card
@@ -43,7 +41,7 @@ body
 .jumbotron
 {
     padding-top: 20px;
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 @media screen {

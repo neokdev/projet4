@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Neok
+ * Date: 15/03/2018
+ * Time: 12:26
+ */
 namespace App\Form;
 
 use App\Entity\TicketOrder;
@@ -11,25 +16,31 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class TicketsCollectionType
+ */
 class TicketsCollectionType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ticketCollection', CollectionType::class, [
+            ->add(
+                'ticketCollection',
+                CollectionType::class,
+                [
                 'label' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'entry_type' => TicketType::class,
                 'entry_options' => [
                     'label' => false,
-                ]
-            ]
-        )
+                ],
+                    ]
+            )
         ->addEventListener(
             FormEvents::SUBMIT,
             function (FormEvent $event) {

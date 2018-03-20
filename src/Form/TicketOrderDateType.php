@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Neok
+ * Date: 15/03/2018
+ * Time: 12:26
+ */
 namespace App\Form;
 
 use App\Entity\TicketOrder;
@@ -14,11 +19,14 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class TicketOrderDateType
+ */
 class TicketOrderDateType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,7 +40,7 @@ class TicketOrderDateType extends AbstractType
                     new IsOpenDays(),
                     new IsTicketsAvalaible(),
                     new IsDatePassed(),
-                    new IsTooLateForToday()
+                    new IsTooLateForToday(),
                 ],
             ])
         ;
@@ -44,7 +52,7 @@ class TicketOrderDateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TicketOrder::class
+            'data_class' => TicketOrder::class,
         ]);
     }
 }

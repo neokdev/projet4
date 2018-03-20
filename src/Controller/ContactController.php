@@ -8,35 +8,32 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Contact;
-use App\Form\ContactType;
-use App\Service\MailerHelper;
+use App\Services\Contact\Contact;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class ContactController
+ */
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/contact", name="app_contact")
+     * @Route(
+     *     "/contact",
+     *     name="app_contact")
      * @param Request $request
-     * @param MailerHelper $helper
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Contact $contact
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     *
+     * @return Response
      */
-    public function contact(Request $request, MailerHelper $helper)
+    public function contact(Request $request, Contact $contact)
     {
-        $contact = new Contact();
-
-        $form = $this->createForm(ContactType::class, $contact)
-            ->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $helper->contactMail($contact);
-        }
-
-        return $this->render('Contact/contact.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        return new Response($contact->contact($request));
     }
 }

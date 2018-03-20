@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Neok
+ * Date: 15/03/2018
+ * Time: 12:26
+ */
 namespace App\Entity;
 
 use DateTime;
@@ -28,7 +33,7 @@ class TicketOrder
     private $date;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $orderDate;
 
@@ -46,7 +51,9 @@ class TicketOrder
     private $ticketCollection;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(
+     *     type="string",
+     *     nullable=true)
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      */
     private $mail;
