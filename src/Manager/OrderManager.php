@@ -220,16 +220,6 @@ class OrderManager
     }
 
     /**
-     * @param Contact $contact
-     */
-    public function writeContact(Contact $contact)
-    {
-        $em = $this->registry->getManager();
-        $em->persist($contact);
-        $em->flush();
-    }
-
-    /**
      *
      */
     public function clearSessionVars(): void

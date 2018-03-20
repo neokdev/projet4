@@ -13,7 +13,10 @@ use App\Form\ContactType;
 use App\Manager\ContactManager;
 use App\Services\MailerHelper;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
@@ -37,24 +40,38 @@ class Contact
      * @var ContactManager
      */
     private $contact;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flash;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
 
     /**
      * Contact constructor.
-     * @param Environment          $twig
-     * @param FormFactoryInterface $factory
-     * @param MailerHelper         $mailerHelper
-     * @param ContactManager       $contact
+     * @param Environment           $twig
+     * @param FlashBagInterface     $flash
+     * @param FormFactoryInterface  $factory
+     * @param MailerHelper          $mailerHelper
+     * @param ContactManager        $contact
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         Environment $twig,
+        FlashBagInterface $flash,
         FormFactoryInterface $factory,
         MailerHelper $mailerHelper,
-        ContactManager $contact
+        ContactManager $contact,
+        UrlGeneratorInterface $urlGenerator
     ) {
         $this->factory = $factory;
         $this->twig = $twig;
         $this->mailerHelper = $mailerHelper;
         $this->contact = $contact;
+        $this->flash = $flash;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -64,7 +81,7 @@ class Contact
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @return string
+     * @return $this|string
      */
     public function contact(Request $request)
     {
@@ -78,9 +95,11 @@ class Contact
 
             $this->mailerHelper->contactMail($contact);
 
-//            return $this->render('Emails/contact.html.twig', [
-//                'contact' => $contact,
-//            ]);
+            $this->flash->add('success', 'contactSuccess');
+
+            return RedirectResponse::create(
+                $this->urlGenerator->generate('app_homepage')
+            )->send();
         }
 
         return $this->twig->render('Contact/contact.html.twig', [

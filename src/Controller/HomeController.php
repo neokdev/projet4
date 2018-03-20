@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
  * Class HomeController
@@ -23,11 +24,17 @@ class HomeController extends AbstractController
      *     "/",
      *     name="app_homepage"
      * )
+     * @param FlashBagInterface $flashBag
+     *
      * @return Response
      */
-    public function homepage()
+    public function homepage(FlashBagInterface $flashBag)
     {
-        return $this->render('homepage.html.twig');
+        $flashes = $flashBag->get('success');
+
+        return $this->render('homepage.html.twig', [
+            'flashes' => $flashes,
+        ]);
     }
 
     /**

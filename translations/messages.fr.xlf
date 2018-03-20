@@ -379,5 +379,11 @@
                 <target>Un email vous a été envoyé</target>
             </segment>
         </unit>
+        <unit id="contactSuccess">
+            <segment>
+                <source>contactSuccess</source>
+                <target>Votre formulaire à bien été transmis</target>
+            </segment>
+        </unit>
     </file>
 </xliff>
