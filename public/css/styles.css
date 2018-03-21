@@ -1,16 +1,18 @@
 body
 {
     background: url("../img/3-1.jpg") fixed;
+    margin-top: 170px;
+    margin-bottom: 70px;
 }
 
 #siteTitle
 {
-    margin-top: 250px;
+    margin-top: 400px;
 }
 
-.nav li a
+a.nav-link
 {
-    margin: 1%;
+    margin: 3%;
 }
 
 .card
@@ -28,34 +30,9 @@ body
     margin: 0.5%;
 }
 
-.remove-ticket
-{
-    margin-bottom: 1em;
-}
-
 .alert
 {
     margin: 2%;
-}
-
-.jumbotron
-{
-    padding-top: 20px;
-    padding-bottom: 0;
-}
-
-@media screen {
-    body
-    {
-        padding-top: 200px;
-    }
-}
-
-@media screen and (min-width: 576px) {
-    body
-    {
-        padding-top: 100px;
-    }
 }
 
 @media (min-width: 34em) {

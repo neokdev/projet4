@@ -55,7 +55,7 @@ function addTicketFormDeleteLink($ticketFormLi) {
     let $removeFormA = $('<a role="button" href="#" class="remove_ticket_link btn btn-danger">Delete</a>');
     $ticketFormLi.append($removeFormA);
 
-    $('.remove_ticket_link').html(removeTicketTrans);
+    $('.remove_ticket_link').html(removeTicketTrans).css('display', 'inherit');
 
     $removeFormA.on('click', function(e) {
         e.preventDefault();
