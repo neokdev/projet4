@@ -8,20 +8,22 @@
 
 namespace App\Manager;
 
-use App\Entity\Contact;
 use App\Entity\Ticket;
 use App\Entity\TicketOrder;
 use App\Form\ConfirmType;
 use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
+use App\Repository\TicketOrderRepository;
 use App\Services\IdHelper;
 use App\Services\PriceHelper;
+use App\Validator\IsTicketsAvalaibleValidator;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -58,6 +60,14 @@ class OrderManager
      * @var ManagerRegistry
      */
     private $registry;
+    /**
+     * @var TicketOrderRepository
+     */
+    private $ticketOrderRepository;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flash;
 
     /**
      * OrderManager constructor.
@@ -68,6 +78,8 @@ class OrderManager
      * @param PriceHelper            $helper
      * @param IdHelper               $idHelper
      * @param ManagerRegistry        $registry
+     * @param FlashBagInterface      $flash
+     * @param TicketOrderRepository  $ticketOrderRepository
      */
     public function __construct(
         EntityManagerInterface $entity,
@@ -76,7 +88,9 @@ class OrderManager
         UrlGeneratorInterface $urlGenerator,
         PriceHelper $helper,
         IdHelper $idHelper,
-        ManagerRegistry $registry
+        ManagerRegistry $registry,
+        FlashBagInterface $flash,
+        TicketOrderRepository $ticketOrderRepository
     ) {
         $this->entity = $entity;
         $this->factory = $factory;
@@ -85,12 +99,14 @@ class OrderManager
         $this->idHelper = $idHelper;
         $this->urlGenerator = $urlGenerator;
         $this->registry = $registry;
+        $this->ticketOrderRepository = $ticketOrderRepository;
+        $this->flash = $flash;
     }
 
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\Form\FormView
+     * @return \Symfony\Component\Form\FormView|RedirectResponse
      */
     public function stepOne(Request $request)
     {
@@ -100,11 +116,10 @@ class OrderManager
 
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
-            $order->setOrderDate(new \DateTime());
             $this->session->set('order', $order);
             $this->session->set('step', 2);
 
-            RedirectResponse::create(
+            return RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -115,7 +130,7 @@ class OrderManager
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\Form\FormView
+     * @return \Symfony\Component\Form\FormView|RedirectResponse
      */
     public function stepTwo(Request $request)
     {
@@ -128,7 +143,7 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 3);
 
-            RedirectResponse::create(
+            return RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -139,7 +154,9 @@ class OrderManager
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\Form\FormView
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     *
+     * @return \Symfony\Component\Form\FormView|RedirectResponse
      */
     public function stepThree(Request $request)
     {
@@ -150,10 +167,20 @@ class OrderManager
         if ($form->isSubmitted() && $form->isValid()) {
             $order = $form->getData();
 
-            $this->session->set('step', 4);
-
             /** @var Ticket $tickets */
             $tickets = $order->getTicketCollection();
+
+            //Check availability
+            $ticketsAvailable = IsTicketsAvalaibleValidator::DAY_BUY_LIMIT - $this->ticketOrderRepository->ticketsForThisDate($this->session->get('order')->getDate());
+            if ($ticketsAvailable < count($tickets)) {
+                $this->session->set('nbTickets', $ticketsAvailable);
+                $this->flash->add('errorTicket', 'ticketsAvailable');
+
+                return RedirectResponse::create(
+                    $this->urlGenerator->generate('app_order')
+                )->send();
+            }
+
             $this->session->set('tickets', $order->getTicketCollection());
             $totalPrice = 0;
             /** @var Ticket $ticket */
@@ -171,7 +198,9 @@ class OrderManager
 
             $this->session->set('order', $order);
 
-            RedirectResponse::create(
+            $this->session->set('step', 4);
+
+            return RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -182,7 +211,7 @@ class OrderManager
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\Form\FormView
+     * @return \Symfony\Component\Form\FormView|RedirectResponse
      */
     public function stepFour(Request $request)
     {
@@ -195,7 +224,7 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 5);
 
-            RedirectResponse::create(
+            return RedirectResponse::create(
                 $this->urlGenerator->generate('app_checkout')
             )->send();
         }
@@ -217,16 +246,5 @@ class OrderManager
             $em->persist($ticket);
         }
         $em->flush();
-    }
-
-    /**
-     *
-     */
-    public function clearSessionVars(): void
-    {
-        $this->session->remove('step');
-        $this->session->remove('order');
-        $this->session->remove('ticket');
-        $this->session->remove('tickets');
     }
 }

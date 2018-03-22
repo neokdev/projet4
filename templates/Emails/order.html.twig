@@ -2,48 +2,44 @@
 <html lang="{{ app.request.locale }}">
 
     <head>
-        <title>{% block title %}Voici vos billets pour le Musée du Louvre{% endblock %}</title>
-        <!-- The character set should be utf-8 -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width"/>
-        {% block stylesheets %}
-            {#<link rel="stylesheet"#}
-                  {#href="{{ asset('/css/bootstrap.min.css') }}"#}
-                  {#href="{{ files.bootstrapCss }}"#}
-                    {#integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"#}
-                    {#crossorigin="anonymous"#}
-            {#>#}
-            {#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
-            {#<link rel="stylesheet" href="{{ files.stylesCss }}">#}
-        {% endblock %}
+
+        <style>
+            .jumbotron
+            {
+                background-color: #d7f0db;
+                text-align: center;
+            }
+        </style>
+
     </head>
 
     <body>
 
-        <div class="container">
-
-            <div>
-                <p class="lead">{{ 'commandNumber'|trans }}: {{ order.orderNumber }}</p>
-                <p class="lead">{{ 'user.mail'|trans }}: {{ order.mail }}</p>
-                <h2>{{ 'virtualTicketHeader'|trans }}</h2><br/>
-            </div>
-
-            {% for ticket in tickets %}
-                <div class="jumbotron" style="max-width: 700px">
-                    <h1 class="text-center"><strong><mark>{{ 'Louvre'|upper }}</mark></strong></h1>
-                    <h2 class="text-center">{{ 'Musée'|upper }} {% if order.duration is same as(true) %}{{ 'day'|trans|upper }}{% else %}{{ 'halfDay'|trans|upper }}{% endif %}</h2>
-                    <h3 class="text-center">DATE: {{ order.date|date("d/m/y") }}</h3>
-                    <p class="text-center">{{ 'ticketDesc'|trans|upper }}<br/>{% if order.duration is same as(true) %}{{ 'durationDayDesc'|trans|upper }}{% else %}{{ 'durationHalfdayDesc'|trans|upper }}{% endif %}</p>
-                    <div class="row">
-                    <h2 class="col">{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</h2><h4 class="col">{{ ticket.lastname|upper }} {{ ticket.firstname|upper }}</h4>
-                    </div>
-                    <p class="text-muted">
-                        <small>{{ ticket.ticketNumber }}</small>
-                    </p>
-                </div>
-            {% endfor %}
-
+        <div>
+            <p class="lead">{{ 'commandNumber'|trans }}: {{ order.orderNumber }}</p>
+            <p class="lead">{{ 'user.mail'|trans }}: {{ order.mail }}</p>
+            <h2>{{ 'virtualTicketHeader'|trans }}</h2><br/>
         </div>
 
+        {% for ticket in tickets %}
+            <div class="jumbotron">
+                <h1><strong><mark>{{ 'Louvre'|upper }}</mark></strong></h1>
+                <h2>{{ 'Musée'|upper }} {% if order.duration is same as(true) %}{{ 'day'|trans|upper }}{% else %}{{ 'halfDay'|trans|upper }}{% endif %}</h2>
+                <h3>DATE: {{ order.date|date("d/m/y") }}</h3>
+                <p>{{ 'ticketDesc'|trans|upper }}<br/>{% if order.duration is same as(true) %}{{ 'durationDayDesc'|trans|upper }}{% else %}{{ 'durationHalfdayDesc'|trans|upper }}{% endif %}</p>
+
+                <h2>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</h2><h4>{{ ticket.lastname|upper }} {{ ticket.firstname|upper }}</h4>
+
+                <p class="text-muted">
+                    <small>{{ ticket.ticketNumber }}</small>
+                </p>
+            </div>
+            <br/>
+
+        {% endfor %}
+
     </body>
+
 </html>

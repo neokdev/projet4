@@ -6,6 +6,12 @@
 
         <div class="card-body">
 
+            {% for flash in app.flashes('errorDate') %}
+                <div class="alert alert-info text-center" role="alert">
+                    {{ flash|trans }}
+                </div>
+            {% endfor %}
+
             {{ form_row(form.date) }}
 
         </div>

@@ -2,36 +2,21 @@
 <html lang="fr">
 
     <head>
-        <title>{% block title %}Voici vos billets pour le Musée du Louvre{% endblock %}</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% block stylesheets %}
-            {#<link rel="stylesheet"#}
-                  {#href="{{ asset('/css/bootstrap.min.css') }}"#}
-                    {#href="{{ files.bootstrapCss }}"#}
-                    {#integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"#}
-                    {#crossorigin="anonymous"#}
-            {#>#}
-            {#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
-            {#<link rel="stylesheet" href="{{ files.stylesCss }}">#}
-        {% endblock %}
+            <style>
+                .author
+                {
+                    text-align: right;
+                }
+            </style>
     </head>
 
     <body>
 
-        <div class="container">
-
-            <div class="card">
-                <div class="card-header">
-                    {{ contact.subject }}
-                </div>
-                <div class="card-body">
-                    {{ contact.messageText }}
-                </div>
-                <div class="card-footer">
-                    <i>"{{ contact.email }}"</i>
-                </div>
-            </div>
+        <h2>{{ contact.subject }}</h2>
+        <p>{{ contact.messageText }}</p>
+        <div class="author">
+            <em>{{ contact.email }}</em>
         </div>
 
     </body>

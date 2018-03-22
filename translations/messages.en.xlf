@@ -214,13 +214,13 @@
         <unit id="successMessage">
             <segment>
                 <source>successMessage</source>
-                <target>Your ticket has been booked!</target>
+                <target>Your ticket has been booked</target>
             </segment>
         </unit>
         <unit id="success">
             <segment>
                 <source>success</source>
-                <target>Success !</target>
+                <target>Success</target>
             </segment>
         </unit>
         <unit id="noTicketAdded">
@@ -376,13 +376,37 @@
         <unit id="aMailHasBeenSent">
             <segment>
                 <source>aMailHasBeenSent</source>
-                <target>An email has been sent to you</target>
+                <target>An email has been sent to the address</target>
             </segment>
         </unit>
         <unit id="contactSuccess">
             <segment>
                 <source>contactSuccess</source>
                 <target>Your form has been sent</target>
+            </segment>
+        </unit>
+        <unit id="ticketsAvailable">
+            <segment>
+                <source>ticketsAvailable</source>
+                <target>Number of tickets available</target>
+            </segment>
+        </unit>
+        <unit id="dateInvalid">
+            <segment>
+                <source>dateInvalid</source>
+                <target>Date Invalid</target>
+            </segment>
+        </unit>
+        <unit id="orderNumber">
+            <segment>
+                <source>orderNumber</source>
+                <target>Order number</target>
+            </segment>
+        </unit>
+        <unit id="orderedOn">
+            <segment>
+                <source>orderedOn</source>
+                <target>Ordered on</target>
             </segment>
         </unit>
     </file>

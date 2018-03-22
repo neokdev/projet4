@@ -9,7 +9,9 @@
 namespace App\Services\Order;
 
 use App\Manager\OrderManager;
+use App\Services\DateHelper;
 use App\Services\MailerHelper;
+use App\Services\SessionHelper;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Twig\Environment;
 
@@ -34,6 +36,10 @@ class Success
      * @var Environment
      */
     private $twig;
+    /**
+     * @var SessionHelper
+     */
+    private $sessionHelper;
 
     /**
      * Success constructor.
@@ -41,17 +47,20 @@ class Success
      * @param SessionInterface $session
      * @param OrderManager     $order
      * @param MailerHelper     $mailerHelper
+     * @param SessionHelper    $sessionHelper
      */
     public function __construct(
         Environment $twig,
         SessionInterface $session,
         OrderManager $order,
-        MailerHelper $mailerHelper
+        MailerHelper $mailerHelper,
+        SessionHelper $sessionHelper
     ) {
         $this->session = $session;
         $this->mailerHelper = $mailerHelper;
         $this->order = $order;
         $this->twig = $twig;
+        $this->sessionHelper = $sessionHelper;
     }
 
     /**
@@ -64,19 +73,17 @@ class Success
     public function success()
     {
         $order = $this->session->get('order');
+
+        date_default_timezone_set(DateHelper::TIMEZONE);
+        $order->setOrderDate(new \DateTime());
+
         $tickets = $order->getTicketCollection();
 
         $this->order->writeOrder($order, $tickets);
 
         $this->mailerHelper->orderMail($order, $tickets);
 
-//        return $this->render('Emails/order.html.twig', [
-//            'cardTitle' => "cardTitleSuccess",
-//            'order' => $order,
-//            'tickets' => $tickets,
-//        ]);
-
-//        $this->orderManager->clearSessionVars();
+        $this->sessionHelper->clearSessionVars();
 
         return $this->twig->render('Order/_success.html.twig', [
             'cardTitle' => "cardTitleSuccess",

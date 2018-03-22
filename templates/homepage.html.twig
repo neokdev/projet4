@@ -2,13 +2,11 @@
 
 {% block body %}
 
-    {% if flashes is defined %}
-        {% for flash in flashes %}
-            <div class="alert alert-success text-center" role="alert">
-                {{ flash|trans }}
-            </div>
-        {% endfor %}
-    {% endif %}
+    {% for flash in app.flashes('success') %}
+        <div class="alert alert-success text-center" role="alert">
+            {{ flash|trans }}
+        </div>
+    {% endfor %}
 
     <h1 id="siteTitle" class="display-4 text-center"><strong>{{ 'siteTitle'|trans }}</strong></h1>
 

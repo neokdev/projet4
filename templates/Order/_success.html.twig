@@ -5,9 +5,11 @@
     <div class="card-body">
 
         <div class="alert alert-success text-center" role="alert">
-            <h4 class="alert-heading">{% trans %}success{% endtrans %}</h4>
-            <strong>{% trans %}successMessage{% endtrans %}</strong>
-            <p>{{ 'aMailHasBeenSent'|trans }}</p>
+            <h4 class="alert-heading">{{ 'success'|trans }}</h4>
+            <h5>{{ 'successMessage'|trans }}</h5>
+            <p>{{ 'aMailHasBeenSent'|trans }}: <strong>{{ order.mail }}</strong></p>
+            <p>{{ 'orderNumber'|trans }}: <strong>{{ order.orderNumber }}</strong>.</p>
+            <p>{{ 'orderedOn'|trans }}: {{ order.orderDate|date('d/m/Y H:i') }}</p>
         </div>
 
     </div>

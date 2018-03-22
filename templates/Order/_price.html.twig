@@ -20,6 +20,20 @@
 
         <div class="card-body">
 
+            {% if form.vars is defined %}
+                {% for error in form.vars.errors.form.getErrors(true) %}
+                    <div class="alert alert-warning text-center" role="alert">
+                        {{ error.message|trans }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% for flash in app.flashes('errorTicket') %}
+                <div class="alert alert-info text-center" role="alert">
+                    {{ flash|trans }}: {{ app.session.get('nbTickets') }}
+                </div>
+            {% endfor %}
+
             <ul class="tickets list-group list-group-flush" data-prototype="{{ form_widget(form.ticketCollection.vars.prototype)|e('html_attr') }}">
                 {% for ticket in form.ticketCollection %}
                     <li class="list-group-item">{{ form_row(ticket) }}</li>

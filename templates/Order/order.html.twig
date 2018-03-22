@@ -2,14 +2,6 @@
 
 {% block body %}
 
-    {% if form.vars is defined %}
-        {% for error in form.vars.errors.form.getErrors(true) %}
-            <div class="alert alert-warning text-center" role="alert">
-                {{ error.message|trans }}
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <div class="card" id="form">
 
         <div class="card-header">

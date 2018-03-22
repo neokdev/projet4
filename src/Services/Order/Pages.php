@@ -11,6 +11,7 @@ namespace App\Services\Order;
 use App\Manager\OrderManager;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
@@ -36,29 +37,37 @@ class Pages
      * @var Environment
      */
     private $twig;
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
 
     /**
      * Pages constructor.
-     * @param Environment      $twig
-     * @param OrderManager     $orderManager
-     * @param SessionInterface $session
-     * @param RouterInterface  $router
+     * @param Environment       $twig
+     * @param OrderManager      $orderManager
+     * @param SessionInterface  $session
+     * @param FlashBagInterface $flashBag
+     * @param RouterInterface   $router
      */
     public function __construct(
         Environment $twig,
         OrderManager $orderManager,
         SessionInterface $session,
+        FlashBagInterface $flashBag,
         RouterInterface $router
     ) {
         $this->orderManager = $orderManager;
         $this->session = $session;
         $this->router = $router;
         $this->twig = $twig;
+        $this->flashBag = $flashBag;
     }
 
     /**
      * @param Request $request
      *
+     * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -82,6 +91,7 @@ class Pages
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
+                $this->flashBag->get('fail');
                 $template = 'Order/_price.html.twig';
                 $cardTitle = "cardTitlePrice";
                 break;

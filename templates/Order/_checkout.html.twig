@@ -10,41 +10,41 @@
 
 {% block form %}
 
-    <div class="alert alert-info text-center" role="alert">
-        {% if order.duration %}
-            <strong>{% trans %}day{% endtrans %}</strong>
-        {% else %}
-            <strong>{% trans %}halfDay{% endtrans %}</strong>
-        {% endif %} {% trans %}of{% endtrans %}
-    {{ date }}
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">{% trans %}ticketNumber{% endtrans %}</th>
-                <th scope="col">{% trans %}user.name{% endtrans %}</th>
-                <th scope="col">{% trans %}user.firstname{% endtrans %}</th>
-                <th scope="col">{% trans %}reducedPrice{% endtrans %}</th>
-                <th scope="col">{% trans %}price{% endtrans %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for ticket in tickets %}
-                <tr>
-                    <th scope="row">{{ ticket.ticketNumber }}</th>
-                    <td>{{ ticket.lastname|capitalize }}</td>
-                    <td>{{ ticket.firstname|capitalize }}</td>
-                    <td>{% if ticket.reducedprice is same as(true) %}<i class="far fa-check-square"></i>{% endif %}</td>
-                    <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
     <div class="card-body">
+
+        <div class="alert alert-info text-center" role="alert">
+            {% if order.duration %}
+                <strong>{% trans %}day{% endtrans %}</strong>
+            {% else %}
+                <strong>{% trans %}halfDay{% endtrans %}</strong>
+            {% endif %} {% trans %}of{% endtrans %}
+            {{ date }}
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">{% trans %}ticketNumber{% endtrans %}</th>
+                    <th scope="col">{% trans %}user.name{% endtrans %}</th>
+                    <th scope="col">{% trans %}user.firstname{% endtrans %}</th>
+                    <th scope="col">{% trans %}reducedPrice{% endtrans %}</th>
+                    <th scope="col">{% trans %}price{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <th scope="row">{{ ticket.ticketNumber }}</th>
+                        <td>{{ ticket.lastname|capitalize }}</td>
+                        <td>{{ ticket.firstname|capitalize }}</td>
+                        <td>{% if ticket.reducedprice is same as(true) %}<i class="far fa-check-square"></i>{% endif %}</td>
+                        <td>{{ ticket.ticketPrice|number_format(2, ',', ' ') }} €</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
         <div class="d-flex align-items-end flex-column">
             <h6>{% if order.duration %}{% else %}{% trans %}halfDayDiscount{% endtrans %}{% endif %}</h6>
