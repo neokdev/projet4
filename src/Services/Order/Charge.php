@@ -67,6 +67,7 @@ class Charge
      * @param TicketOrderRepository $ticketOrderRepository
      * @param FlashBagInterface     $flash
      * @param UrlGeneratorInterface $urlGenerator
+     * @param ValidatorInterface    $validator
      */
     public function __construct(
         Environment $twig,

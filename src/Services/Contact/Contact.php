@@ -13,6 +13,7 @@ use App\Form\ContactType;
 use App\Manager\ContactManager;
 use App\Services\MailerHelper;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -96,9 +97,9 @@ class Contact
 
             $this->flash->add('success', 'contactSuccess');
 
-//            return RedirectResponse::create(
-//                $this->urlGenerator->generate('app_homepage')
-//            )->send();
+            return RedirectResponse::create(
+                $this->urlGenerator->generate('app_homepage')
+            )->send();
         }
 
         return $this->twig->render('Contact/contact.html.twig', [

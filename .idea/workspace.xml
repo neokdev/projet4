@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3bdadce-9818-4932-b37c-52b665fe3666" name="Default" comment="Emails fixed and Validor rechecked at payment">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Services/SessionHelper.php" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3881fc28-75c6-4353-ba70-6411290fb16c.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/3881fc28-75c6-4353-ba70-6411290fb16c.xml" />
+    <list default="true" id="a3bdadce-9818-4932-b37c-52b665fe3666" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/fixtures.yml" afterPath="$PROJECT_DIR$/src/DataFixtures/fixtures.yml" />
-      <change beforePath="$PROJECT_DIR$/src/Manager/OrderManager.php" afterPath="$PROJECT_DIR$/src/Manager/OrderManager.php" />
       <change beforePath="$PROJECT_DIR$/src/Services/Contact/Contact.php" afterPath="$PROJECT_DIR$/src/Services/Contact/Contact.php" />
       <change beforePath="$PROJECT_DIR$/src/Services/Order/Charge.php" afterPath="$PROJECT_DIR$/src/Services/Order/Charge.php" />
-      <change beforePath="$PROJECT_DIR$/src/Services/Order/Pages.php" afterPath="$PROJECT_DIR$/src/Services/Order/Pages.php" />
-      <change beforePath="$PROJECT_DIR$/src/Services/Order/Success.php" afterPath="$PROJECT_DIR$/src/Services/Order/Success.php" />
-      <change beforePath="$PROJECT_DIR$/src/Validator/IsTooLateForTodayValidator.php" afterPath="$PROJECT_DIR$/src/Validator/IsTooLateForTodayValidator.php" />
-      <change beforePath="$PROJECT_DIR$/templates/Emails/contact.html.twig" afterPath="$PROJECT_DIR$/templates/Emails/contact.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Emails/order.html.twig" afterPath="$PROJECT_DIR$/templates/Emails/order.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/_checkout.html.twig" afterPath="$PROJECT_DIR$/templates/Order/_checkout.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/_date.html.twig" afterPath="$PROJECT_DIR$/templates/Order/_date.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/_duration.html.twig" afterPath="$PROJECT_DIR$/templates/Order/_duration.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/_price.html.twig" afterPath="$PROJECT_DIR$/templates/Order/_price.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/_success.html.twig" afterPath="$PROJECT_DIR$/templates/Order/_success.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/Order/order.html.twig" afterPath="$PROJECT_DIR$/templates/Order/order.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" afterPath="$PROJECT_DIR$/templates/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/templates/homepage.html.twig" afterPath="$PROJECT_DIR$/templates/homepage.html.twig" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.en.xlf" afterPath="$PROJECT_DIR$/translations/messages.en.xlf" />
-      <change beforePath="$PROJECT_DIR$/translations/messages.fr.xlf" afterPath="$PROJECT_DIR$/translations/messages.fr.xlf" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -82,17 +62,27 @@
       <file leaf-file-name="Charge.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Services/Order/Charge.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="161" column="17" lean-forward="false" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
+            <state relative-caret-position="2450">
+              <caret line="75" column="53" lean-forward="true" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
               <folding>
                 <element signature="e#119#141#0#PHP" expanded="true" />
-                <element signature="e#5573#5596#0#PHP" expanded="true" />
-                <element signature="e#5871#5894#0#PHP" expanded="true" />
-                <element signature="e#6213#6236#0#PHP" expanded="true" />
-                <element signature="e#6502#6525#0#PHP" expanded="true" />
-                <element signature="e#6831#6854#0#PHP" expanded="true" />
-                <element signature="e#7118#7141#0#PHP" expanded="true" />
+                <element signature="e#5620#5643#0#PHP" expanded="true" />
+                <element signature="e#5918#5941#0#PHP" expanded="true" />
+                <element signature="e#6260#6283#0#PHP" expanded="true" />
+                <element signature="e#6549#6572#0#PHP" expanded="true" />
+                <element signature="e#6878#6901#0#PHP" expanded="true" />
+                <element signature="e#7165#7188#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContactManager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Manager/ContactManager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/templates/Emails/contact.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
-              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -142,10 +132,11 @@
       <file leaf-file-name="Contact.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Services/Contact/Contact.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+            <state relative-caret-position="1328">
+              <caret line="99" column="35" lean-forward="false" selection-start-line="99" selection-start-column="35" selection-end-line="99" selection-end-column="35" />
               <folding>
-                <element signature="e#2553#2580#0#PHP" expanded="true" />
+                <element signature="e#121#161#0#PHP" expanded="true" />
+                <element signature="e#2602#2629#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,17 +158,7 @@
         <entry file="file://$PROJECT_DIR$/templates/Emails/order.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="292">
-              <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MailerHelper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Services/MailerHelper.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-245">
-              <caret line="64" column="67" lean-forward="false" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
+              <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -298,7 +279,6 @@
         <option value="$PROJECT_DIR$/src/Validator/IsTooLateForTodayValidator.php" />
         <option value="$PROJECT_DIR$/templates/Order/_date.html.twig" />
         <option value="$PROJECT_DIR$/templates/Order/_checkout.html.twig" />
-        <option value="$PROJECT_DIR$/src/Services/Order/Charge.php" />
         <option value="$PROJECT_DIR$/templates/Order/_duration.html.twig" />
         <option value="$PROJECT_DIR$/templates/Order/_price.html.twig" />
         <option value="$PROJECT_DIR$/translations/messages.en.xlf" />
@@ -308,8 +288,9 @@
         <option value="$PROJECT_DIR$/src/Services/Order/Success.php" />
         <option value="$PROJECT_DIR$/templates/Emails/contact.html.twig" />
         <option value="$PROJECT_DIR$/templates/Emails/order.html.twig" />
-        <option value="$PROJECT_DIR$/src/Services/Contact/Contact.php" />
         <option value="$PROJECT_DIR$/src/Manager/OrderManager.php" />
+        <option value="$PROJECT_DIR$/src/Services/Contact/Contact.php" />
+        <option value="$PROJECT_DIR$/src/Services/Order/Charge.php" />
       </list>
     </option>
   </component>
@@ -683,14 +664,7 @@
       <workItem from="1521471095729" duration="20312000" />
       <workItem from="1521536817947" duration="48146000" />
       <workItem from="1521671971877" duration="10586000" />
-      <workItem from="1521715707136" duration="11990000" />
-    </task>
-    <task id="LOCAL-00005" summary="testing features Twig">
-      <created>1517233924242</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1517233924242</updated>
+      <workItem from="1521715707136" duration="12367000" />
     </task>
     <task id="LOCAL-00006" summary="refactoring">
       <created>1517265597488</created>
@@ -1028,11 +1002,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521622470508</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Emails fixed and Validor rechecked at payment">
+      <created>1521729826679</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1521729826680</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="918608000" />
+    <option name="totallyTimeSpent" value="918985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1048,7 +1029,7 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32865584" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32865584" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32791728" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293944" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1151,6 +1132,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,6 +1187,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1332,16 +1315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Manager/ContactManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-          <folding>
-            <element signature="e#112#135#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Validator/Constraints/IsDatePassed.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1432,14 +1405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/Order/Success.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="803">
-          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Contact/contact.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1453,7 +1418,7 @@
     <entry file="file://$PROJECT_DIR$/templates/Emails/contact.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1461,18 +1426,8 @@
     <entry file="file://$PROJECT_DIR$/templates/Emails/order.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
-          <caret line="23" column="14" lean-forward="true" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Services/Contact/Contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
-          <folding>
-            <element signature="e#2553#2580#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1492,18 +1447,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Order/Success.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="803">
+          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Manager/ContactManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Services/Contact/Contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1328">
+          <caret line="99" column="35" lean-forward="false" selection-start-line="99" selection-start-column="35" selection-end-line="99" selection-end-column="35" />
+          <folding>
+            <element signature="e#121#161#0#PHP" expanded="true" />
+            <element signature="e#2602#2629#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Services/Order/Charge.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="161" column="17" lean-forward="false" selection-start-line="161" selection-start-column="17" selection-end-line="161" selection-end-column="17" />
+        <state relative-caret-position="2450">
+          <caret line="75" column="53" lean-forward="true" selection-start-line="75" selection-start-column="53" selection-end-line="75" selection-end-column="53" />
           <folding>
             <element signature="e#119#141#0#PHP" expanded="true" />
-            <element signature="e#5573#5596#0#PHP" expanded="true" />
-            <element signature="e#5871#5894#0#PHP" expanded="true" />
-            <element signature="e#6213#6236#0#PHP" expanded="true" />
-            <element signature="e#6502#6525#0#PHP" expanded="true" />
-            <element signature="e#6831#6854#0#PHP" expanded="true" />
-            <element signature="e#7118#7141#0#PHP" expanded="true" />
+            <element signature="e#5620#5643#0#PHP" expanded="true" />
+            <element signature="e#5918#5941#0#PHP" expanded="true" />
+            <element signature="e#6260#6283#0#PHP" expanded="true" />
+            <element signature="e#6549#6572#0#PHP" expanded="true" />
+            <element signature="e#6878#6901#0#PHP" expanded="true" />
+            <element signature="e#7165#7188#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
