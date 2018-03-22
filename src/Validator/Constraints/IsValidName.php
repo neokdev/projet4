@@ -18,8 +18,7 @@ class IsValidName extends Constraint
      * Any public properties become valid options for the annotation.
      * Then, use these in your validator class.
      */
-//    TODO message
-    public $message = 'The value "{{ value }}" is not valid.';
+    public $message = 'nameNotValid';
 
     /**
      * @return mixed|string
