@@ -10,7 +10,7 @@ namespace App\Services\Order;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class Previous
@@ -22,31 +22,32 @@ class Previous
      */
     private $session;
     /**
-     * @var RouterInterface
+     * @var UrlGeneratorInterface
      */
-    private $router;
+    private $urlGenerator;
 
     /**
      * Previous constructor.
-     * @param RouterInterface  $router
-     * @param SessionInterface $session
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param SessionInterface      $session
      */
     public function __construct(
-        RouterInterface $router,
+        UrlGeneratorInterface $urlGenerator,
         SessionInterface $session
     ) {
         $this->session = $session;
-        $this->router = $router;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
-     *
+     * @return RedirectResponse
      */
-    public function previous(): void
+    public function previous()
     {
         $this->session->set('step', $this->session->get('step')-1);
-        RedirectResponse::create(
-            $this->router->generate('app_order')
+
+        return RedirectResponse::create(
+            $this->urlGenerator->generate('app_order')
         )->send();
     }
 }

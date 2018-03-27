@@ -10,8 +10,10 @@ namespace App\Services\Order;
 
 use App\Services\DateHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
@@ -31,21 +33,28 @@ class Checkout extends AbstractController
      * @var Environment
      */
     private $twig;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
 
     /**
      * Checkout constructor.
-     * @param Environment      $twig
-     * @param DateHelper       $helper
-     * @param SessionInterface $session
+     * @param Environment           $twig
+     * @param DateHelper            $helper
+     * @param SessionInterface      $session
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         Environment $twig,
         DateHelper $helper,
-        SessionInterface $session
+        SessionInterface $session,
+        UrlGeneratorInterface $urlGenerator
     ) {
         $this->helper = $helper;
         $this->session = $session;
         $this->twig = $twig;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -55,7 +64,7 @@ class Checkout extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @return string
+     * @return string|RedirectResponse
      */
     public function checkout(Request $request)
     {

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
@@ -30,9 +31,6 @@ class Pages
      */
     private $session;
     /**
-     * @var RouterInterface
-     */
-    private $router;
     /**
      * @var Environment
      */
@@ -41,27 +39,31 @@ class Pages
      * @var FlashBagInterface
      */
     private $flashBag;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
 
     /**
      * Pages constructor.
-     * @param Environment       $twig
-     * @param OrderManager      $orderManager
-     * @param SessionInterface  $session
-     * @param FlashBagInterface $flashBag
-     * @param RouterInterface   $router
+     * @param Environment           $twig
+     * @param OrderManager          $orderManager
+     * @param SessionInterface      $session
+     * @param FlashBagInterface     $flashBag
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         Environment $twig,
         OrderManager $orderManager,
         SessionInterface $session,
         FlashBagInterface $flashBag,
-        RouterInterface $router
+        UrlGeneratorInterface $urlGenerator
     ) {
         $this->orderManager = $orderManager;
         $this->session = $session;
-        $this->router = $router;
         $this->twig = $twig;
         $this->flashBag = $flashBag;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -72,7 +74,7 @@ class Pages
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @return string
+     * @return string|RedirectResponse
      */
     public function step(Request $request)
     {
@@ -102,7 +104,7 @@ class Pages
                 break;
             case 5:
                 RedirectResponse::create(
-                    $this->router->generate('app_checkout')
+                    $this->urlGenerator->generate('app_checkout')
                 )->send();
                 $cardTitle = null;
                 break;

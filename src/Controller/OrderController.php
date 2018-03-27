@@ -34,6 +34,7 @@ class OrderController extends AbstractController
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws \Doctrine\ORM\NonUniqueResultException
      *
      * @return Response
      */
@@ -89,6 +90,7 @@ class OrderController extends AbstractController
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws \Doctrine\ORM\NonUniqueResultException
      *
      * @return Response
      */

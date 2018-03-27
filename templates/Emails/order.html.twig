@@ -11,11 +11,19 @@
                 background-color: #d7f0db;
                 text-align: center;
             }
+            .logo
+            {
+                text-align: center;
+            }
         </style>
 
     </head>
 
     <body>
+
+        <div class="logo">
+            <img src="{{ logo }}" alt="Musee Logo">
+        </div>
 
         <div>
             <p class="lead">{{ 'commandNumber'|trans }}: {{ order.orderNumber }}</p>

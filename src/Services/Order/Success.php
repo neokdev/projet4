@@ -12,7 +12,10 @@ use App\Manager\OrderManager;
 use App\Services\DateHelper;
 use App\Services\MailerHelper;
 use App\Services\SessionHelper;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
 /**
@@ -40,27 +43,34 @@ class Success
      * @var SessionHelper
      */
     private $sessionHelper;
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
 
     /**
      * Success constructor.
-     * @param Environment      $twig
-     * @param SessionInterface $session
-     * @param OrderManager     $order
-     * @param MailerHelper     $mailerHelper
-     * @param SessionHelper    $sessionHelper
+     * @param Environment           $twig
+     * @param SessionInterface      $session
+     * @param OrderManager          $order
+     * @param MailerHelper          $mailerHelper
+     * @param SessionHelper         $sessionHelper
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         Environment $twig,
         SessionInterface $session,
         OrderManager $order,
         MailerHelper $mailerHelper,
-        SessionHelper $sessionHelper
+        SessionHelper $sessionHelper,
+        UrlGeneratorInterface $urlGenerator
     ) {
         $this->session = $session;
         $this->mailerHelper = $mailerHelper;
         $this->order = $order;
         $this->twig = $twig;
         $this->sessionHelper = $sessionHelper;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -68,10 +78,16 @@ class Success
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @return string
+     * @return string|RedirectResponse
      */
     public function success()
     {
+        if ($this->session->get('step') < 5) {
+            return RedirectResponse::create(
+                $this->urlGenerator->generate('app_order')
+            )->send();
+        }
+
         $order = $this->session->get('order');
 
         date_default_timezone_set(DateHelper::TIMEZONE);

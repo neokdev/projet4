@@ -3,15 +3,17 @@
 parameters:
     locale: 'fr'
     app_locales: en|fr
-
+    stripeKey: '%env(STRIPE_KEY)%'
+    pathToLogo: '%kernel.project_dir%/public/img/logo.jpg'
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false       # Allows optimizing the container by removing unused services; this also means
-                            # fetching services directly from the container via $container->get() won't work.
-                            # The best practice is to be explicit about your dependencies anyway.
+        bind:
+            $stripeKey: '%stripeKey%'
+            $pathToLogo: '%pathToLogo%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -26,4 +28,3 @@ services:
         tags: ['controller.service_arguments']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-

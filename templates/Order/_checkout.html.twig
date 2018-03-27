@@ -12,14 +12,16 @@
 
     <div class="card-body">
 
-        <div class="alert alert-info text-center" role="alert">
+        <br/>
+        <h4 class="text-center">
             {% if order.duration %}
                 <strong>{% trans %}day{% endtrans %}</strong>
             {% else %}
                 <strong>{% trans %}halfDay{% endtrans %}</strong>
             {% endif %} {% trans %}of{% endtrans %}
             {{ date }}
-        </div>
+        </h4>
+        <br/>
 
         <div class="table-responsive">
             <table class="table table-striped">

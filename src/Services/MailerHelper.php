@@ -35,21 +35,28 @@ class MailerHelper
      * @var TranslatorInterface
      */
     private $translator;
+    /**
+     * @var string
+     */
+    private $pathToLogo;
 
     /**
      * MailerHelper constructor.
      * @param Swift_Mailer        $mailer
      * @param Twig_Environment    $twig
      * @param TranslatorInterface $translator
+     * @param string              $pathToLogo
      */
     public function __construct(
         Swift_Mailer $mailer,
         Twig_Environment $twig,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        string $pathToLogo
     ) {
         $this->mailer = $mailer;
         $this->twig = $twig;
         $this->translator = $translator;
+        $this->pathToLogo = $pathToLogo;
     }
 
     /**
@@ -69,10 +76,11 @@ class MailerHelper
             ->setTo($order->getMail())
             ->setBody(
                 $this->twig->render(
-                    'emails/order.html.twig',
+                    'Emails/order.html.twig',
                     [
                         'order' => $order,
                         'tickets' => $tickets,
+                        'logo' => $message->embed(\Swift_Image::fromPath($this->pathToLogo)),
                     ]
                 ),
                 'text/html'

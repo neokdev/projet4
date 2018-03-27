@@ -21,7 +21,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Twig\Environment;
 
@@ -39,10 +38,6 @@ class Charge
      */
     private $twig;
     /**
-     * @var RouterInterface
-     */
-    private $router;
-    /**
      * @var TicketOrderRepository
      */
     private $ticketOrderRepository;
@@ -58,33 +53,37 @@ class Charge
      * @var ValidatorInterface
      */
     private $validator;
+    /**
+     * @var string
+     */
+    private $stripeKey;
 
     /**
      * Charge constructor.
      * @param Environment           $twig
-     * @param RouterInterface       $router
      * @param SessionInterface      $session
      * @param TicketOrderRepository $ticketOrderRepository
      * @param FlashBagInterface     $flash
      * @param UrlGeneratorInterface $urlGenerator
      * @param ValidatorInterface    $validator
+     * @param string                $stripeKey
      */
     public function __construct(
         Environment $twig,
-        RouterInterface $router,
         SessionInterface $session,
         TicketOrderRepository $ticketOrderRepository,
         FlashBagInterface $flash,
         UrlGeneratorInterface $urlGenerator,
-        ValidatorInterface $validator
+        ValidatorInterface $validator,
+        string $stripeKey
     ) {
         $this->session = $session;
         $this->twig = $twig;
-        $this->router = $router;
         $this->ticketOrderRepository = $ticketOrderRepository;
         $this->flash = $flash;
         $this->urlGenerator = $urlGenerator;
         $this->validator = $validator;
+        $this->stripeKey = $stripeKey;
     }
 
     /**
@@ -95,7 +94,7 @@ class Charge
      * @throws \Twig_Error_Syntax
      * @throws \Doctrine\ORM\NonUniqueResultException
      *
-     * @return $this|string
+     * @return $this|string|RedirectResponse
 
      */
     public function charge(Request $request)
@@ -149,7 +148,7 @@ class Charge
         }
 
         try {
-            Stripe::setApiKey("sk_test_XjQG5GSatz3GILddd9hzULuh");
+            Stripe::setApiKey($this->stripeKey);
 
             StripeCharge::create(
                 [
@@ -212,7 +211,7 @@ class Charge
         }
 
         return RedirectResponse::create(
-            $this->router->generate('app_success')
+            $this->urlGenerator->generate('app_success')
         )->send();
     }
 }
