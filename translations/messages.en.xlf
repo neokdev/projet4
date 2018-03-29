@@ -229,22 +229,16 @@
                 <target>Please add a ticket</target>
             </segment>
         </unit>
-        <unit id="ticketDesc">
-            <segment>
-                <source>ticketDesc</source>
-                <target>Valid at the Louvre Museum today</target>
-            </segment>
-        </unit>
         <unit id="durationDayDesc">
             <segment>
                 <source>durationDayDesc</source>
-                <target>Ticket valid all day</target>
+                <target>Ticket valid all day of</target>
             </segment>
         </unit>
         <unit id="durationHalfdayDesc">
             <segment>
                 <source>durationHalfdayDesc</source>
-                <target>Ticket valid for half a day</target>
+                <target>Ticket valid for half a day of</target>
             </segment>
         </unit>
         <unit id="virtualTicketHeader">
@@ -413,6 +407,12 @@
             <segment>
                 <source>nameNotValid</source>
                 <target>Please enter a valid name</target>
+            </segment>
+        </unit>
+        <unit id="ticket">
+            <segment>
+                <source>ticket</source>
+                <target>ticket</target>
             </segment>
         </unit>
     </file>

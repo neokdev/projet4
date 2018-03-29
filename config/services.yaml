@@ -4,7 +4,7 @@ parameters:
     locale: 'fr'
     app_locales: en|fr
     stripeKey: '%env(STRIPE_KEY)%'
-    pathToLogo: '%kernel.project_dir%/public/img/logo.jpg'
+    pathToLogo: '%kernel.project_dir%/public/img/logo.png'
 services:
     # default configuration for services in *this* file
     _defaults:
