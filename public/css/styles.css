@@ -1,18 +1,13 @@
 body
 {
     background: url("../img/3-1.jpg") fixed;
-    margin-top: 170px;
+    margin-top: 140px;
     margin-bottom: 70px;
 }
 
 #siteTitle
 {
-    margin-top: 400px;
-}
-
-a.nav-link
-{
-    margin: 3%;
+    margin-top: 200px;
 }
 
 .card

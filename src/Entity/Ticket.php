@@ -8,70 +8,48 @@
 namespace App\Entity;
 
 use DateTime;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TicketRepository")
- * @ORM\Entity
- * @ORM\Table(name="ticket")
+ * Class Ticket
  */
 class Ticket
 {
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $reducedPrice;
-
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
-
     /**
-     * @ORM\Column(type="string")
+     * @var bool
+     */
+    private $reducedPrice;
+    /**
+     * @var string
      */
     private $lastname;
-
     /**
-     * @return mixed
-     */
-    /**
-     * @ORM\Column(type="string")
+     * @var string
      */
     private $firstname;
-
     /**
-     * @ORM\Column(type="string")
+     * @var string
      */
     private $country;
-
     /**
-     * @ORM\Column(type="date")
+     * @var datetime
      */
     private $birthdate;
-
     /**
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $ticketPrice;
-
     /**
-     * @ORM\ManyToOne(
-     *     targetEntity="App\Entity\TicketOrder",
-     *     inversedBy="ticketCollection"
-     * )
-     * @ORM\JoinColumn(name="ticket_order_id",
-     * referencedColumnName="id")
+     * @var TicketOrder
      */
     private $ticketOrder;
-
     /**
-     * @ORM\Column(type="string")
+     * @var string
      */
     private $ticketNumber;
-
     /**
      * @return TicketOrder|null
      */
@@ -79,7 +57,6 @@ class Ticket
     {
         return $this->ticketOrder;
     }
-
     /**
      * @param TicketOrder $ticketOrder
      */
@@ -87,7 +64,6 @@ class Ticket
     {
         $this->ticketOrder = $ticketOrder;
     }
-
     /**
      * @return bool|null
      */
@@ -95,7 +71,6 @@ class Ticket
     {
         return $this->reducedPrice;
     }
-
     /**
      * @param bool $reducedPrice
      */
@@ -103,7 +78,6 @@ class Ticket
     {
         $this->reducedPrice = $reducedPrice;
     }
-
     /**
      * @return int|null
      */
@@ -111,7 +85,6 @@ class Ticket
     {
         return $this->ticketPrice;
     }
-
     /**
      * @param int $ticketPrice
      */
@@ -119,7 +92,6 @@ class Ticket
     {
         $this->ticketPrice = $ticketPrice;
     }
-
     /**
      * @return int
      */
@@ -127,7 +99,6 @@ class Ticket
     {
         return $this->id;
     }
-
     /**
      * @return null|string
      */
@@ -135,7 +106,6 @@ class Ticket
     {
         return $this->lastname;
     }
-
     /**
      * @return null|string
      */
@@ -143,7 +113,6 @@ class Ticket
     {
         return $this->firstname;
     }
-
     /**
      * @return null|string
      */
@@ -151,7 +120,6 @@ class Ticket
     {
         return $this->country;
     }
-
     /**
      * @return DateTime|null
      */
@@ -159,7 +127,6 @@ class Ticket
     {
         return $this->birthdate;
     }
-
     /**
      * @param string $lastname
      */
@@ -167,7 +134,6 @@ class Ticket
     {
         $this->lastname = $lastname;
     }
-
     /**
      * @param string $firstname
      */
@@ -175,7 +141,6 @@ class Ticket
     {
         $this->firstname = $firstname;
     }
-
     /**
      * @param string $country
      */
@@ -183,7 +148,6 @@ class Ticket
     {
         $this->country = $country;
     }
-
     /**
      * @param DateTime $birthdate
      */
@@ -191,7 +155,6 @@ class Ticket
     {
         $this->birthdate = $birthdate;
     }
-
     /**
      * @param string $ticketNumber
      */
@@ -199,7 +162,6 @@ class Ticket
     {
         $this->ticketNumber = $ticketNumber;
     }
-
     /**
      * @return null|string
      */

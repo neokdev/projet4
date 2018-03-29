@@ -1,6 +1,13 @@
 {
+    "name": "Projet4",
     "type": "project",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Neok",
+            "email": "neokdev@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "ext-iconv": "*",
@@ -21,10 +28,8 @@
         "symfony/lts": "^4@dev",
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "^4.0",
-        "symfony/security-csrf": "^4.0",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "^4.0",
-        "symfony/twig-bridge": "^4.0",
         "symfony/twig-bundle": "^4.0",
         "symfony/validator": "^4.0",
         "symfony/yaml": "^4.0"
@@ -32,7 +37,6 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "escapestudios/symfony2-coding-standard": "3.x-dev",
-        "friendsofphp/php-cs-fixer": "^2.10",
         "hautelook/alice-bundle": "^2.0",
         "phpunit/phpunit": "^7.0",
         "symfony/browser-kit": "^4.0",

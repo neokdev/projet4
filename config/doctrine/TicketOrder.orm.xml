@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\TicketOrder" table="ticket_order" repository-class="App\Repository\TicketOrderRepository">
+        <id name="id" type="integer">
+            <generator/>
+        </id>
+        <field name="date" type="date"/>
+        <field name="orderDate" type="datetime"/>
+        <field name="duration" type="boolean"/>
+        <one-to-many field="ticketCollection" target-entity="Ticket" mapped-by="ticketOrder">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+        <field name="mail" nullable="true"/>
+        <field name="orderPrice"/>
+        <field name="orderNumber"/>
+    </entity>
+</doctrine-mapping>

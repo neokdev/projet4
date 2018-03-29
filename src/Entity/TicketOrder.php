@@ -10,64 +10,44 @@ namespace App\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TicketOrderRepository")
- * @ORM\Entity
- * @ORM\Table(name="ticket_order")
+ * Class TicketOrder
  */
 class TicketOrder
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
-
     /**
-     * @ORM\Column(type="date")
+     * @var datetime
      */
     private $date;
-
     /**
-     * @ORM\Column(type="datetime")
+     * @var datetime
      */
     private $orderDate;
-
     /**
-     * @ORM\Column(type="boolean")
+     * @var bool
      */
     private $duration;
-
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Ticket",
-     *     mappedBy="ticketOrder",
-     *     cascade={"persist"}
-     * )
+     * @var ArrayCollection
      */
     private $ticketCollection;
-
     /**
-     * @ORM\Column(
-     *     type="string",
-     *     nullable=true)
-     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
+     * @var string
      */
     private $mail;
-
     /**
-     * @ORM\Column(type="string")
+     * @var string
      */
     private $orderPrice;
-
     /**
-     * @ORM\Column(type="string")
+     * @var string
      */
     private $orderNumber;
-
     /**
      * TicketOrder constructor.
      */
@@ -75,7 +55,6 @@ class TicketOrder
     {
         $this->ticketCollection = new ArrayCollection();
     }
-
     /**
      * @return Collection|null
      */
@@ -83,7 +62,6 @@ class TicketOrder
     {
         return $this->ticketCollection;
     }
-
     /**
      * @param string $orderNumber
      */
@@ -91,7 +69,6 @@ class TicketOrder
     {
         $this->orderNumber = $orderNumber;
     }
-
     /**
      * @return DateTime|null
      */
@@ -99,7 +76,6 @@ class TicketOrder
     {
         return $this->orderDate;
     }
-
     /**
      * @param DateTime $orderDate
      */
@@ -107,7 +83,6 @@ class TicketOrder
     {
         $this->orderDate = $orderDate;
     }
-
     /**
      * @return null|string
      */
@@ -115,7 +90,6 @@ class TicketOrder
     {
         return $this->mail;
     }
-
     /**
      * @param string $mail
      */
@@ -123,7 +97,6 @@ class TicketOrder
     {
         $this->mail = $mail;
     }
-
     /**
      * @param DateTime $date
      */
@@ -131,7 +104,6 @@ class TicketOrder
     {
         $this->date = $date;
     }
-
     /**
      * @param bool $duration
      */
@@ -139,7 +111,6 @@ class TicketOrder
     {
         $this->duration = $duration;
     }
-
     /**
      * @return int|null
      */
@@ -147,7 +118,6 @@ class TicketOrder
     {
         return $this->orderPrice;
     }
-
     /**
      * @param int $orderPrice
      */
@@ -155,7 +125,6 @@ class TicketOrder
     {
         $this->orderPrice = $orderPrice;
     }
-
     /**
      * @return int|null
      */
@@ -163,7 +132,6 @@ class TicketOrder
     {
         return $this->id;
     }
-
     /**
      * @return DateTime|null
      */
@@ -171,7 +139,6 @@ class TicketOrder
     {
         return $this->date;
     }
-
     /**
      * @return bool|null
      */
@@ -179,7 +146,6 @@ class TicketOrder
     {
         return $this->duration;
     }
-
     /**
      * @return null|string
      */
@@ -187,7 +153,6 @@ class TicketOrder
     {
         return $this->orderNumber;
     }
-
     /**
      * @param Ticket $ticket
      */

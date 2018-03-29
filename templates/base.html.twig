@@ -19,24 +19,31 @@
 
     <body>
 
-        <ul class="nav navbar nav-pills nav-fill fixed-top">
-            <li class="nav-item">
-                <a role="button" class="nav-link btn-lg" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> {{ 'menu.homepage'|trans }}</a>
-            </li>
-            <li class="nav-item">
-                <a role="button" class="nav-link btn-lg" href="{{ path('app_order') }}"><i class="fas fa-shopping-cart"></i> {{ 'menu.orderTickets'|trans }}</a>
-            </li>
-            <li class="nav-item">
-                <a role="button" class="nav-link btn-lg" href="{{ path('app_contact') }}"><i class="fab fa-wpforms"></i> {{ 'contactForm'|trans }}</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a role="button" class="nav-link btn-lg dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-language"></i> {{ 'changeLang'|trans }}</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ path('app_fr') }}">{{ 'french'|trans }}</a>
-                    <a class="dropdown-item" href="{{ path('app_en') }}">{{ 'english'|trans }}</a>
-                </div>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav nav-pills mx-auto mt-2 mt-lg-0">
+                <li class="nav-item mr-2">
+                    <a role="button" class="nav-link" href="{{ path('app_homepage') }}"><i class="fas fa-home"></i> {{ 'menu.homepage'|trans }}</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a role="button" class="nav-link" href="{{ path('app_order') }}"><i class="fas fa-shopping-cart"></i> {{ 'menu.orderTickets'|trans }}</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a role="button" class="nav-link" href="{{ path('app_contact') }}"><i class="fab fa-wpforms"></i> {{ 'contactForm'|trans }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a role="button" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-globe"></i> {{ 'changeLang'|trans }}</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ path('app_fr') }}">{{ 'french'|trans }}</a>
+                        <a class="dropdown-item" href="{{ path('app_en') }}">{{ 'english'|trans }}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container">
 
@@ -67,10 +74,10 @@
                 $(function() {
                     $('.nav-item a').hover(
                         function(){
-                            $(this).addClass('active');
+                            $(this).addClass('active').addClass('text-white');
                         },
                         function(){
-                            $(this).removeClass('active');
+                            $(this).removeClass('active').removeClass('text-white');
                         }
                     );
                 });

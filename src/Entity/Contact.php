@@ -7,50 +7,31 @@
  */
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
- * @ORM\Entity
- * @ORM\Table(name="contact")
+ * Class Contact
  */
 class Contact
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
-
     /**
      * @var string
-     *
-     * @ORM\Column(type="string")
      */
     private $email;
-
     /**
      * @var string
-     *
-     * @ORM\Column(type="string")
      */
     private $messageType;
-
     /**
      * @var string
-     *
-     * @ORM\Column(type="string")
      */
     private $subject;
-
     /**
      * @var string
-     *
-     * @ORM\Column(type="text")
      */
     private $messageText;
-
     /**
      * @return mixed
      */
@@ -58,7 +39,6 @@ class Contact
     {
         return $this->id;
     }
-
     /**
      * @return null|string
      */
@@ -66,7 +46,6 @@ class Contact
     {
         return $this->email;
     }
-
     /**
      * @param string $email
      */
@@ -74,7 +53,6 @@ class Contact
     {
         $this->email = $email;
     }
-
     /**
      * @return null|string
      */
@@ -82,7 +60,6 @@ class Contact
     {
         return $this->messageType;
     }
-
     /**
      * @param string $messageType
      */
@@ -90,7 +67,6 @@ class Contact
     {
         $this->messageType = $messageType;
     }
-
     /**
      * @return null|string
      */
@@ -98,7 +74,6 @@ class Contact
     {
         return $this->subject;
     }
-
     /**
      * @param string $subject
      */
@@ -106,7 +81,6 @@ class Contact
     {
         $this->subject = $subject;
     }
-
     /**
      * @return null|string
      */
@@ -114,7 +88,6 @@ class Contact
     {
         return $this->messageText;
     }
-
     /**
      * @param string $messageText
      */

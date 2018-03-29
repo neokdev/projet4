@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+        http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Entity\Ticket" table="ticket" repository-class="App\Repository\TicketRepository">
+        <id name="id" type="integer">
+            <generator/>
+        </id>
+        <field name="reducedPrice" type="boolean"/>
+        <field name="lastname"/>
+        <field name="firstname"/>
+        <field name="country"/>
+        <field name="birthdate" type="date"/>
+        <field name="ticketPrice" type="integer"/>
+        <many-to-one field="ticketOrder" target-entity="App\Entity\TicketOrder" inversed-by="ticketCollection">
+            <cascade><cascade-remove /></cascade>
+            <join-column name="ticket_order_id" on-delete="CASCADE"/>
+        </many-to-one>
+        <field name="ticketNumber"/>
+    </entity>
+</doctrine-mapping>

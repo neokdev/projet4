@@ -250,7 +250,7 @@
         <unit id="virtualTicketHeader">
             <segment>
                 <source>virtualTicketHeader</source>
-                <target>Voici ci-dessous vos billets vituels pour le Musée du Louvre: </target>
+                <target>Voici ci-dessous vos billets virtuels pour le Musée du Louvre: </target>
             </segment>
         </unit>
         <unit id="contactForm">
@@ -382,7 +382,7 @@
         <unit id="contactSuccess">
             <segment>
                 <source>contactSuccess</source>
-                <target>Votre formulaire à bien été transmis</target>
+                <target>Votre formulaire a bien été transmis</target>
             </segment>
         </unit>
         <unit id="ticketsAvailable">

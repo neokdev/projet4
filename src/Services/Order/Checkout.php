@@ -68,7 +68,8 @@ class Checkout extends AbstractController
      */
     public function checkout(Request $request)
     {
-        setlocale(LC_TIME, $request->getLocale());
+        $locale = $request->getLocale() === 'fr' ? 'fr_FR.UTF8' : $request->getLocale();
+        setlocale(LC_TIME, $locale);
         $date = strftime("%A %e %B %Y", $this->helper->getSelectedDate()->getTimestamp());
 
         return $this->twig->render('Order/_checkout.html.twig', [
