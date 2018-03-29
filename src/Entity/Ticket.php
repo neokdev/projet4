@@ -8,9 +8,11 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Ticket
+ * @ORM\Entity
  */
 class Ticket
 {

@@ -11,7 +11,7 @@
         <field name="date" type="date"/>
         <field name="orderDate" type="datetime"/>
         <field name="duration" type="boolean"/>
-        <one-to-many field="ticketCollection" target-entity="Ticket" mapped-by="ticketOrder">
+        <one-to-many field="ticketCollection" target-entity="App\Entity\Ticket" mapped-by="ticketOrder">
             <cascade>
                 <cascade-persist/>
             </cascade>
