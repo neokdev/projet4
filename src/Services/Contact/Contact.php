@@ -10,7 +10,7 @@ namespace App\Services\Contact;
 
 use App\Entity\Contact as ContactEntity;
 use App\Form\ContactType;
-use App\Manager\ContactManager;
+use App\Repository\ContactRepository;
 use App\Services\MailerHelper;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,10 +37,6 @@ class Contact
      */
     private $mailerHelper;
     /**
-     * @var ContactManager
-     */
-    private $contact;
-    /**
      * @var FlashBagInterface
      */
     private $flash;
@@ -48,6 +44,10 @@ class Contact
      * @var UrlGeneratorInterface
      */
     private $urlGenerator;
+    /**
+     * @var ContactRepository
+     */
+    private $contactRepository;
 
     /**
      * Contact constructor.
@@ -55,28 +55,30 @@ class Contact
      * @param FlashBagInterface     $flash
      * @param FormFactoryInterface  $factory
      * @param MailerHelper          $mailerHelper
-     * @param ContactManager        $contact
      * @param UrlGeneratorInterface $urlGenerator
+     * @param ContactRepository     $contactRepository
      */
     public function __construct(
         Environment $twig,
         FlashBagInterface $flash,
         FormFactoryInterface $factory,
         MailerHelper $mailerHelper,
-        ContactManager $contact,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        ContactRepository $contactRepository
     ) {
         $this->factory = $factory;
         $this->twig = $twig;
         $this->mailerHelper = $mailerHelper;
-        $this->contact = $contact;
         $this->flash = $flash;
         $this->urlGenerator = $urlGenerator;
+        $this->contactRepository = $contactRepository;
     }
 
     /**
      * @param Request $request
      *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -91,7 +93,7 @@ class Contact
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->contact->writeContact($contact);
+            $this->contactRepository->save($contact);
 
             $this->mailerHelper->contactMail($contact);
 
