@@ -9,7 +9,7 @@
 namespace App\Manager;
 
 use App\Entity\Contact;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use App\Repository\ContactRepository;
 
 /**
  * Class ContactManager
@@ -17,26 +17,27 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 class ContactManager
 {
     /**
-     * @var ManagerRegistry
+     * @var ContactRepository
      */
-    private $registry;
+    private $contactRepository;
 
     /**
-     * OrderManager constructor.
-     * @param ManagerRegistry $registry
+     * ContactManager constructor.
+     * @param ContactRepository $contactRepository
      */
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ContactRepository $contactRepository)
     {
-        $this->registry = $registry;
+        $this->contactRepository = $contactRepository;
     }
 
     /**
      * @param Contact $contact
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function writeContact(Contact $contact)
     {
-        $em = $this->registry->getManager();
-        $em->persist($contact);
-        $em->flush();
+        $this->contactRepository->save($contact);
     }
 }
