@@ -29,6 +29,11 @@ body
 {
     margin: 2%;
 }
+.form-group
+{
+    width: auto;
+    display: block;
+}
 
 @media (min-width: 34em) {
     .card-columns {

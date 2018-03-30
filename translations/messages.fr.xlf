@@ -190,7 +190,7 @@
         <unit id="cardTitleSuccess">
             <segment>
                 <source>cardTitleSuccess</source>
-                <target>Paiement effectué avec succés</target>
+                <target>Paiement effectué avec succès</target>
             </segment>
         </unit>
         <unit id="cardTitleFail">

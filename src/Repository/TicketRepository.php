@@ -8,6 +8,7 @@
 namespace App\Repository;
 
 use App\Entity\Ticket;
+use App\Entity\TicketOrder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -23,5 +24,22 @@ class TicketRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Ticket::class);
+    }
+
+    /**
+     * @param TicketOrder $order
+     * @param Ticket      $tickets
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(TicketOrder $order, $tickets)
+    {
+        /** @var Ticket $ticket */
+        foreach ($tickets as $ticket) {
+            $ticket->setTicketOrder($order);
+            $this->getEntityManager()->persist($ticket);
+        }
+        $this->getEntityManager()->flush();
     }
 }

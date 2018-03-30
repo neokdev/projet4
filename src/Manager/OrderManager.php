@@ -15,11 +15,11 @@ use App\Form\DurationType;
 use App\Form\TicketOrderDateType;
 use App\Form\TicketsCollectionType;
 use App\Repository\TicketOrderRepository;
+use App\Repository\TicketRepository;
 use App\Services\IdHelper;
 use App\Services\PriceHelper;
 use App\Validator\IsTicketsAvalaibleValidator;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,10 +32,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class OrderManager
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entity;
     /**
      * @var FormFactoryInterface
      */
@@ -68,21 +64,24 @@ class OrderManager
      * @var FlashBagInterface
      */
     private $flash;
+    /**
+     * @var TicketRepository
+     */
+    private $ticketRepository;
 
     /**
      * OrderManager constructor.
-     * @param EntityManagerInterface $entity
-     * @param FormFactoryInterface   $factory
-     * @param SessionInterface       $session
-     * @param UrlGeneratorInterface  $urlGenerator
-     * @param PriceHelper            $helper
-     * @param IdHelper               $idHelper
-     * @param ManagerRegistry        $registry
-     * @param FlashBagInterface      $flash
-     * @param TicketOrderRepository  $ticketOrderRepository
+     * @param FormFactoryInterface  $factory
+     * @param SessionInterface      $session
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param PriceHelper           $helper
+     * @param IdHelper              $idHelper
+     * @param ManagerRegistry       $registry
+     * @param FlashBagInterface     $flash
+     * @param TicketOrderRepository $ticketOrderRepository
+     * @param TicketRepository      $ticketRepository
      */
     public function __construct(
-        EntityManagerInterface $entity,
         FormFactoryInterface $factory,
         SessionInterface $session,
         UrlGeneratorInterface $urlGenerator,
@@ -90,9 +89,9 @@ class OrderManager
         IdHelper $idHelper,
         ManagerRegistry $registry,
         FlashBagInterface $flash,
-        TicketOrderRepository $ticketOrderRepository
+        TicketOrderRepository $ticketOrderRepository,
+        TicketRepository $ticketRepository
     ) {
-        $this->entity = $entity;
         $this->factory = $factory;
         $this->session = $session;
         $this->helper = $helper;
@@ -101,6 +100,7 @@ class OrderManager
         $this->registry = $registry;
         $this->ticketOrderRepository = $ticketOrderRepository;
         $this->flash = $flash;
+        $this->ticketRepository = $ticketRepository;
     }
 
     /**
@@ -235,16 +235,13 @@ class OrderManager
     /**
      * @param TicketOrder $order
      * @param Ticket      $tickets
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function writeOrder(TicketOrder $order, $tickets): void
     {
-        $em = $this->registry->getManager();
-        $em->persist($order);
-        /** @var Ticket $ticket */
-        foreach ($tickets as $ticket) {
-            $ticket->setTicketOrder($order);
-            $em->persist($ticket);
-        }
-        $em->flush();
+        $this->ticketOrderRepository->save($order);
+        $this->ticketRepository->save($order, $tickets);
     }
 }

@@ -40,4 +40,16 @@ class TicketOrderRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param TicketOrder $order
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(TicketOrder $order)
+    {
+        $this->getEntityManager()->persist($order);
+        $this->getEntityManager()->flush();
+    }
 }
