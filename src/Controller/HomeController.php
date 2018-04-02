@@ -38,7 +38,7 @@ class HomeController extends AbstractController
      *     )
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
      */
     public function langFr(Request $request)
     {
@@ -54,7 +54,7 @@ class HomeController extends AbstractController
      *     )
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
      */
     public function langEn(Request $request)
     {

@@ -67,7 +67,7 @@ class MailerHelper
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function orderMail(TicketOrder $order, $tickets)
+    public function orderMail(TicketOrder $order, $tickets): void
     {
         $message = new Swift_Message('Billets du Musée du Louvre');
 
@@ -96,7 +96,7 @@ class MailerHelper
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function contactMail(Contact $contact)
+    public function contactMail(Contact $contact):void
     {
         $message = new Swift_Message("[".$this->translator->trans($contact->getMessageType())."] ".$contact->getSubject());
 

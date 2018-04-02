@@ -20,7 +20,7 @@ final class AppFixtures extends Fixture
     /**
      * @param ObjectManager $manager
      */
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $loader = new NativeLoader();
         $objectSet = $loader->loadFile(__DIR__.'/fixtures.yml', [

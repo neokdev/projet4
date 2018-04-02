@@ -26,11 +26,13 @@ class ContactController extends AbstractController
      * @param Request $request
      * @param Contact $contact
      *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      *
-     * @return Response
+     *@return Response
      */
     public function contact(Request $request, Contact $contact)
     {
