@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Validator\Constraints\IsValidName;
+use Symfony\Component\Validator\Constraints\Regex;
 
 /**
  * Class TicketType
@@ -33,29 +34,35 @@ class TicketType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'constraints' => [
-                    new IsValidName(),
+                    new Regex([
+                        'pattern' => '/[a-zA-Z]\S+/',
+                        'message' => 'nameNotValid',
+                    ]),
                 ],
-                'label' => 'user.name',
+                'label'       => 'user.name',
             ])
             ->add('firstName', TextType::class, [
                 'constraints' => [
-                    new IsValidName(),
+                    new Regex([
+                        'pattern' => '/[a-zA-Z]\S+/',
+                        'message' => 'nameNotValid',
+                    ]),
                 ],
-                'label' => 'user.firstname',
+                'label'       => 'user.firstname',
             ])
             ->add('country', CountryType::class, [
-                'label' => 'user.country',
+                'label'       => 'user.country',
                 'placeholder' => 'selectCountry',
             ])
             ->add('birthdate', DateType::class, [
                 'constraints' => [
                     new IsBorn(),
                 ],
-                'widget' => 'single_text',
-                'label' => 'user.birthday',
+                'widget'      => 'single_text',
+                'label'       => 'user.birthday',
             ])
             ->add('reducedPrice', CheckboxType::class, [
-                'label' => 'reducedPrice',
+                'label'    => 'reducedPrice',
                 'required' => false,
             ]);
     }

@@ -49,5 +49,11 @@
                 <target>Reservations are no longer available for today</target>
             </segment>
         </unit>
+        <unit id="nameNotValid">
+            <segment>
+                <source>nameNotValid</source>
+                <target>Please enter a valid name</target>
+            </segment>
+        </unit>
     </file>
 </xliff>

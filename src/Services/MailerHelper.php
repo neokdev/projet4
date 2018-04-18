@@ -53,8 +53,8 @@ class MailerHelper
         TranslatorInterface $translator,
         string $pathToLogo
     ) {
-        $this->mailer = $mailer;
-        $this->twig = $twig;
+        $this->mailer     = $mailer;
+        $this->twig       = $twig;
         $this->translator = $translator;
         $this->pathToLogo = $pathToLogo;
     }
@@ -78,9 +78,9 @@ class MailerHelper
                 $this->twig->render(
                     'Emails/order.html.twig',
                     [
-                        'order' => $order,
+                        'order'   => $order,
                         'tickets' => $tickets,
-                        'logo' => $message->embed(\Swift_Image::fromPath($this->pathToLogo)),
+                        'logo'    => $message->embed(\Swift_Image::fromPath($this->pathToLogo)),
                     ]
                 ),
                 'text/html'

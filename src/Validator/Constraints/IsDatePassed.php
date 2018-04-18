@@ -14,7 +14,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class IsDatePassed extends Constraint
 {
-    /*
+    /**
+     * @var string
      * Any public properties become valid options for the annotation.
      * Then, use these in your validator class.
      */

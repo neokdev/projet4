@@ -403,12 +403,6 @@
                 <target>Ordered on</target>
             </segment>
         </unit>
-        <unit id="nameNotValid">
-            <segment>
-                <source>nameNotValid</source>
-                <target>Please enter a valid name</target>
-            </segment>
-        </unit>
         <unit id="ticket">
             <segment>
                 <source>ticket</source>

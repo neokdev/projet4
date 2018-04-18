@@ -24,9 +24,8 @@ class SessionHelper
      * SessionHelper constructor.
      * @param SessionInterface $session
      */
-    public function __construct(
-        SessionInterface $session
-    ) {
+    public function __construct(SessionInterface $session)
+    {
         $this->session = $session;
     }
 

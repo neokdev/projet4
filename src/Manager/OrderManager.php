@@ -19,7 +19,6 @@ use App\Repository\TicketRepository;
 use App\Services\IdHelper;
 use App\Services\PriceHelper;
 use App\Validator\IsTicketsAvalaibleValidator;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,10 +52,6 @@ class OrderManager
      */
     private $urlGenerator;
     /**
-     * @var ManagerRegistry
-     */
-    private $registry;
-    /**
      * @var TicketOrderRepository
      */
     private $ticketOrderRepository;
@@ -76,7 +71,6 @@ class OrderManager
      * @param UrlGeneratorInterface $urlGenerator
      * @param PriceHelper           $helper
      * @param IdHelper              $idHelper
-     * @param ManagerRegistry       $registry
      * @param FlashBagInterface     $flash
      * @param TicketOrderRepository $ticketOrderRepository
      * @param TicketRepository      $ticketRepository
@@ -87,20 +81,18 @@ class OrderManager
         UrlGeneratorInterface $urlGenerator,
         PriceHelper $helper,
         IdHelper $idHelper,
-        ManagerRegistry $registry,
         FlashBagInterface $flash,
         TicketOrderRepository $ticketOrderRepository,
         TicketRepository $ticketRepository
     ) {
-        $this->factory = $factory;
-        $this->session = $session;
-        $this->helper = $helper;
-        $this->idHelper = $idHelper;
-        $this->urlGenerator = $urlGenerator;
-        $this->registry = $registry;
+        $this->factory               = $factory;
+        $this->session               = $session;
+        $this->helper                = $helper;
+        $this->idHelper              = $idHelper;
+        $this->urlGenerator          = $urlGenerator;
         $this->ticketOrderRepository = $ticketOrderRepository;
-        $this->flash = $flash;
-        $this->ticketRepository = $ticketRepository;
+        $this->flash                 = $flash;
+        $this->ticketRepository      = $ticketRepository;
     }
 
     /**
@@ -111,7 +103,7 @@ class OrderManager
     public function stepOne(Request $request)
     {
         $order = $this->session->has('order') ? $this->session->get('order') : new TicketOrder();
-        $form = $this->factory->create(TicketOrderDateType::class, $order)
+        $form  = $this->factory->create(TicketOrderDateType::class, $order)
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -119,7 +111,7 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 2);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -135,7 +127,7 @@ class OrderManager
     public function stepTwo(Request $request)
     {
         $order = $this->session->get('order');
-        $form = $this->factory->create(DurationType::class, $order)
+        $form  = $this->factory->create(DurationType::class, $order)
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -143,7 +135,7 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 3);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -161,7 +153,7 @@ class OrderManager
     public function stepThree(Request $request)
     {
         $order = $this->session->get('order');
-        $form = $this->factory->create(TicketsCollectionType::class, $order)
+        $form  = $this->factory->create(TicketsCollectionType::class, $order)
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -176,7 +168,7 @@ class OrderManager
                 $this->session->set('nbTickets', $ticketsAvailable);
                 $this->flash->add('errorTicket', 'ticketsAvailable');
 
-                return RedirectResponse::create(
+                RedirectResponse::create(
                     $this->urlGenerator->generate('app_order')
                 )->send();
             }
@@ -191,7 +183,7 @@ class OrderManager
                 $totalPrice += $price;
             }
             if ($order->getDuration() !== true) {
-                $totalPrice = $totalPrice/2;
+                $totalPrice = $totalPrice / 2;
             }
             $order->setOrderPrice($totalPrice);
             $order->setOrderNumber($this->idHelper->createId());
@@ -200,7 +192,7 @@ class OrderManager
 
             $this->session->set('step', 4);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -216,7 +208,7 @@ class OrderManager
     public function stepFour(Request $request)
     {
         $order = $this->session->get('order');
-        $form = $this->factory->create(ConfirmType::class, $order)
+        $form  = $this->factory->create(ConfirmType::class, $order)
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -224,7 +216,7 @@ class OrderManager
             $this->session->set('order', $order);
             $this->session->set('step', 5);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_checkout')
             )->send();
         }

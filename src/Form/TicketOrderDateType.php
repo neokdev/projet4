@@ -32,8 +32,8 @@ class TicketOrderDateType extends AbstractType
     {
         $builder
             ->add('date', DateType::class, [
-                'label' => 'order.eventDate',
-                'widget' => 'single_text',
+                'label'       => 'order.eventDate',
+                'widget'      => 'single_text',
                 'constraints' => [
                     new IsNotTuesday(),
                     new IsNotSunday(),

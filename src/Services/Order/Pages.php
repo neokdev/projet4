@@ -60,9 +60,9 @@ class Pages
         UrlGeneratorInterface $urlGenerator
     ) {
         $this->orderManager = $orderManager;
-        $this->session = $session;
-        $this->twig = $twig;
-        $this->flashBag = $flashBag;
+        $this->session      = $session;
+        $this->twig         = $twig;
+        $this->flashBag     = $flashBag;
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -78,28 +78,28 @@ class Pages
      */
     public function step(Request $request)
     {
-        $form = null;
+        $form     = null;
         $template = null;
         switch ($this->session->get('step')) {
             case 1:
-                $form = $this->orderManager->stepOne($request);
-                $template = "Order/_date.html.twig";
+                $form      = $this->orderManager->stepOne($request);
+                $template  = "Order/_date.html.twig";
                 $cardTitle = "cardTitleDate";
                 break;
             case 2:
-                $form = $this->orderManager->stepTwo($request);
-                $template = 'Order/_duration.html.twig';
+                $form      = $this->orderManager->stepTwo($request);
+                $template  = 'Order/_duration.html.twig';
                 $cardTitle = "cardTitleDuration";
                 break;
             case 3:
                 $form = $this->orderManager->stepThree($request);
                 $this->flashBag->get('fail');
-                $template = 'Order/_price.html.twig';
+                $template  = 'Order/_price.html.twig';
                 $cardTitle = "cardTitlePrice";
                 break;
             case 4:
-                $form = $this->orderManager->stepFour($request);
-                $template = 'Order/_mail.html.twig';
+                $form      = $this->orderManager->stepFour($request);
+                $template  = 'Order/_mail.html.twig';
                 $cardTitle = "cardTitleMail";
                 break;
             case 5:
@@ -109,18 +109,18 @@ class Pages
                 $cardTitle = null;
                 break;
             default:
-                $form = $this->orderManager->stepOne($request);
-                $template = 'Order/_date.html.twig';
+                $form      = $this->orderManager->stepOne($request);
+                $template  = 'Order/_date.html.twig';
                 $cardTitle = "cardTitleDate";
         }
 
         return $this->twig->render(
             $template,
             [
-                'order' => $this->session->get('order'),
-                'tickets' => $this->session->get('tickets'),
+                'order'     => $this->session->get('order'),
+                'tickets'   => $this->session->get('tickets'),
                 'cardTitle' => $cardTitle,
-                'form' => $form,
+                'form'      => $form,
             ]
         );
     }

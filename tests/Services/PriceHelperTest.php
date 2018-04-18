@@ -44,10 +44,10 @@ class PriceHelperTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->age3 = (new DateTime())->modify("-3 years");
-        $this->age11 = (new DateTime())->modify("-11 years");
-        $this->age59 = (new DateTime())->modify("-59 years");
-        $this->age79 = (new DateTime())->modify("-79 years");
+        $this->age3         = (new DateTime())->modify("-3 years");
+        $this->age11        = (new DateTime())->modify("-11 years");
+        $this->age59        = (new DateTime())->modify("-59 years");
+        $this->age79        = (new DateTime())->modify("-79 years");
         $this->selectedDate = (new DateTime())->modify("+5 days");
     }
 

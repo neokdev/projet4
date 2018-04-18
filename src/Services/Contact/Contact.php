@@ -66,11 +66,11 @@ class Contact
         UrlGeneratorInterface $urlGenerator,
         ContactRepository $contactRepository
     ) {
-        $this->factory = $factory;
-        $this->twig = $twig;
-        $this->mailerHelper = $mailerHelper;
-        $this->flash = $flash;
-        $this->urlGenerator = $urlGenerator;
+        $this->factory           = $factory;
+        $this->twig              = $twig;
+        $this->mailerHelper      = $mailerHelper;
+        $this->flash             = $flash;
+        $this->urlGenerator      = $urlGenerator;
         $this->contactRepository = $contactRepository;
     }
 

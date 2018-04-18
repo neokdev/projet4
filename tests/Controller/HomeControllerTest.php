@@ -35,12 +35,12 @@ class HomeControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');
-        $link = $crawler
+        $link    = $crawler
             ->filter('a:contains("Français")')
             ->link();
 
         $crawler = $client->click($link);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 }

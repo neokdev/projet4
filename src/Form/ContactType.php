@@ -32,18 +32,18 @@ class ContactType extends AbstractType
                 'label' => 'user.mail',
             ])
             ->add('messageType', ChoiceType::class, [
-                'label' => 'messageType',
+                'label'       => 'messageType',
                 'placeholder' => 'select',
-                'choices' => [
+                'choices'     => [
                     'commandProblem' => 'commandProblem',
                     'noMailReceived' => 'noMailReceived',
-                    'information' => 'information',
-                    'other' => 'other',
+                    'information'    => 'information',
+                    'other'          => 'other',
                 ],
             ])
             ->add('subject', TextType::class, [
                 'label' => 'subject',
-                'attr' => [
+                'attr'  => [
                     'placeholder' => 'subjectPlaceholder',
                 ],
             ])
@@ -60,7 +60,7 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,
-            'label' => false,
+            'label'      => false,
         ]);
     }
 }

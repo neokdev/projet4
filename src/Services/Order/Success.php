@@ -65,15 +65,17 @@ class Success
         SessionHelper $sessionHelper,
         UrlGeneratorInterface $urlGenerator
     ) {
-        $this->session = $session;
-        $this->mailerHelper = $mailerHelper;
-        $this->order = $order;
-        $this->twig = $twig;
+        $this->session       = $session;
+        $this->mailerHelper  = $mailerHelper;
+        $this->order         = $order;
+        $this->twig          = $twig;
         $this->sessionHelper = $sessionHelper;
-        $this->urlGenerator = $urlGenerator;
+        $this->urlGenerator  = $urlGenerator;
     }
 
     /**
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -103,7 +105,7 @@ class Success
 
         return $this->twig->render('Order/_success.html.twig', [
             'cardTitle' => "cardTitleSuccess",
-            'order' => $order,
+            'order'     => $order,
         ]);
     }
 }

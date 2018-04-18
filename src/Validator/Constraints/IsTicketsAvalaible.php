@@ -15,6 +15,9 @@ use Symfony\Component\Validator\Constraint;
  */
 class IsTicketsAvalaible extends Constraint
 {
+    /**
+     * @var string
+     */
     public $message = 'ticketsnotavalaible';
 
     /**

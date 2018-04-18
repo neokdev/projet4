@@ -77,13 +77,13 @@ class Charge
         ValidatorInterface $validator,
         string $stripeKey
     ) {
-        $this->session = $session;
-        $this->twig = $twig;
+        $this->session               = $session;
+        $this->twig                  = $twig;
         $this->ticketOrderRepository = $ticketOrderRepository;
-        $this->flash = $flash;
-        $this->urlGenerator = $urlGenerator;
-        $this->validator = $validator;
-        $this->stripeKey = $stripeKey;
+        $this->flash                 = $flash;
+        $this->urlGenerator          = $urlGenerator;
+        $this->validator             = $validator;
+        $this->stripeKey             = $stripeKey;
     }
 
     /**
@@ -115,7 +115,7 @@ class Charge
             }
             $this->session->set('step', 1);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -130,7 +130,7 @@ class Charge
             }
             $this->session->set('step', 2);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -142,7 +142,7 @@ class Charge
             $this->flash->add('errorTicket', 'ticketsAvailable');
             $this->session->set('step', 3);
 
-            return RedirectResponse::create(
+            RedirectResponse::create(
                 $this->urlGenerator->generate('app_order')
             )->send();
         }
@@ -152,10 +152,10 @@ class Charge
 
             StripeCharge::create(
                 [
-                "amount" => $this->session->get('order')->getOrderPrice() *100,
-                "currency" => "eur",
-                "source" => $request->request->get('stripeToken'), // obtained with Stripe.js
-                "description" => "Charge for $customerEmail",
+                    "amount"      => $this->session->get('order')->getOrderPrice() * 100,
+                    "currency"    => "eur",
+                    "source"      => $request->request->get('stripeToken'), // obtained with Stripe.js
+                    "description" => "Charge for {$customerEmail}",
                 ]
             );
             // Use Stripe's library to make requests...
@@ -173,45 +173,45 @@ class Charge
         } catch (\Stripe\Error\RateLimit $e) {
             // Too many requests made to the API too quickly
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         } catch (\Stripe\Error\InvalidRequest $e) {
             // Invalid parameters were supplied to Stripe's API
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         } catch (\Stripe\Error\Authentication $e) {
             // Authentication with Stripe's API failed
             // (maybe you changed API keys recently)
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         } catch (\Stripe\Error\ApiConnection $e) {
             // Network communication with Stripe failed
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         } catch (\Stripe\Error\Base $e) {
             // Display a very generic error to the user, and maybe send
             // yourself an email
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         } catch (\Exception $e) {
             // Something else happened, completely unrelated to Stripe
             return $this->twig->render('Order/_fail.html.twig', [
-                'cardTitle' => "cardTitleFail",
+                'cardTitle'    => "cardTitleFail",
                 'errorMessage' => $e->getMessage(),
             ]);
         }
 
-        return RedirectResponse::create(
+        return new RedirectResponse(
             $this->urlGenerator->generate('app_success')
-        )->send();
+        );
     }
 }

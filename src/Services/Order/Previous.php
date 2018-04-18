@@ -35,7 +35,7 @@ class Previous
         UrlGeneratorInterface $urlGenerator,
         SessionInterface $session
     ) {
-        $this->session = $session;
+        $this->session      = $session;
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -44,10 +44,10 @@ class Previous
      */
     public function previous()
     {
-        $this->session->set('step', $this->session->get('step')-1);
+        $this->session->set('step', $this->session->get('step') - 1);
 
         return RedirectResponse::create(
             $this->urlGenerator->generate('app_order')
-        )->send();
+        );
     }
 }

@@ -403,12 +403,6 @@
                 <target>Commandé le</target>
             </segment>
         </unit>
-        <unit id="nameNotValid">
-            <segment>
-                <source>nameNotValid</source>
-                <target>Veuillez entrer un nom valide</target>
-            </segment>
-        </unit>
         <unit id="ticket">
             <segment>
                 <source>ticket</source>

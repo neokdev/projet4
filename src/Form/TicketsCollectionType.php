@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * Class TicketsCollectionType
@@ -32,26 +33,21 @@ class TicketsCollectionType extends AbstractType
                 'ticketCollection',
                 CollectionType::class,
                 [
-                'label' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'entry_type' => TicketType::class,
-                'entry_options' => [
-                    'label' => false,
-                ],
-                    ]
+                    'label'         => false,
+                    'allow_add'     => true,
+                    'allow_delete'  => true,
+                    'entry_type'    => TicketType::class,
+                    'constraints'   => [
+                        new Count([
+                            'min'        => 1,
+                            'minMessage' => 'noTicketAdded',
+                        ]),
+                    ],
+                    'entry_options' => [
+                        'label' => false,
+                    ],
+                ]
             )
-        ->addEventListener(
-            FormEvents::SUBMIT,
-            function (FormEvent $event) {
-                $form = $event->getForm();
-                /** @var TicketOrder $data */
-                $data = $event->getData();
-                if ($data->getTicketCollection()->count() === 0) {
-                    $form->addError(new FormError('noTicketAdded'));
-                }
-            }
-        )
         ;
     }
 

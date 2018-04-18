@@ -51,9 +51,9 @@ class Checkout extends AbstractController
         SessionInterface $session,
         UrlGeneratorInterface $urlGenerator
     ) {
-        $this->helper = $helper;
-        $this->session = $session;
-        $this->twig = $twig;
+        $this->helper       = $helper;
+        $this->session      = $session;
+        $this->twig         = $twig;
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -73,10 +73,10 @@ class Checkout extends AbstractController
         $date = strftime("%A %e %B %Y", $this->helper->getSelectedDate()->getTimestamp());
 
         return $this->twig->render('Order/_checkout.html.twig', [
-            'date' => $date,
+            'date'      => $date,
             'cardTitle' => "cardTitleConfirm",
-            'order' => $this->session->get('order'),
-            'tickets' => $this->session->get('tickets'),
+            'order'     => $this->session->get('order'),
+            'tickets'   => $this->session->get('tickets'),
         ]);
     }
 }

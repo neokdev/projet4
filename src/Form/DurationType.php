@@ -30,12 +30,12 @@ class DurationType extends AbstractType
                 'constraints' => [
                     new IsDayTicketsPossible(),
                 ],
-                'label' => 'order.duration',
+                'label'       => 'order.duration',
                 'placeholder' => 'selectDuration',
-                'choices' => [
-                    'day' => true,
+                'choices'     => [
+                    'day'     => true,
                     'halfDay' => false,
-                    ],
+                ],
             ])
         ;
     }
