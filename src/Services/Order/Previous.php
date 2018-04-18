@@ -46,7 +46,7 @@ class Previous
     {
         $this->session->set('step', $this->session->get('step') - 1);
 
-        return RedirectResponse::create(
+        return new RedirectResponse(
             $this->urlGenerator->generate('app_order')
         );
     }
